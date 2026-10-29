@@ -1,0 +1,318 @@
+.consultationSection {
+  position: relative;
+  width: 100%;
+  background-color: #062a8e;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+.splitLayout {
+  display: grid;
+  grid-template-columns: 41.2% 58.8%;
+  min-height: 600px;
+  width: 100%;
+}
+
+/* ==================== LEFT COLUMN: ROYAL BLUE FORM PANEL ==================== */
+.leftFormPanel {
+  position: relative;
+  background: linear-gradient(150deg,
+      #06298c 0%,
+      #093cc4 48%,
+      #072f9e 100%);
+  padding: 68px 54px 64px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Subtle starry dust & sparkle glints */
+.starryOverlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.24) 1px, transparent 1px),
+    radial-gradient(rgba(147, 197, 253, 0.18) 1px, transparent 1px);
+  background-size: 46px 46px, 32px 32px;
+  background-position: 0 0, 18px 22px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sparkleGlint {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 0 12px 3px rgba(147, 197, 253, 0.8),
+    0 0 24px 6px rgba(59, 130, 246, 0.6);
+  animation: sparklePulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes sparklePulse {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
+/* Bottom-Left 3D Curved Sphere Glow */
+.bottomLeftSphere {
+  position: absolute;
+  left: -130px;
+  bottom: -140px;
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 65% 32%,
+      rgba(96, 165, 250, 0.42) 0%,
+      rgba(29, 78, 216, 0.55) 45%,
+      rgba(4, 19, 74, 0.92) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formContentInner {
+  position: relative;
+  z-index: 5;
+  max-width: 580px;
+  width: 100%;
+  margin-left: auto;
+}
+
+/* Pill Badge: • About Us Optitech • */
+.aboutBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border-radius: 6px;
+  background: rgba(8, 35, 115, 0.65);
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+}
+
+.badgeDot {
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.sectionTitle {
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.sectionSubtitle {
+  font-size: 12.5px;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 24px;
+}
+
+/* ==================== CONSULTATION FORM ==================== */
+.consultForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.textInput,
+.selectInput {
+  width: 100%;
+  height: 42px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0 14px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #0f172a;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.textInput::placeholder {
+  color: #64748b;
+}
+
+.textInput:focus,
+.selectInput:focus,
+.textareaInput:focus {
+  border-color: #3ae89e;
+  box-shadow: 0 0 0 3px rgba(58, 232, 158, 0.25);
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectInput {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 32px;
+  font-weight: 500;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.selectChevron {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #334155;
+  pointer-events: none;
+  display: inline-flex;
+}
+
+.textareaInput {
+  width: 100%;
+  min-height: 132px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 13px 14px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #0f172a;
+  outline: none;
+  resize: vertical;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.textareaInput::placeholder {
+  color: #64748b;
+}
+
+/* Mint/Emerald-Teal Submit Button */
+.submitMintBtn {
+  width: 100%;
+  height: 44px;
+  margin-top: 2px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #38ea9d 0%, #43f0a6 50%, #34e598 100%);
+  color: #06183d;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(56, 234, 157, 0.28);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+}
+
+.submitMintBtn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 32px rgba(56, 234, 157, 0.42);
+}
+
+/* ==================== RIGHT COLUMN: PHOTO & SHARDS ==================== */
+.rightPhotoPanel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  overflow: hidden;
+}
+
+.rightPhoto {
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.bottomRightTechOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.shardsSvg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 390px;
+  height: auto;
+}
+
+.dotMatrix {
+  position: absolute;
+  right: 175px;
+  bottom: 18px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px 13px;
+  z-index: 5;
+}
+
+.dotItem {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.45);
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 1024px) {
+  .splitLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .leftFormPanel {
+    padding: 56px 28px;
+  }
+
+  .formContentInner {
+    margin: 0 auto;
+  }
+
+  .rightPhotoPanel {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 600px) {
+  .inputRow {
+    grid-template-columns: 1fr;
+  }
+
+  .rightPhotoPanel {
+    min-height: 340px;
+  }
+
+  .shardsSvg {
+    width: 260px;
+  }
+
+  .dotMatrix {
+    right: 90px;
+  }
+}

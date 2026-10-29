@@ -1,0 +1,422 @@
+.servicesSection {
+  position: relative;
+  width: 100%;
+  background-color: #030e30;
+  color: #ffffff;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== TOP & BOTTOM HALFTONE DOTTED STRIPS ==================== */
+.topHalftoneWrap {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  padding-top: 4px;
+  line-height: 0;
+}
+
+.bottomHalftoneWrap {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  padding-bottom: 4px;
+  line-height: 0;
+}
+
+.halftoneSvg {
+  display: block;
+  width: 100%;
+  height: 64px;
+}
+
+/* ==================== LEFT DUOTONE PHOTO PANEL ==================== */
+.leftPhotoPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 28.5%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.leftPanelImg {
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) contrast(1.08);
+}
+
+.leftPanelBlueTint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(9, 30, 88, 0.52) 0%,
+      rgba(12, 39, 108, 0.42) 50%,
+      rgba(6, 20, 62, 0.65) 100%);
+  mix-blend-mode: multiply;
+}
+
+.leftPhotoPanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(3, 14, 48, 0.35) 0%,
+      rgba(24, 68, 176, 0.25) 50%,
+      rgba(3, 14, 48, 0.45) 100%);
+}
+
+/* ==================== MAIN CONTENT LAYOUT ==================== */
+.mainLayout {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 26px 0 34px;
+}
+
+/* Header Area positioned to the right of the left photo panel */
+.headerArea {
+  margin-left: 33.5%;
+  padding-right: 11%;
+  margin-bottom: 42px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ourServicesBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background: rgba(15, 35, 92, 0.55);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+
+.badgeDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #2563eb;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.sectionTitle > span {
+  font-weight: 400;
+}
+
+/* View All Services CTA Button & Slider Arrows */
+.headerRight {
+  flex-shrink: 0;
+  padding-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sliderNavGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sliderNavBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(15, 35, 92, 0.72);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease;
+}
+
+.sliderNavBtn:hover {
+  background: #2557ff;
+  border-color: #60a5fa;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37, 87, 255, 0.45);
+}
+
+.sliderNavBtn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #2557ff 0%, #1d49e8 100%);
+  color: #ffffff;
+  padding: 9px 10px 9px 22px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 28px rgba(37, 87, 255, 0.38);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.viewAllBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3466ff 0%, #2552f5 100%);
+  box-shadow: 0 14px 34px rgba(37, 87, 255, 0.56);
+}
+
+.viewAllBtnText {
+  letter-spacing: 0.01em;
+}
+
+.viewAllBtnIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background-color: #ffffff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.viewAllBtn:hover .viewAllBtnIcon {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== STEPPED DARK-NAVY CUTOUT CARDS TRAY ==================== */
+.cardsCutoutTray {
+  position: relative;
+  margin-left: 13.5%;
+  background-color: #030e30;
+  border-radius: 20px 0 0 20px;
+  padding: 28px 24px 24px 44px;
+}
+
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0 8px;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.carouselDragging {
+  cursor: grabbing;
+}
+
+.carouselTrack {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.carouselSlide {
+  padding: 0 12px;
+  display: flex;
+}
+
+.carouselDots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.carouselDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(148, 163, 184, 0.32);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.carouselDot:hover {
+  background: rgba(96, 165, 250, 0.7);
+}
+
+.carouselDotActive {
+  width: 28px;
+  background: linear-gradient(90deg, #2557ff 0%, #38bdf8 100%);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
+}
+
+/* ==================== INDIVIDUAL SERVICE CARD ==================== */
+.serviceCard {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, #0d1c45 0%, #0a1536 100%);
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  border-radius: 14px;
+  padding: 12px 12px 26px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.serviceCard::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  height: 2.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #2563eb, transparent);
+  transform: scaleX(0);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCard:hover {
+  transform: translateY(-7px);
+  background: linear-gradient(180deg, #12255a 0%, #0c1a42 100%);
+  border-color: rgba(59, 130, 246, 0.45);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.52), 0 0 24px rgba(37, 99, 235, 0.18);
+}
+
+.serviceCard:hover::after {
+  transform: scaleX(1);
+}
+
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 204px;
+  margin-bottom: 34px;
+}
+
+.cardImageInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cardImg {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCard:hover .cardImg {
+  transform: scale(1.06);
+}
+
+/* Overlapping Royal Blue Icon Box at Bottom-Left of Card Image */
+.cardIconBadge {
+  position: absolute;
+  left: 14px;
+  bottom: -22px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1659ff 0%, #0f46db 100%);
+  box-shadow: 0 8px 20px rgba(18, 84, 255, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  transition: transform 0.28s ease;
+}
+
+.serviceCard:hover .cardIconBadge {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.cardBody {
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-size: 18.5px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.cardDescription {
+  font-size: 13px;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 400;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 1280px) {
+  .headerArea {
+    margin-left: 28%;
+    padding-right: 4%;
+  }
+
+  .cardsCutoutTray {
+    margin-left: 8%;
+    padding-left: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .leftPhotoPanel {
+    display: none;
+  }
+
+  .headerArea {
+    margin-left: 0;
+    padding: 0 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardsCutoutTray {
+    margin-left: 0;
+    border-radius: 0;
+    padding: 16px 12px 24px;
+  }
+}

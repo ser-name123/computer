@@ -1,0 +1,446 @@
+.pricingSection {
+  position: relative;
+  width: 100%;
+  background-color: #020b2b;
+  color: #ffffff;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== TOP & BOTTOM HALFTONE DOTTED STRIPS ==================== */
+.topHalftoneWrap {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  padding-top: 4px;
+  line-height: 0;
+}
+
+.bottomHalftoneWrap {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  padding-bottom: 4px;
+  line-height: 0;
+}
+
+.halftoneSvg {
+  display: block;
+  width: 100%;
+  height: 64px;
+}
+
+/* ==================== AMBIENT BEAMS & WAVES ==================== */
+.ambientBeams {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.beamTopLeft {
+  position: absolute;
+  top: -120px;
+  left: -80px;
+  width: 760px;
+  height: 680px;
+  background: radial-gradient(ellipse at center,
+      rgba(29, 78, 216, 0.34) 0%,
+      rgba(18, 52, 156, 0.14) 45%,
+      transparent 72%);
+  transform: rotate(-28deg);
+  filter: blur(24px);
+}
+
+.beamCenterRight {
+  position: absolute;
+  top: 22%;
+  right: -6%;
+  width: 680px;
+  height: 620px;
+  background: radial-gradient(circle at center,
+      rgba(37, 99, 235, 0.44) 0%,
+      rgba(29, 78, 216, 0.18) 48%,
+      transparent 72%);
+  filter: blur(30px);
+}
+
+.bottomWavesSvg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 48px;
+  width: 100%;
+  height: 290px;
+}
+
+/* ==================== MAIN CONTAINER ==================== */
+.container {
+  position: relative;
+  z-index: 5;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 36px 28px 56px;
+}
+
+/* ==================== HEADER BLOCK ==================== */
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.pricingBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background: rgba(15, 35, 92, 0.55);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  color: #2563eb;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+
+.badgeDot {
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background-color: #2563eb;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.sectionTitle > span {
+  font-weight: 400;
+}
+
+.sectionSubtitle {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 580px;
+}
+
+/* ==================== 3 PRICING CARDS GRID ==================== */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+.pricingCard {
+  position: relative;
+  background: rgba(10, 23, 64, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(96, 165, 250, 0.16);
+  border-radius: 14px;
+  padding: 10px 10px 28px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.32s ease,
+    box-shadow 0.32s ease;
+}
+
+.pricingCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(96, 165, 250, 0.42);
+  box-shadow: 0 22px 48px rgba(3, 10, 38, 0.65);
+}
+
+.pricingCardFeatured {
+  border-color: rgba(129, 140, 248, 0.38);
+  box-shadow: 0 18px 44px rgba(29, 78, 216, 0.25);
+}
+
+/* Top Inner Box inside each card */
+.cardTopBox {
+  position: relative;
+  background: linear-gradient(145deg,
+      rgba(24, 48, 122, 0.65) 0%,
+      rgba(13, 28, 76, 0.82) 55%,
+      rgba(22, 46, 118, 0.72) 100%);
+  border: 1px solid rgba(147, 197, 253, 0.18);
+  border-radius: 10px;
+  padding: 20px 18px 18px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.cardTopCornerGlow {
+  position: absolute;
+  top: -35px;
+  right: -25px;
+  width: 150px;
+  height: 130px;
+  background: radial-gradient(circle,
+      rgba(99, 102, 241, 0.68) 0%,
+      rgba(59, 130, 246, 0.38) 45%,
+      transparent 72%);
+  pointer-events: none;
+}
+
+.planName {
+  position: relative;
+  z-index: 2;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.priceRow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+
+.currencySymbol {
+  font-size: 32px;
+  font-weight: 500;
+  color: #2dd4bf;
+  line-height: 1;
+  margin-right: 2px;
+}
+
+.priceAmount {
+  font-size: 36px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.billingCycle {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-left: 4px;
+}
+
+.planTagline {
+  position: relative;
+  z-index: 2;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Full-width Royal Blue CTA Button */
+.planCtaBtn {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.38);
+  transition: all 0.24s ease;
+}
+
+.planCtaBtn:hover {
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 50%, #3b82f6 100%);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.55);
+}
+
+/* Features List Zone */
+.featuresZone {
+  position: relative;
+  z-index: 3;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.includedLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.52);
+  margin-bottom: 14px;
+}
+
+.featureList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featureListItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 500;
+}
+
+.sparkleIcon {
+  color: #93c5fd;
+  flex-shrink: 0;
+}
+
+/* Center Card Bottom-Right Glowing Electric Blue/Violet Aura */
+.featuredBottomGlow {
+  position: absolute;
+  right: -25px;
+  bottom: -25px;
+  width: 210px;
+  height: 170px;
+  background:
+    radial-gradient(circle at 75% 75%,
+      rgba(129, 140, 248, 0.85) 0%,
+      rgba(59, 130, 246, 0.55) 42%,
+      transparent 74%);
+  pointer-events: none;
+  z-index: 1;
+  animation: featuredAuraPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes featuredAuraPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: scale(1.16);
+    opacity: 1;
+  }
+}
+
+/* ==================== BOTTOM GUARANTEE & TOGGLE BAR ==================== */
+.bottomBar {
+  background: rgba(9, 21, 58, 0.78);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(96, 165, 250, 0.16);
+  border-radius: 11px;
+  padding: 10px 14px 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.guaranteesList {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.guaranteeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 500;
+}
+
+.guaranteeIconCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Right Billing Toggle Box */
+.billingToggleBox {
+  background: #040c26;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  border-radius: 8px;
+  padding: 7px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.toggleLabel {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.toggleLabelActive {
+  color: #ffffff;
+}
+
+.switchBtn {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  border-radius: 999px;
+  background: #2563eb;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.25s ease;
+}
+
+.switchThumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.switchBtnAnnual .switchThumb {
+  transform: translateX(16px);
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 900px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto 20px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .guaranteesList {
+    justify-content: center;
+    gap: 16px;
+  }
+}

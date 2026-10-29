@@ -1,0 +1,524 @@
+.whySection {
+  position: relative;
+  width: 100%;
+  background-color: #f5f8fd;
+  padding-top: 84px;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== BACKGROUND DECORATIONS ==================== */
+.topLeftWaves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 310px;
+  height: 390px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bottomLeftGrid {
+  position: absolute;
+  left: 0;
+  bottom: 58px;
+  width: 580px;
+  height: 230px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rightDottedSphere {
+  position: absolute;
+  top: 56px;
+  right: 4%;
+  width: 370px;
+  height: 370px;
+  pointer-events: none;
+  z-index: 1;
+  animation: sphereSlowSpin 28s linear infinite;
+}
+
+@keyframes sphereSlowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bottom-Right Electric Blue Tinted Photo Panel */
+.bottomRightBluePanel {
+  position: absolute;
+  right: 0;
+  bottom: 58px;
+  width: 40.8%;
+  height: 325px;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bluePanelPhoto {
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) contrast(1.1);
+}
+
+.bluePanelColorOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(18, 84, 255, 0.86) 0%,
+    rgba(22, 92, 255, 0.82) 55%,
+    rgba(11, 56, 196, 0.9) 100%
+  );
+}
+
+/* ==================== MAIN CONTENT CONTAINER ==================== */
+.container {
+  position: relative;
+  z-index: 5;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 28px 72px;
+}
+
+/* ==================== TOP 2-COLUMN ROW ==================== */
+.topRow {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 24px;
+}
+
+.whyBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d5e0f2;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.05);
+}
+
+.badgeDot {
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background-color: #1d4ed8;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #0b132b;
+  margin-bottom: 18px;
+}
+
+.sectionDescription {
+  font-size: 13.5px;
+  line-height: 1.66;
+  color: #4b5563;
+  max-width: 440px;
+  margin-bottom: 28px;
+}
+
+.getInTouchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #2557ff 0%, #1d49e8 100%);
+  color: #ffffff;
+  padding: 8px 9px 8px 20px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 26px rgba(37, 87, 255, 0.32);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.getInTouchBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3264ff 0%, #2452f5 100%);
+  box-shadow: 0 14px 32px rgba(37, 87, 255, 0.48);
+}
+
+.btnText {
+  letter-spacing: 0.01em;
+}
+
+.btnIconBox {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.getInTouchBtn:hover .btnIconBox {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== RIGHT EXECUTIVE PORTRAIT & FLOATING WIDGETS ==================== */
+.rightVisualArea {
+  position: relative;
+  height: 410px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.executiveImageBox {
+  position: relative;
+  width: 450px;
+  height: 405px;
+  overflow: hidden;
+  mix-blend-mode: darken;
+  mask-image: radial-gradient(
+    ellipse 88% 88% at 50% 44%,
+    #000000 66%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 88% 88% at 50% 44%,
+    #000000 66%,
+    transparent 100%
+  );
+}
+
+.executiveImg {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Floating Widget 1: "6000+ Happy Users" */
+.happyUsersFloatingCard {
+  position: absolute;
+  top: 132px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid #dce5f5;
+  border-radius: 12px;
+  padding: 11px 16px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.11);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 6;
+  transition: transform 0.3s ease;
+  animation: widgetFloatLeft 4.6s ease-in-out infinite alternate;
+}
+
+@keyframes widgetFloatLeft {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.happyUsersFloatingCard:hover {
+  transform: translateY(-3px);
+}
+
+.usersAvatarRow {
+  display: flex;
+  align-items: center;
+}
+
+.userAvatarDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.8px solid #ffffff;
+  margin-left: -6px;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+.userAvatarDot:first-child {
+  margin-left: 0;
+}
+
+.userAvatarDot svg {
+  width: 100%;
+  height: 100%;
+}
+
+.happyUsersText {
+  font-size: 11px;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.happyUsersText strong {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* Floating Widget 2: "$1234.40" Analytics Bar Chart */
+.analyticsFloatingCard {
+  position: absolute;
+  top: 98px;
+  right: 8px;
+  width: 162px;
+  background: #ffffff;
+  border: 1px solid #dce5f5;
+  border-radius: 12px;
+  padding: 12px 13px 10px;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.14);
+  z-index: 6;
+  transition: transform 0.3s ease;
+  animation: widgetFloatRight 5.2s ease-in-out infinite alternate;
+}
+
+@keyframes widgetFloatRight {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(6px);
+  }
+}
+
+.analyticsFloatingCard:hover {
+  transform: translateY(-4px);
+}
+
+.analyticsHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.analyticsAmount {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.analyticsDate {
+  font-size: 7.5px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.yearlyPill {
+  font-size: 7.5px;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.barsArea {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  align-items: end;
+  height: 74px;
+}
+
+.barTooltip {
+  position: absolute;
+  left: 0;
+  top: 26px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 7.5px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+  z-index: 3;
+  box-shadow: 0 4px 8px rgba(29, 78, 216, 0.35);
+}
+
+.barCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.barTrack {
+  flex: 1;
+  width: 8px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.barFillTop {
+  width: 100%;
+  border-radius: 999px;
+  background: #1d4ed8;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  transform-origin: bottom center;
+  animation: chartBarPulse 2.4s ease-in-out infinite alternate;
+}
+
+.barCol:nth-child(odd) .barFillTop {
+  animation-delay: 0.6s;
+}
+
+@keyframes chartBarPulse {
+  0% {
+    transform: scaleY(0.86);
+  }
+  100% {
+    transform: scaleY(1.04);
+  }
+}
+
+.barFillBottom {
+  width: 100%;
+  border-radius: 999px;
+  background: #38bdf8;
+}
+
+.barMonth {
+  font-size: 7px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* ==================== BOTTOM 4 REASON CARDS GRID ==================== */
+.cardsGrid {
+  position: relative;
+  z-index: 8;
+  margin-top: -12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.reasonCard {
+  background-color: #e6edfb;
+  border: 1px solid #d8e3f8;
+  border-radius: 12px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.reasonCard:hover {
+  transform: translateY(-5px);
+  background-color: #ffffff;
+  box-shadow: 0 18px 36px rgba(29, 78, 216, 0.14);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cardIconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.28;
+  color: #0b132b;
+}
+
+.cardDescription {
+  font-size: 12px;
+  line-height: 1.62;
+  color: #4b5563;
+}
+
+/* ==================== BOTTOM HALFTONE DOTTED STRIP ==================== */
+.bottomHalftoneStrip {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  line-height: 0;
+}
+
+.halftoneSvg {
+  display: block;
+  width: 100%;
+  height: 58px;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 992px) {
+  .topRow {
+    grid-template-columns: 1fr;
+  }
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 24px;
+  }
+  .bottomRightBluePanel {
+    width: 100%;
+    height: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  .happyUsersFloatingCard {
+    left: 4px;
+    top: 16px;
+  }
+  .analyticsFloatingCard {
+    right: 4px;
+    bottom: 16px;
+    top: auto;
+  }
+}

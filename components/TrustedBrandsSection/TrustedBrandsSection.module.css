@@ -1,0 +1,150 @@
+.brandsSection {
+  position: relative;
+  width: 100%;
+  background-color: #f4f7fc;
+  padding: 64px 0 56px;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== TOP DIVIDER LINE & CENTERED PILL ==================== */
+.topDividerBar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topDividerBar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background-color: #dce4f2;
+  z-index: 1;
+}
+
+.pillBadge {
+  position: relative;
+  z-index: 2;
+  background-color: #f4f7fc;
+  border: 1px solid #d5dfef;
+  border-radius: 999px;
+  padding: 9px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0b132b;
+  letter-spacing: -0.01em;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+}
+
+.highlightCount {
+  color: #1254ff;
+  font-weight: 600;
+}
+
+/* ==================== LOGOS STRIP & BOTTOM BORDER ==================== */
+.logosBand {
+  width: 100%;
+  border-bottom: 1px solid #dce4f2;
+  padding: 42px 0 44px;
+  mask-image: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.45) 8%,
+      #000000 18%,
+      #000000 82%,
+      rgba(0, 0, 0, 0.45) 92%,
+      transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.45) 8%,
+      #000000 18%,
+      #000000 82%,
+      rgba(0, 0, 0, 0.45) 92%,
+      transparent 100%);
+}
+
+.logosContainer {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  width: max-content;
+  will-change: transform;
+  animation: brandsInfiniteMarquee 180s linear infinite;
+}
+
+.logosBand:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+@keyframes brandsInfiniteMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.brandItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: #ffffff;
+  border: 1px solid rgba(213, 223, 239, 0.85);
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.035);
+  cursor: pointer;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.brandItem:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: rgba(18, 84, 255, 0.35);
+  box-shadow: 0 12px 26px rgba(18, 84, 255, 0.1);
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 900px) {
+  .logosContainer {
+    justify-content: center;
+    gap: 28px 42px;
+  }
+
+  .logosBand {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .brandItemEdge {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .pillBadge {
+    margin: 0 16px;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}

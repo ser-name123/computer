@@ -1,0 +1,299 @@
+.articlesSection {
+  position: relative;
+  width: 100%;
+  background-color: #f4f7fc;
+  padding: 20px 0 84px;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+.outerContainer {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Soft Lavender-Blue Rounded Box Container Matching Screenshot */
+.innerRoundedBox {
+  background: linear-gradient(180deg,
+      #e6edfb 0%,
+      #ebf1fc 58%,
+      #f4f7fc 100%);
+  border-radius: 20px 20px 0 0;
+  padding: 68px 64px 48px;
+}
+
+/* ==================== HEADER ROW ==================== */
+.headerRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 38px;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.articlesBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.65);
+  border: 1px solid #cddbf2;
+  color: #1d4ed8;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+}
+
+.badgeDot {
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background-color: #1d4ed8;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #0b132b;
+}
+
+.headerRight {
+  flex-shrink: 0;
+  padding-bottom: 4px;
+}
+
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #2557ff 0%, #1d49e8 100%);
+  color: #ffffff;
+  padding: 8px 9px 8px 18px;
+  border-radius: 9px;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(37, 87, 255, 0.28);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.viewAllBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3264ff 0%, #2452f5 100%);
+  box-shadow: 0 14px 30px rgba(37, 87, 255, 0.44);
+}
+
+.btnText {
+  letter-spacing: 0.01em;
+}
+
+.btnIconBox {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.viewAllBtn:hover .btnIconBox {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== 3 BLOG CARDS GRID ==================== */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.articleCard {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px 10px 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.32s ease;
+}
+
+.articleCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px rgba(29, 78, 216, 0.12);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 235px;
+  margin-bottom: 24px;
+}
+
+.imageInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.imageInner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -95%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.32),
+      transparent);
+  transform: skewX(-22deg);
+  transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.articleCard:hover .imageInner::after {
+  left: 135%;
+}
+
+.articleImg {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.articleCard:hover .articleImg {
+  transform: scale(1.05);
+}
+
+/* Overlapping Dual Pill Badge: "Cloud Solutions" + White Date Pill */
+.dualPillBadge {
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  background-color: #1254ff;
+  border-radius: 0 999px 999px 4px;
+  padding: 3px 3px 3px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 16px rgba(18, 84, 255, 0.28);
+  z-index: 3;
+}
+
+.categoryLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.datePill {
+  background-color: #ffffff;
+  color: #0b132b;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* Card Body */
+.cardBody {
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.articleTitle {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #0b132b;
+  margin-bottom: 16px;
+}
+
+.titleLink {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.articleCard:hover .titleLink {
+  color: #1254ff;
+}
+
+.cardDivider {
+  width: 100%;
+  height: 1px;
+  background-color: #eef2f8;
+  margin-bottom: 14px;
+  margin-top: auto;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.metaItem svg {
+  color: #334155;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 1024px) {
+  .innerRoundedBox {
+    padding: 48px 32px 36px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .innerRoundedBox {
+    padding: 36px 20px 28px;
+  }
+}

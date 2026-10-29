@@ -1,0 +1,494 @@
+.caseStudiesSection {
+  position: relative;
+  width: 100%;
+  background-color: #eef3fc;
+  padding: 78px 0 96px;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== TOP-LEFT FLOWING CONTOUR WAVES ==================== */
+.topLeftContours {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 520px;
+  height: 500px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==================== MAIN WRAPPER ==================== */
+.mainWrapper {
+  position: relative;
+  z-index: 5;
+  max-width: 1640px;
+  margin: 0 auto;
+  padding-left: 64px;
+}
+
+/* ==================== TOP HEADER ROW ==================== */
+.headerRow {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 22px;
+  align-items: flex-start;
+  margin-bottom: 38px;
+  padding-right: 48px;
+}
+
+.headerBadgeCol {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 48px;
+  padding-top: 6px;
+}
+
+.caseBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.78);
+  border: 1px solid #d5e0f2;
+  color: #1d4ed8;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.05);
+}
+
+.badgeDot {
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background-color: #1d4ed8;
+}
+
+.headerTitleCol {
+  padding-left: 34px;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #0b132b;
+}
+
+/* ==================== ASYMMETRIC GALLERY GRID ==================== */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 460px 395px 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* ==================== LEFT COLUMN ==================== */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.leftThumbnailsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.thumbCard {
+  position: relative;
+  width: 100%;
+  height: 256px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.32s ease;
+}
+
+.thumbCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px rgba(29, 78, 216, 0.2);
+}
+
+.thumbImg {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.thumbCard:hover .thumbImg {
+  transform: scale(1.06);
+}
+
+.thumbBadgeOverlay {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 3;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(5, 16, 54, 0.72);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.slideEnterNext {
+  animation: caseSlideFromRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slideEnterPrev {
+  animation: caseSlideFromLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes caseSlideFromRight {
+  0% {
+    opacity: 0.35;
+    transform: translate3d(28px, 0, 0) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes caseSlideFromLeft {
+  0% {
+    opacity: 0.35;
+    transform: translate3d(-28px, 0, 0) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Bottom Slider Pagination Row: ← 01/7 → */
+.sliderPaginationRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  padding-right: 12px;
+  padding-bottom: 8px;
+}
+
+.longArrowBtn {
+  background: transparent;
+  border: none;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.longArrowBtn:hover {
+  color: #1d4ed8;
+  transform: scale(1.08);
+}
+
+.slideCounterText {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.currentSlideNum {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 500;
+  color: #0b132b;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.counterFlip {
+  animation: counterNumberSlide 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes counterNumberSlide {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.totalSlideNum {
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-left: 1px;
+}
+
+/* ==================== CENTER FEATURED CARD ==================== */
+.featuredCard {
+  position: relative;
+  width: 100%;
+  height: 452px;
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 22px 48px rgba(4, 12, 38, 0.24);
+}
+
+.featuredCardBg {
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featuredCard:hover .featuredCardBg {
+  transform: scale(1.04);
+}
+
+.featuredCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(6, 14, 34, 0.22) 0%,
+      rgba(6, 16, 40, 0.18) 38%,
+      rgba(4, 15, 46, 0.84) 72%,
+      rgba(3, 11, 36, 0.98) 100%);
+  z-index: 1;
+}
+
+.featuredTagsRow {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tagPill {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+
+.featuredBottomContent {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.featuredTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.featuredDescription {
+  font-size: 12px;
+  line-height: 1.58;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 18px;
+}
+
+/* Bottom Bar inside Featured Card: "View Project Details" + Blue Square Arrow */
+.projectDetailsBar {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.projectDetailsBar:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(96, 165, 250, 0.45);
+}
+
+.detailsBarLabel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.detailsBarArrowBox {
+  width: 38px;
+  height: 100%;
+  background: #1254ff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  transition: background-color 0.25s ease;
+}
+
+.projectDetailsBar:hover .detailsBarArrowBox {
+  background: #2563eb;
+}
+
+/* ==================== RIGHT COLUMN ==================== */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.rightThumbnailsRow {
+  display: grid;
+  grid-template-columns: 230px 230px 165px;
+  gap: 18px;
+}
+
+.edgeThumbCard {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rightSummaryBlock {
+  padding-left: 28px;
+  padding-right: 48px;
+  padding-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.portfolioParagraph {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: #4b5563;
+  max-width: 380px;
+}
+
+.viewAllProjectsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #2557ff 0%, #1d49e8 100%);
+  color: #ffffff;
+  padding: 8px 9px 8px 18px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 26px rgba(37, 87, 255, 0.3);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.viewAllProjectsBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3264ff 0%, #2452f5 100%);
+  box-shadow: 0 14px 32px rgba(37, 87, 255, 0.45);
+}
+
+.btnText {
+  letter-spacing: 0.01em;
+}
+
+.btnIconBox {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.viewAllProjectsBtn:hover .btnIconBox {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 1200px) {
+  .mainWrapper {
+    padding: 0 24px;
+  }
+
+  .headerRow {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .headerBadgeCol {
+    justify-content: flex-start;
+    padding-right: 0;
+  }
+
+  .headerTitleCol {
+    padding-left: 0;
+  }
+
+  .galleryGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rightColumn {
+    grid-column: span 2;
+    gap: 28px;
+  }
+
+  .rightThumbnailsRow {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .galleryGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .rightColumn {
+    grid-column: span 1;
+  }
+
+  .sliderPaginationRow {
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .rightSummaryBlock {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

@@ -1,0 +1,474 @@
+.aboutWrapper {
+  position: relative;
+  width: 100%;
+  background-color: #f5f8fd;
+  padding: 30px 0 120px;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== DECORATIVE BACKGROUND VECTORS ==================== */
+.leftWaveVectors {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  height: 540px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.leftWaveSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.rightGridVectors {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 340px;
+  height: 340px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rightGridSvg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==================== MAIN 2-COLUMN CONTAINER ==================== */
+.aboutContainer {
+  position: relative;
+  z-index: 5;
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* ==================== LEFT COLUMN ==================== */
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Pill Badge: • About Us Optitech • */
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid #d5e0f2;
+  color: #1d4ed8;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.05);
+}
+
+.badgeDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #1d4ed8;
+}
+
+/* Main Heading */
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #0b132b;
+  margin-bottom: 20px;
+}
+
+/* Paragraph Description */
+.sectionDescription {
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #4b5563;
+  max-width: 530px;
+  margin-bottom: 30px;
+}
+
+/* Feature List */
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 36px;
+  width: 100%;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.featureIconCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #dce5f5;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.featureItem:hover .featureIconCircle {
+  transform: translateY(-3px);
+  border-color: #93c5fd;
+  box-shadow: 0 12px 26px rgba(37, 87, 255, 0.14);
+}
+
+.featureTextGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 430px;
+}
+
+.featureTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #0b132b;
+  letter-spacing: -0.01em;
+}
+
+.featureDesc {
+  font-size: 13.5px;
+  line-height: 1.62;
+  color: #525e75;
+}
+
+/* Know About Us Button */
+.ctaRow {
+  display: flex;
+  align-items: center;
+}
+
+.knowAboutBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #2557ff 0%, #1d49e8 100%);
+  color: #ffffff;
+  padding: 9px 10px 9px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 26px rgba(37, 87, 255, 0.32);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.knowAboutBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3264ff 0%, #2452f5 100%);
+  box-shadow: 0 14px 32px rgba(37, 87, 255, 0.48);
+}
+
+.knowAboutBtnText {
+  letter-spacing: 0.01em;
+}
+
+.knowAboutBtnIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  background-color: #ffffff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.knowAboutBtn:hover .knowAboutBtnIcon {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== RIGHT COLUMN: STAGGERED COLLAGE ==================== */
+.rightCollage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  padding-top: 20px;
+}
+
+/* Left Lower Image Card */
+.leftPhotoCard {
+  position: relative;
+  width: 100%;
+  height: 430px;
+  margin-top: 78px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
+}
+
+/* Right Higher Image Wrapper */
+.rightPhotoWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.rightPhotoCard {
+  position: relative;
+  width: 100%;
+  height: 435px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
+}
+
+.collagePhoto {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leftPhotoCard::after,
+.rightPhotoCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -95%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+  transform: skewX(-22deg);
+  transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.leftPhotoCard:hover::after,
+.rightPhotoCard:hover::after {
+  left: 135%;
+}
+
+.leftPhotoCard:hover .collagePhoto,
+.rightPhotoCard:hover .collagePhoto {
+  transform: scale(1.04);
+}
+
+/* ==================== 3D FOLDED "32+ YEARS OF EXPERIENCE" BADGE ==================== */
+.experienceBadge {
+  position: absolute;
+  top: 34px;
+  left: -34px;
+  z-index: 12;
+  width: 164px;
+  filter: drop-shadow(0 16px 30px rgba(18, 84, 255, 0.32));
+  transition: transform 0.3s ease;
+  animation: aboutBadgeFloat 4.8s ease-in-out infinite alternate;
+}
+
+@keyframes aboutBadgeFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.rightPhotoWrapper:hover .experienceBadge {
+  transform: translateY(-3px);
+}
+
+/* Top-Left 3D Ribbon Fold Triangle */
+.ribbonFold {
+  position: absolute;
+  top: -34px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 34px 34px;
+  border-color: transparent transparent #082073 transparent;
+}
+
+.experienceBadgeBody {
+  background: linear-gradient(145deg, #1758ff 0%, #1049eb 100%);
+  border-radius: 0 8px 8px 8px;
+  padding: 20px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+.experienceYears {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.experienceDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 11px;
+}
+
+.experienceLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.96);
+  letter-spacing: 0.01em;
+}
+
+/* ==================== FLOATING CEO CARD ("Kristin Watson") ==================== */
+.ceoCard {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  min-width: 242px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  z-index: 15;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ceoCard:hover {
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 22px 46px rgba(15, 23, 42, 0.18);
+}
+
+.ceoAvatarsGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ceoPhotoCircle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 1;
+}
+
+.ceoAvatarImg {
+  object-fit: cover;
+}
+
+.ceoPhoneCircle {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #090d16;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background-color 0.22s ease, transform 0.22s ease;
+}
+
+.ceoPhoneCircle:hover {
+  background-color: #2557ff;
+  transform: scale(1.06);
+}
+
+.ceoMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ceoName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0b132b;
+  line-height: 1.2;
+}
+
+.ceoRole {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 1024px) {
+  .aboutContainer {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .leftContent {
+    max-width: 640px;
+  }
+  .rightCollage {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .aboutWrapper {
+    padding: 10px 0 80px;
+  }
+  .rightCollage {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .leftPhotoCard {
+    margin-top: 0;
+    height: 360px;
+  }
+  .rightPhotoCard {
+    height: 380px;
+  }
+  .experienceBadge {
+    left: 16px;
+    top: 16px;
+  }
+  .ribbonFold {
+    display: none;
+  }
+}
+

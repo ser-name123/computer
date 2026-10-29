@@ -1,0 +1,298 @@
+.sectionWrapper {
+  position: relative;
+  width: 100%;
+  background-color: #f5f8fd;
+  padding-bottom: 105px;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== TOP HALFTONE DOTTED STRIP ==================== */
+.halftoneStrip {
+  width: 100%;
+  padding-top: 6px;
+  margin-bottom: 74px;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.halftoneSvg {
+  display: block;
+  width: 100%;
+  height: 66px;
+}
+
+/* ==================== 3-COLUMN CARDS CONTAINER ==================== */
+.cardsContainer {
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  align-items: stretch;
+}
+
+/* ==================== BASE SERVICE CARD ==================== */
+.serviceCard {
+  position: relative;
+  min-height: 312px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px 30px 28px;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCard:hover {
+  transform: translateY(-7px);
+}
+
+/* Variant 1: Left Card (Custom Software Development - Blue Tinted Photo) */
+.cardBluePhoto {
+  background-color: #071e63;
+  box-shadow: 0 16px 38px rgba(7, 30, 99, 0.16);
+}
+
+.cardBluePhoto:hover {
+  box-shadow: 0 24px 48px rgba(10, 44, 145, 0.32);
+}
+
+/* Variant 2: Center Card (AI & Business Automation - Solid Royal Blue) */
+.cardSolidBlue {
+  background: #1254ff;
+  box-shadow: 0 18px 42px rgba(18, 84, 255, 0.28);
+}
+
+.cardSolidBlue:hover {
+  box-shadow: 0 26px 54px rgba(18, 84, 255, 0.44);
+}
+
+.solidBlueGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 20% 85%,
+    rgba(96, 165, 250, 0.22) 0%,
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+/* Variant 3: Right Card (24/7 Managed IT Support - Dark Monochrome Photo) */
+.cardDarkMono {
+  background-color: #181c24;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.16);
+}
+
+.cardDarkMono:hover {
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.32);
+}
+
+/* ==================== PHOTO BACKGROUNDS & OVERLAYS ==================== */
+.cardBgWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cardBgPhoto {
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCard:hover .cardBgPhoto {
+  transform: scale(1.06);
+}
+
+/* Deep Royal Blue Gradient Overlay for Card 1 */
+.bluePhotoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 20, 62, 0.12) 0%,
+    rgba(7, 29, 96, 0.55) 46%,
+    rgba(8, 38, 128, 0.92) 82%,
+    rgba(7, 34, 118, 0.97) 100%
+  );
+}
+
+/* Dark Slate Monochrome Gradient Overlay for Card 3 */
+.darkMonoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 26, 34, 0.16) 0%,
+    rgba(22, 26, 34, 0.62) 48%,
+    rgba(20, 24, 31, 0.92) 84%,
+    rgba(17, 20, 27, 0.97) 100%
+  );
+}
+
+/* ==================== CENTER CARD GEOMETRIC CUTOUT EMBLEM ==================== */
+.cutoutEmblemWrap {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  width: 192px;
+  height: 192px;
+  z-index: 2;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: pinwheelFloat 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes pinwheelFloat {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(5deg) scale(1.03);
+  }
+}
+
+.cardSolidBlue:hover .cutoutEmblemWrap {
+  transform: scale(1.03) rotate(2deg);
+}
+
+.cutoutCircleImageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.cutoutInnerPhoto {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+}
+
+.cutoutMaskOverlay {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  z-index: 3;
+}
+
+/* ==================== CARD TEXT CONTENT ==================== */
+.cardContent {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.cardTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+}
+
+.hoverArrowBadge {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: all 0.25s ease;
+}
+
+.serviceCard:hover .hoverArrowBadge {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.cardDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.26);
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardDivider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCard:hover .cardDivider::after {
+  transform: translateX(0);
+}
+
+.cardDescription {
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 400;
+  max-width: 96%;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 1024px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .halftoneStrip {
+    margin-bottom: 44px;
+  }
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .serviceCard {
+    min-height: 290px;
+    padding: 24px;
+  }
+  .cutoutEmblemWrap {
+    width: 165px;
+    height: 165px;
+  }
+}
+

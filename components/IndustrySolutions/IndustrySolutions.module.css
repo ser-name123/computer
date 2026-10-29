@@ -1,0 +1,371 @@
+.industrySection {
+  position: relative;
+  width: 100%;
+  background-color: #f5f8fd;
+  padding: 96px 0 110px;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* ==================== CIRCUIT BOARD DECORATIONS ==================== */
+.circuitSide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 240px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.circuitLeft {
+  left: 0;
+}
+
+.circuitRight {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.circuitSvg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.circuitPulsePath {
+  stroke-dasharray: 28 190;
+  animation: circuitDataFlow 4.2s linear infinite;
+}
+
+.circuitPulsePathAlt {
+  stroke-dasharray: 24 210;
+  animation: circuitDataFlow 5.4s linear infinite reverse;
+}
+
+@keyframes circuitDataFlow {
+  from {
+    stroke-dashoffset: 220;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ==================== MAIN CONTAINER ==================== */
+.container {
+  position: relative;
+  z-index: 5;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ==================== TOP ROW ==================== */
+.topRow {
+  display: grid;
+  grid-template-columns: 540px 1fr;
+  gap: 54px;
+  align-items: center;
+  margin-bottom: 42px;
+}
+
+.featuredImageCard {
+  position: relative;
+  width: 100%;
+  height: 296px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+  background: #0b132b;
+}
+
+.featuredImgLayer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.05);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.featuredImgLayerActive {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.featuredImg {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featuredImageCard:hover .featuredImgLayerActive .featuredImg {
+  transform: scale(1.04);
+}
+
+.imageOverlayBadge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: rgba(5, 16, 54, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(96, 165, 250, 0.32);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(2, 8, 32, 0.35);
+  animation: industryContentFadeIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.overlayStatValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #38bdf8;
+  letter-spacing: -0.01em;
+}
+
+.overlayStatLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Right Header Block (Centered matching screenshot) */
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: industryContentFadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes industryContentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.industryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d5e0f2;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.05);
+}
+
+.badgeDot {
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 50%;
+  background-color: #1d4ed8;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.4vw, 44px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #0b132b;
+  margin-bottom: 14px;
+}
+
+.industryDescription {
+  max-width: 510px;
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: #475569;
+  margin-bottom: 22px;
+  font-weight: 400;
+}
+
+.discoverBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #2557ff 0%, #1d49e8 100%);
+  color: #ffffff;
+  padding: 8px 9px 8px 20px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 26px rgba(37, 87, 255, 0.32);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.discoverBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3264ff 0%, #2452f5 100%);
+  box-shadow: 0 14px 32px rgba(37, 87, 255, 0.48);
+}
+
+.discoverBtnText {
+  letter-spacing: 0.01em;
+}
+
+.discoverBtnIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.discoverBtn:hover .discoverBtnIcon {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== BOTTOM ROW: 2-COLUMN INDUSTRY PILLS ==================== */
+.industryColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 54px;
+  align-items: start;
+}
+
+.industryCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.industryRowBtn {
+  position: relative;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px 26px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.industryRowBtn:hover:not(.industryRowActive) {
+  background: rgba(18, 84, 255, 0.04);
+  padding-left: 32px;
+}
+
+/* Active Blue Pill Styling (Matches "01 Advanced Manufacturing") */
+.industryRowActive {
+  background: linear-gradient(90deg, #1254ff 0%, #2563eb 50%, #1254ff 100%);
+  border-bottom-color: transparent;
+  border-radius: 999px;
+  box-shadow: 0 14px 34px rgba(18, 84, 255, 0.34);
+  transform: translateY(-1px);
+  z-index: 2;
+}
+
+.rowNumber {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #64748b;
+  width: 96px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.industryRowActive .rowNumber {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.rowCenterGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: flex-start;
+  padding-right: 12px;
+}
+
+.rowTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.industryRowActive .rowTitle {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.rowArrow {
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.25s ease;
+}
+
+.industryRowActive .rowArrow {
+  color: #ffffff;
+}
+
+.industryRowBtn:hover .rowArrow {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 992px) {
+  .topRow {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .featuredImageCard {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .industryColumns {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .industrySection {
+    padding: 64px 0 76px;
+  }
+  .circuitSide {
+    opacity: 0.35;
+  }
+  .featuredImageCard {
+    height: 220px;
+  }
+  .rowCenterGroup {
+    justify-content: flex-start;
+    padding-left: 12px;
+  }
+}
