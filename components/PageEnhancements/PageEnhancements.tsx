@@ -13,28 +13,12 @@ export default function PageEnhancements() {
 
   useEffect(() => {
     let rafId = 0;
+    let initTimerId: ReturnType<typeof setTimeout> | null = null;
+    let observer: IntersectionObserver | null = null;
     let isButtonShown = false;
+    let revealTargets: HTMLElement[] = [];
+    let allStaggerNodes: HTMLElement[] = [];
 
-    const revealTargets = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        "main > section:not(#work-process), main > footer"
-      )
-    );
-
-    // Assign stagger indices to cards, rows, stats, and footer columns for cascading 3D entrance
-    revealTargets.forEach((section) => {
-      section.classList.add("agy-reveal-section");
-
-      const staggerChildren = section.querySelectorAll<HTMLElement>(
-        'article:not([class*="feedItem"]), button[class*="industryRowBtn"], div[class*="statItem"], div[class*="contactItemCard"], footer div[class*="Col"]'
-      );
-      staggerChildren.forEach((child, idx) => {
-        child.classList.add("agy-stagger-item");
-        child.style.setProperty("--agy-stagger-idx", String(idx % 8));
-      });
-    });
-
-    // Direct DOM updates on scroll — zero React re-renders for 60fps smoothness
     const updateScrollMetrics = () => {
       const scrollTop = window.scrollY;
       const vh = window.innerHeight;
@@ -59,17 +43,6 @@ export default function PageEnhancements() {
           shouldShow
         );
       }
-
-      // Continuous GPU-accelerated scroll parallax for visible sections
-      for (let i = 0; i < revealTargets.length; i++) {
-        const el = revealTargets[i];
-        const rect = el.getBoundingClientRect();
-        if (rect.bottom < -120 || rect.top > vh + 120) continue;
-
-        const centerOffset = (rect.top + rect.height * 0.5 - vh * 0.5) / vh;
-        const parallaxPx = (centerOffset * -28).toFixed(2);
-        el.style.setProperty("--agy-parallax", `${parallaxPx}px`);
-      }
     };
 
     const handleScroll = () => {
@@ -77,36 +50,63 @@ export default function PageEnhancements() {
       rafId = requestAnimationFrame(updateScrollMetrics);
     };
 
-    updateScrollMetrics();
+    // Wait until after React hydration completes before attaching data-* attributes
+    initTimerId = setTimeout(() => {
+      revealTargets = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          "main > section:not(#work-process), body > footer"
+        )
+      );
+
+      revealTargets.forEach((section) => {
+        section.setAttribute("data-agy-reveal", "true");
+
+        const staggerChildren = section.querySelectorAll<HTMLElement>(
+          'article:not([class*="feedItem"]), button[class*="industryRowBtn"], div[class*="statItem"], div[class*="contactItemCard"], footer div[class*="Col"]'
+        );
+        staggerChildren.forEach((child, idx) => {
+          child.setAttribute("data-agy-stagger", String(idx % 8));
+          allStaggerNodes.push(child);
+        });
+      });
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          const vh = window.innerHeight;
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.setAttribute("data-agy-revealed", "true");
+            } else if (entry.boundingClientRect.top >= vh) {
+              entry.target.removeAttribute("data-agy-revealed");
+            }
+          });
+        },
+        {
+          threshold: [0, 0.08],
+          rootMargin: "0px 0px -36px 0px",
+        }
+      );
+
+      revealTargets.forEach((el) => observer?.observe(el));
+      updateScrollMetrics();
+    }, 60);
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
 
-    // Hysteresis-protected IntersectionObserver: reveals on enter, resets only when completely below viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const vh = window.innerHeight;
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("agy-revealed");
-          } else if (entry.boundingClientRect.top >= vh) {
-            // Reset only when section is scrolled completely below the screen so scrolling down replays the animation cleanly
-            entry.target.classList.remove("agy-revealed");
-          }
-        });
-      },
-      {
-        threshold: [0, 0.08],
-        rootMargin: "0px 0px -36px 0px",
-      }
-    );
-
-    revealTargets.forEach((el) => observer.observe(el));
-
     return () => {
+      if (initTimerId) clearTimeout(initTimerId);
       cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
-      observer.disconnect();
+      observer?.disconnect();
+      revealTargets.forEach((el) => {
+        el.removeAttribute("data-agy-reveal");
+        el.removeAttribute("data-agy-revealed");
+      });
+      allStaggerNodes.forEach((child) => {
+        child.removeAttribute("data-agy-stagger");
+      });
     };
   }, []);
 

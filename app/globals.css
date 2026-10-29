@@ -92,7 +92,7 @@ h2 > strong {
 }
 
 /* ==================== ADVANCED 3D SCROLL-REVEAL & PARALLAX CHOREOGRAPHY ==================== */
-.agy-reveal-section {
+[data-agy-reveal="true"] {
   opacity: 0;
   transform: translate3d(0, 44px, 0);
   transition:
@@ -100,13 +100,13 @@ h2 > strong {
     transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.agy-reveal-section.agy-revealed {
+[data-agy-reveal="true"][data-agy-revealed="true"] {
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
 
 /* 1. Elastic Spring Pop-In on Section Pill Badges */
-.agy-reveal-section div[class*="Badge"] {
+[data-agy-reveal="true"] div[class*="Badge"] {
   opacity: 0;
   transform: translate3d(0, 18px, 0) scale(0.82);
   transition:
@@ -114,13 +114,13 @@ h2 > strong {
     transform 0.68s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.agy-reveal-section.agy-revealed div[class*="Badge"] {
+[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="Badge"] {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
 }
 
 /* 2. Staggered 3D Perspective Heading Line Flip-Up */
-.agy-reveal-section h2 > span {
+[data-agy-reveal="true"] h2 > span {
   display: inline-block;
   opacity: 0;
   transform: perspective(900px) translate3d(0, 34px, -28px) rotateX(20deg);
@@ -130,23 +130,23 @@ h2 > strong {
     transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.agy-reveal-section.agy-revealed h2 > span {
+[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span {
   opacity: 1;
   transform: perspective(900px) translate3d(0, 0, 0) rotateX(0deg);
 }
 
-.agy-reveal-section.agy-revealed h2 > span:nth-child(1) {
+[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span:nth-child(1) {
   transition-delay: 0.06s;
 }
-.agy-reveal-section.agy-revealed h2 > span:nth-child(2) {
+[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span:nth-child(2) {
   transition-delay: 0.16s;
 }
-.agy-reveal-section.agy-revealed h2 > span:nth-child(3) {
+[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span:nth-child(3) {
   transition-delay: 0.26s;
 }
 
 /* 3. Cascading 3D Card, Row, Stat & Column Entrance */
-.agy-reveal-section .agy-stagger-item {
+[data-agy-reveal="true"] [data-agy-stagger] {
   opacity: 0;
   transform: perspective(1100px) translate3d(0, 46px, -36px) rotateX(9deg)
     scale(0.95);
@@ -156,25 +156,33 @@ h2 > strong {
     box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.35s ease,
     background-color 0.3s ease;
-  transition-delay: calc(var(--agy-stagger-idx, 0) * 0.085s + 0.08s);
+  transition-delay: 0.08s;
 }
 
-.agy-reveal-section.agy-revealed .agy-stagger-item {
+[data-agy-reveal="true"] [data-agy-stagger="1"] { transition-delay: 0.16s; }
+[data-agy-reveal="true"] [data-agy-stagger="2"] { transition-delay: 0.24s; }
+[data-agy-reveal="true"] [data-agy-stagger="3"] { transition-delay: 0.32s; }
+[data-agy-reveal="true"] [data-agy-stagger="4"] { transition-delay: 0.40s; }
+[data-agy-reveal="true"] [data-agy-stagger="5"] { transition-delay: 0.48s; }
+[data-agy-reveal="true"] [data-agy-stagger="6"] { transition-delay: 0.56s; }
+[data-agy-reveal="true"] [data-agy-stagger="7"] { transition-delay: 0.64s; }
+
+[data-agy-reveal="true"][data-agy-revealed="true"] [data-agy-stagger] {
   opacity: 1;
   transform: perspective(1100px) translate3d(0, 0, 0) rotateX(0deg) scale(1);
 }
 
-.agy-reveal-section.agy-revealed article.agy-stagger-item:hover {
+[data-agy-reveal="true"][data-agy-revealed="true"] article[data-agy-stagger]:hover {
   transform: perspective(1100px) translate3d(0, -7px, 0) scale(1.01);
   transition-delay: 0s;
 }
 
 /* 4. Cinematic Curtain Reveal on Section Feature Photos */
-.agy-reveal-section div[class*="featuredImageCard"],
-.agy-reveal-section div[class*="featuredPhotoBox"],
-.agy-reveal-section div[class*="leftPhotoWrap"],
-.agy-reveal-section div[class*="rightPhotoCard"],
-.agy-reveal-section div[class*="portraitCard"] {
+[data-agy-reveal="true"] div[class*="featuredImageCard"],
+[data-agy-reveal="true"] div[class*="featuredPhotoBox"],
+[data-agy-reveal="true"] div[class*="leftPhotoWrap"],
+[data-agy-reveal="true"] div[class*="rightPhotoCard"],
+[data-agy-reveal="true"] div[class*="portraitCard"] {
   opacity: 0;
   transform: translate3d(0, 36px, 0) scale(0.94);
   transition:
@@ -182,28 +190,20 @@ h2 > strong {
     transform 0.88s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
 }
 
-.agy-reveal-section.agy-revealed div[class*="featuredImageCard"],
-.agy-reveal-section.agy-revealed div[class*="featuredPhotoBox"],
-.agy-reveal-section.agy-revealed div[class*="leftPhotoWrap"],
-.agy-reveal-section.agy-revealed div[class*="rightPhotoCard"],
-.agy-reveal-section.agy-revealed div[class*="portraitCard"] {
+[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="featuredImageCard"],
+[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="featuredPhotoBox"],
+[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="leftPhotoWrap"],
+[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="rightPhotoCard"],
+[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="portraitCard"] {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
 }
 
-/* 5. Continuous Scroll-Driven Parallax on Background Vectors & Watermarks */
-.agy-reveal-section div[class*="Contours"],
-.agy-reveal-section div[class*="pixelMapLeft"],
-.agy-reveal-section div[class*="watermarkWrap"] {
-  transform: translate3d(0, var(--agy-parallax, 0px), 0);
-  transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .agy-reveal-section,
-  .agy-reveal-section div[class*="Badge"],
-  .agy-reveal-section h2 > span,
-  .agy-reveal-section .agy-stagger-item {
+  [data-agy-reveal="true"],
+  [data-agy-reveal="true"] div[class*="Badge"],
+  [data-agy-reveal="true"] h2 > span,
+  [data-agy-reveal="true"] [data-agy-stagger] {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;

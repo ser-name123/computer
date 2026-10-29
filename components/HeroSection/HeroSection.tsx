@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import CatsLogo from "@/components/CatsLogo/CatsLogo";
 import styles from "./HeroSection.module.css";
 
 interface HeroSlide {
@@ -76,58 +75,10 @@ const HERO_SLIDES: HeroSlide[] = [
   },
 ];
 
-const NAV_ITEMS = [
-  {
-    label: "Home",
-    hasDropdown: false,
-    active: true,
-  },
-  {
-    label: "About",
-    hasDropdown: false,
-  },
-  {
-    label: "Services",
-    hasDropdown: true,
-    subItems: [
-      "IT Infrastructure",
-      "Networking & Cabling",
-      "Cybersecurity",
-      "Cloud & Virtualization",
-      "Software Development",
-      "Managed Services",
-    ],
-  },
-  {
-    label: "Solutions",
-    hasDropdown: true,
-    subItems: [
-      "CCTV & Surveillance",
-      "Access Control",
-      "Servers & Storage",
-      "Telephony & IP Comms",
-      "AV Conferencing",
-    ],
-  },
-  {
-    label: "Partners",
-    hasDropdown: false,
-  },
-  {
-    label: "Contact Us",
-    hasDropdown: false,
-  },
-];
-
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const leftVectorsRef = useRef<HTMLDivElement | null>(null);
   const floatingCardWrapRef = useRef<HTMLDivElement | null>(null);
   const parallaxRafRef = useRef<number>(0);
@@ -164,16 +115,6 @@ export default function HeroSection() {
     return () => clearInterval(autoTimer);
   }, [isPaused]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const next = window.scrollY > 36;
-      setIsScrolled((prev) => (prev !== next ? next : prev));
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const nx = (e.clientX - rect.left) / rect.width - 0.5;
@@ -207,102 +148,6 @@ export default function HeroSection() {
 
   return (
     <div className={styles.heroWrapper}>
-      {/* ==================== TOP UTILITY BAR ==================== */}
-      <div className={styles.topBar}>
-        <div className={styles.topBarInner}>
-          {/* Social Links Left */}
-          <div className={styles.socialGroup}>
-            <a href="#instagram" className={styles.socialLink}>
-              <span>Instagram</span>
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path
-                  d="M2.5 9.5L9.5 2.5M9.5 2.5H3.5M9.5 2.5V8.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-            <span className={styles.topDivider} />
-            <a href="#facebook" className={styles.socialLink}>
-              <span>Facebook</span>
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path
-                  d="M2.5 9.5L9.5 2.5M9.5 2.5H3.5M9.5 2.5V8.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-            <span className={styles.topDivider} />
-            <a href="#linkedin" className={styles.socialLink}>
-              <span>LinkedIn</span>
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path
-                  d="M2.5 9.5L9.5 2.5M9.5 2.5H3.5M9.5 2.5V8.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
-
-          {/* Contact Info Right */}
-          <div className={styles.contactGroup}>
-            <a href="mailto:info@catscomputers.com" className={styles.contactItem}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect
-                  x="2"
-                  y="4"
-                  width="20"
-                  height="16"
-                  rx="3"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                />
-                <path
-                  d="M22 7L13.03 12.7C12.41 13.09 11.59 13.09 10.97 12.7L2 7"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                />
-              </svg>
-              <span>info@catscomputers.com</span>
-            </a>
-            <span className={styles.topDivider} />
-            <a href="tel:+97142273378" className={styles.contactItem}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span>+971 4 227 3378</span>
-            </a>
-            <span className={styles.topDivider} />
-            <div className={styles.contactItem}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                />
-                <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.8" />
-              </svg>
-              <span>Water Tank Building, Al Musallah Street, Burdubai, Dubai, UAE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* ==================== MAIN HERO CONTAINER ==================== */}
       <section
         className={styles.heroSection}
@@ -320,17 +165,18 @@ export default function HeroSection() {
               fill
               priority={idx === 0}
               sizes="100vw"
-              className={`${styles.heroBgImage} ${idx === currentSlide
+              className={`${styles.heroBgImage} ${
+                idx === currentSlide
                   ? styles.heroBgImageActive
                   : styles.heroBgImageHidden
-                }`}
+              }`}
             />
           ))}
           <div className={styles.heroGradientOverlay} />
           <div className={styles.heroRadialGlow} />
         </div>
 
-        {/* Left & Right Geometric Tech Shards (Exact Match to Reference) */}
+        {/* Left & Right Geometric Tech Shards */}
         <div
           ref={leftVectorsRef}
           className={styles.leftTechVectors}
@@ -425,7 +271,6 @@ export default function HeroSection() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Dark navy & royal blue diagonal wedge overlays */}
             <path
               d="M480 40L150 420H330L480 245V40Z"
               fill="url(#rightBotGrad1)"
@@ -436,7 +281,6 @@ export default function HeroSection() {
               fill="url(#rightBotGrad2)"
               fillOpacity="0.88"
             />
-            {/* Crisp diagonal white/cyan tech lines */}
             <line
               x1="465"
               y1="15"
@@ -474,136 +318,19 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ==================== MAIN NAVIGATION BAR ==================== */}
-        <div className={styles.navbarSlot}>
-          <header
-            className={`${styles.navbar} ${isScrolled ? styles.navbarScrolled : ""
-              }`}
-          >
-            <div className={styles.navbarInner}>
-              {/* Left group: Brand Logo + Navigation Links */}
-              <div className={styles.navLeftGroup}>
-                <a href="#top" className={styles.brandLogo} aria-label="CATS — Computer Accessories & Technical Services">
-                  <CatsLogo idPrefix="navbar-cats" height={46} />
-                </a>
-
-                {/* Navigation Menu */}
-                <nav className={styles.navLinks} aria-label="Main Navigation">
-                  {NAV_ITEMS.map((item) => (
-                    <div key={item.label} className={styles.navItemWrapper}>
-                      <a
-                        href={`#${item.label.toLowerCase().replace(/\s+/g, "-")}`}
-                        className={`${styles.navLink} ${item.active ? styles.navLinkActive : ""}`}
-                      >
-                        <span>{item.label}</span>
-                        {item.hasDropdown && (
-                          <span className={styles.dropdownCornerIcon} aria-hidden="true" />
-                        )}
-                      </a>
-
-                      {item.hasDropdown && item.subItems && (
-                        <div className={styles.dropdownMenu}>
-                          {item.subItems.map((sub) => (
-                            <a key={sub} href={`#${sub.toLowerCase().replace(/\s+/g, "-")}`} className={styles.dropdownLink}>
-                              <span>{sub}</span>
-                              <span className={styles.dropdownArrow}>→</span>
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </nav>
-              </div>
-
-              {/* Right Action Group: Search, Cart, Get In Touch CTA, Yellow Grid Icon */}
-              <div className={styles.navActions}>
-                {/* Search Box */}
-                <div className={`${styles.searchBox} ${searchOpen ? styles.searchBoxFocused : ""}`}>
-                  <svg
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className={styles.searchIcon}
-                    aria-hidden="true"
-                  >
-                    <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-                    <path d="M20 20L16.5 16.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder="Search ..."
-                    value={searchQuery}
-                    onFocus={() => setSearchOpen(true)}
-                    onBlur={() => setSearchOpen(false)}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className={styles.searchInput}
-                    aria-label="Search site"
-                  />
-                </div>
-
-                {/* Get In Touch CTA */}
-                <a href="#contact" className={styles.getInTouchBtn}>
-                  Get In Touch
-                </a>
-
-                {/* Yellow 3x3 Dot Grid Offcanvas Trigger */}
-                <button
-                  type="button"
-                  className={styles.gridMenuBtn}
-                  onClick={() => setDrawerOpen(true)}
-                  aria-label="Open Quick Info Drawer"
-                >
-                  <span className={styles.gridDots}>
-                    {Array.from({ length: 9 }).map((_, idx) => (
-                      <i key={idx} className={styles.gridDot} />
-                    ))}
-                  </span>
-                </button>
-
-                {/* Mobile Hamburger Trigger */}
-                <button
-                  type="button"
-                  className={styles.mobileMenuBtn}
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  aria-label="Toggle Mobile Navigation"
-                >
-                  <span />
-                  <span />
-                  <span />
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Navigation Drawer */}
-            {mobileMenuOpen && (
-              <div className={styles.mobileNavDropdown}>
-                {NAV_ITEMS.map((item) => (
-                  <a
-                    key={item.label}
-                    href={`#${item.label.toLowerCase()}`}
-                    className={styles.mobileNavLink}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            )}
-          </header>
-        </div>
+        {/* Spacer for the Global Translucent Navbar Overlay */}
+        <div className={styles.heroHeaderSpacer} aria-hidden="true" />
 
         {/* ==================== HERO MAIN CONTENT AREA ==================== */}
         <div className={styles.heroContentContainer}>
           <div
-            className={`${styles.heroLeftColumn} ${isAnimating ? styles.slideTransition : ""
-              }`}
+            className={`${styles.heroLeftColumn} ${
+              isAnimating ? styles.slideTransition : ""
+            }`}
           >
-            {/* Rating Pill Row: Overlapping Avatars + 5 Gold Stars + 5.6k+ User Rating */}
+            {/* Rating Pill Row */}
             <div className={styles.ratingRow}>
               <div className={styles.avatarStack}>
-                {/* 4 realistic styled SVG/gradient portrait badges */}
                 <div className={styles.avatarCircle} style={{ background: "linear-gradient(135deg, #f59e0b, #78350f)" }}>
                   <svg viewBox="0 0 36 36" fill="none">
                     <circle cx="18" cy="13" r="6" fill="#fde68a" />
@@ -658,7 +385,7 @@ export default function HeroSection() {
             {/* Subtitle Description */}
             <p className={styles.heroSubtitle}>{activeSlide.description}</p>
 
-            {/* Primary CTA Button ("Discover More" + White square with arrow) + Interactive Slide Pills */}
+            {/* Primary CTA Button + Interactive Slide Pills */}
             <div className={styles.ctaRow}>
               <a href="#discover" className={styles.discoverBtn}>
                 <span className={styles.discoverBtnText}>{activeSlide.ctaText}</span>
@@ -683,8 +410,9 @@ export default function HeroSection() {
                     role="tab"
                     aria-selected={idx === currentSlide}
                     onClick={() => handleSelectSlide(idx)}
-                    className={`${styles.slideDotBtn} ${idx === currentSlide ? styles.slideDotBtnActive : ""
-                      }`}
+                    className={`${styles.slideDotBtn} ${
+                      idx === currentSlide ? styles.slideDotBtnActive : ""
+                    }`}
                   >
                     <span className={styles.slideDotNum}>0{s.id}</span>
                     <span className={styles.slideDotTrack}>
@@ -696,9 +424,9 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Side Floating Controls & Happy Customers Card */}
+          {/* Right Side Floating Controls & Award/Team Card */}
           <div className={styles.heroRightColumn}>
-            {/* Slider Navigation Arrows (Stacked Vertically on Far Right) */}
+            {/* Slider Navigation Arrows */}
             <div className={styles.sliderControls}>
               <button
                 type="button"
@@ -734,7 +462,7 @@ export default function HeroSection() {
               </button>
             </div>
 
-            {/* Floating "Happy Customers 68K+" Card */}
+            {/* Floating Award/Partners Card */}
             <div
               ref={floatingCardWrapRef}
               className={styles.floatingCardWrapper}
@@ -793,7 +521,6 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Small decorative glowing gold/dark badge at bottom-right corner of the card */}
               <div className={styles.cornerTechBadge} title="Certified Partner">
                 <span className={styles.cornerSpark} />
               </div>
@@ -801,47 +528,6 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-
-      {/* ==================== QUICK INFO OFFCANVAS DRAWER ==================== */}
-      {drawerOpen && (
-        <div className={styles.drawerBackdrop} onClick={() => setDrawerOpen(false)}>
-          <aside
-            className={styles.drawerPanel}
-            onClick={(e) => e.stopPropagation()}
-            aria-label="Company Info Panel"
-          >
-            <div className={styles.drawerHeader}>
-              <CatsLogo idPrefix="drawer-cats" height={40} />
-              <button
-                type="button"
-                className={styles.drawerCloseBtn}
-                onClick={() => setDrawerOpen(false)}
-                aria-label="Close drawer"
-              >
-                ✕
-              </button>
-            </div>
-            <p className={styles.drawerDescription}>
-              CATS Computers is a trusted IT company in Dubai. We handle your networks, servers, security, cloud, and software — all in one place.
-            </p>
-            <div className={styles.drawerInfoList}>
-              <div>
-                <strong>Email</strong>
-                <p>info@catscomputers.com</p>
-              </div>
-              <div>
-                <strong>Phone</strong>
-                <p>+971 4 227 3378</p>
-              </div>
-              <div>
-                <strong>Headquarters</strong>
-                <p>Water Tank Building, Al Musallah Street, Burdubai, Dubai, UAE</p>
-              </div>
-            </div>
-          </aside>
-        </div>
-      )}
     </div>
   );
 }
-

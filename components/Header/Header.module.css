@@ -1,0 +1,985 @@
+.headerRoot {
+  position: relative;
+  width: 100%;
+  z-index: 950;
+  color: #ffffff;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+}
+
+/* ==================== TOP UTILITY BAR ==================== */
+.topBar {
+  position: relative;
+  z-index: 955;
+  width: 100%;
+  background: linear-gradient(90deg, #1b4bff 0%, #2456ff 50%, #1b4bff 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 12.5px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.topBarInner {
+  max-width: 1640px;
+  margin: 0 auto;
+  padding: 9px 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.socialGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.95);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.socialLink:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.topDivider {
+  width: 1px;
+  height: 13px;
+  background-color: rgba(255, 255, 255, 0.28);
+  display: inline-block;
+}
+
+.contactGroup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.contactItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.95);
+  transition: opacity 0.2s ease;
+}
+
+.contactItem:hover {
+  opacity: 0.85;
+}
+
+.contactItem svg {
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+/* ==================== MAIN NAVIGATION BAR ==================== */
+.navbarOverlaySlot {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 950;
+  width: 100%;
+}
+
+.navbar {
+  position: relative;
+  z-index: 950;
+  width: 100%;
+  background: rgba(3, 12, 46, 0.38);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.navbarScrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 960;
+  background: rgba(3, 11, 41, 0.98);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(96, 165, 250, 0.24);
+  box-shadow: 0 14px 36px rgba(1, 6, 26, 0.55);
+}
+
+.navbarScrolled .navbarInner {
+  padding: 9px 42px;
+}
+
+.navbarInner {
+  max-width: 1640px;
+  margin: 0 auto;
+  padding: 15px 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.navLeftGroup {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+}
+
+.brandLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+}
+
+.navLinks {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.navItemWrapper {
+  position: static;
+  padding: 20px 0;
+  margin: -14px 0;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+  transition: color 0.2s ease;
+}
+
+.navLink:hover,
+.navLinkActive,
+.navItemWrapper:hover .navLink,
+.navItemWrapperOpen .navLink {
+  color: #ffffff;
+}
+
+/* Small bottom-right triangle indicator matching Optitech design */
+.dropdownCornerIcon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 5px 5px;
+  border-color: transparent transparent rgba(255, 255, 255, 0.75) transparent;
+  transform: translateY(1px);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.navItemWrapper:hover .dropdownCornerIcon,
+.navItemWrapperOpen .dropdownCornerIcon {
+  border-color: transparent transparent #38bdf8 transparent;
+  transform: translateY(1px) scale(1.2);
+}
+
+/* ==================== ADVANCED ENTERPRISE MEGA MENU ==================== */
+.megaMenu {
+  position: absolute;
+  top: 100%;
+  left: -110px;
+  width: min(1040px, calc(100vw - 64px));
+  /* Transparent top padding forms a full-width unclipped hover bridge from navbar to megaMenuSurface */
+  padding-top: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.985);
+  transform-origin: top center;
+  transition:
+    opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.22s ease;
+  z-index: 120;
+}
+
+.megaMenuOpen,
+.navItemWrapper:hover .megaMenu,
+.navItemWrapper:focus-within .megaMenu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.megaMenuSurface {
+  width: 100%;
+  background: linear-gradient(165deg, rgba(5, 16, 56, 0.97) 0%, rgba(3, 10, 38, 0.98) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(96, 165, 250, 0.24);
+  border-radius: 16px;
+  box-shadow:
+    0 30px 70px rgba(0, 4, 20, 0.72),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 0 42px rgba(37, 99, 235, 0.18);
+  overflow: hidden;
+}
+
+.megaMenuTopGlow {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.85) 28%,
+    rgba(37, 99, 235, 0.95) 55%,
+    rgba(234, 179, 8, 0.75) 80%,
+    transparent 100%
+  );
+}
+
+.megaMenuBody {
+  display: grid;
+  grid-template-columns: 1fr 292px;
+  gap: 22px;
+  padding: 22px 24px 20px;
+}
+
+.megaMainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.megaHeaderRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.megaHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.megaEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.megaEyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.megaHeading {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.megaViewAllLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #60a5fa;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.14);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  transition: all 0.2s ease;
+}
+
+.megaViewAllLink:hover {
+  background: rgba(37, 99, 235, 0.32);
+  border-color: rgba(96, 165, 250, 0.55);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* 2-Column Interactive Grid of Mega Items */
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.megaCard {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(15, 28, 76, 0.42);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.megaCard:hover {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.38) 0%, rgba(15, 35, 96, 0.65) 100%);
+  border-color: rgba(96, 165, 250, 0.42);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(2, 8, 32, 0.45);
+}
+
+.megaCardIconBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.24) 0%, rgba(14, 165, 233, 0.12) 100%);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  color: #60a5fa;
+  transition: all 0.22s ease;
+}
+
+.megaCard:hover .megaCardIconBox {
+  background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+  border-color: #7dd3fc;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45);
+  transform: scale(1.05);
+}
+
+.megaCardContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.megaCardTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.megaCardTitle {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+  transition: color 0.18s ease;
+}
+
+.megaCard:hover .megaCardTitle {
+  color: #ffffff;
+}
+
+.megaBadge {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  background: rgba(59, 130, 246, 0.18);
+  color: #93c5fd;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  line-height: 1.3;
+}
+
+.megaBadge_blue {
+  background: rgba(59, 130, 246, 0.18);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+.megaBadge_cyan {
+  background: rgba(6, 182, 212, 0.18);
+  color: #67e8f9;
+  border-color: rgba(34, 211, 238, 0.32);
+}
+
+.megaBadge_emerald {
+  background: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+  border-color: rgba(52, 211, 153, 0.32);
+}
+
+.megaBadge_amber {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fcd34d;
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.megaBadge_purple {
+  background: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+  border-color: rgba(167, 139, 250, 0.34);
+}
+
+.megaCardDesc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(203, 213, 225, 0.78);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.megaCardArrow {
+  color: #60a5fa;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: all 0.2s ease;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.megaCard:hover .megaCardArrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Right Featured Spotlight Card */
+.megaSpotlightCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.megaSpotlightCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 13px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(12, 28, 84, 0.75) 0%, rgba(6, 16, 52, 0.92) 100%);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+.megaSpotlightImageWrap {
+  position: relative;
+  width: 100%;
+  height: 132px;
+  overflow: hidden;
+}
+
+.megaSpotlightImage {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.45s ease;
+}
+
+.megaSpotlightCard:hover .megaSpotlightImage {
+  transform: scale(1.06);
+}
+
+.megaSpotlightImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 10, 38, 0.25) 0%,
+    rgba(3, 10, 38, 0.4) 55%,
+    rgba(6, 16, 52, 0.96) 100%
+  );
+}
+
+.megaSpotlightTag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(3, 11, 41, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 204, 21, 0.42);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #fde047;
+  text-transform: uppercase;
+}
+
+.megaSpotlightTagDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #facc15;
+  box-shadow: 0 0 6px #facc15;
+}
+
+.megaSpotlightContent {
+  flex: 1;
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.megaSpotlightTitle {
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.32;
+  color: #ffffff;
+  margin: 0;
+}
+
+.megaSpotlightDesc {
+  font-size: 12px;
+  line-height: 1.48;
+  color: rgba(203, 213, 225, 0.82);
+  margin: 0;
+}
+
+.megaSpotlightMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.megaMetricPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3.5px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  font-size: 11px;
+  color: #e2e8f0;
+}
+
+.megaSpotlightBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 400;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+  transition: all 0.22s ease;
+}
+
+.megaSpotlightBtn:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.58);
+}
+
+/* Bottom Mega Menu Action Strip */
+.megaFooterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 24px;
+  background: rgba(2, 7, 28, 0.78);
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  font-size: 12px;
+  color: rgba(203, 213, 225, 0.85);
+}
+
+.megaFooterLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.megaLiveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.22);
+  flex-shrink: 0;
+}
+
+.megaFooterActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.megaFooterActionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #93c5fd;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.megaFooterActionLink:hover {
+  color: #ffffff;
+}
+
+.megaFooterDivider {
+  width: 1px;
+  height: 12px;
+  background: rgba(148, 163, 184, 0.28);
+}
+
+/* ==================== RIGHT ACTION ITEMS ==================== */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.22s ease;
+}
+
+.searchBoxFocused,
+.searchBox:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.searchIcon {
+  color: rgba(255, 255, 255, 0.82);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  width: 82px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  transition: width 0.25s ease;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.searchBoxFocused .searchInput {
+  width: 140px;
+}
+
+/* Get In Touch CTA */
+.getInTouchBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 22px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2b62ff 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  transition: all 0.25s ease;
+}
+
+.getInTouchBtn:hover {
+  background: linear-gradient(135deg, #3b72ff 0%, #2557eb 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.58);
+}
+
+/* Yellow 3x3 Dot Grid Button */
+.gridMenuBtn {
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  transition: transform 0.25s ease;
+}
+
+.gridMenuBtn:hover {
+  transform: scale(1.1);
+}
+
+.gridDots {
+  display: grid;
+  grid-template-columns: repeat(3, 5px);
+  grid-template-rows: repeat(3, 5px);
+  gap: 4px;
+}
+
+.gridDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #eab308;
+  box-shadow: 0 0 6px rgba(234, 179, 8, 0.45);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.gridMenuBtn:hover .gridDot:nth-child(odd) {
+  background-color: #fde047;
+  transform: scale(1.18);
+}
+
+/* ==================== MOBILE NAVIGATION ==================== */
+.mobileMenuBtn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.mobileMenuBtn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.mobileNavDropdown {
+  display: none;
+}
+
+.mobileNavItemBlock {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobileNavRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileNavLink {
+  flex: 1;
+  padding: 12px 0;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.mobileExpandBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  background: rgba(37, 99, 235, 0.15);
+  color: #60a5fa;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileSubGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0 14px;
+}
+
+.mobileSubCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(15, 28, 76, 0.55);
+  border: 1px solid rgba(96, 165, 250, 0.16);
+}
+
+.mobileSubIcon {
+  color: #60a5fa;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mobileSubTitle {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.mobileSubDesc {
+  font-size: 12px;
+  color: rgba(203, 213, 225, 0.78);
+  line-height: 1.4;
+}
+
+/* ==================== OFFCANVAS DRAWER ==================== */
+.drawerBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawerPanel {
+  width: 360px;
+  max-width: 90vw;
+  height: 100%;
+  background: #051036;
+  border-left: 1px solid rgba(96, 165, 250, 0.2);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: -16px 0 40px rgba(0, 0, 0, 0.6);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawerCloseBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.drawerDescription {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.drawerInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.drawerInfoList strong {
+  display: block;
+  color: #60a5fa;
+  margin-bottom: 4px;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+@media (max-width: 1280px) {
+  .megaMenu {
+    left: -170px;
+    width: min(920px, calc(100vw - 48px));
+  }
+
+  .megaMenuBody {
+    grid-template-columns: 1fr 256px;
+    gap: 16px;
+    padding: 18px 20px 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navLeftGroup {
+    gap: 28px;
+  }
+
+  .navLinks {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .topBarInner {
+    flex-direction: column;
+    padding: 8px 20px;
+    gap: 6px;
+  }
+
+  .contactGroup {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navLinks,
+  .searchBox {
+    display: none;
+  }
+
+  .mobileMenuBtn {
+    display: flex;
+  }
+
+  .mobileNavDropdown {
+    display: flex;
+    flex-direction: column;
+    background: rgba(4, 14, 48, 0.98);
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .contactGroup {
+    display: none;
+  }
+
+  .navbarInner {
+    padding: 12px 18px;
+  }
+
+  .getInTouchBtn {
+    display: none;
+  }
+}
+

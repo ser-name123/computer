@@ -1,4 +1,3 @@
-import PageEnhancements from "@/components/PageEnhancements/PageEnhancements";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import ServicesHighlight from "@/components/ServicesHighlight/ServicesHighlight";
 import AboutSection from "@/components/AboutSection/AboutSection";
@@ -12,12 +11,10 @@ import ConsultationSection from "@/components/ConsultationSection/ConsultationSe
 import TrustedBrandsSection from "@/components/TrustedBrandsSection/TrustedBrandsSection";
 import TestimonialsSection from "@/components/TestimonialsSection/TestimonialsSection";
 import ArticlesSection from "@/components/ArticlesSection/ArticlesSection";
-import FooterSection from "@/components/FooterSection/FooterSection";
 
 export default function Home() {
   return (
     <main>
-      <PageEnhancements />
       <HeroSection />
       <ServicesHighlight />
       <AboutSection />
@@ -31,7 +28,6 @@ export default function Home() {
       <TrustedBrandsSection />
       <TestimonialsSection />
       <ArticlesSection />
-      <FooterSection />
     </main>
   );
 }
