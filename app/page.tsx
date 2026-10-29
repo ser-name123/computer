@@ -4,7 +4,6 @@ import ServicesHighlight from "@/components/ServicesHighlight/ServicesHighlight"
 import AboutSection from "@/components/AboutSection/AboutSection";
 import ComprehensiveServices from "@/components/ComprehensiveServices/ComprehensiveServices";
 import IndustrySolutions from "@/components/IndustrySolutions/IndustrySolutions";
-import PricingSection from "@/components/PricingSection/PricingSection";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 import CaseStudiesSection from "@/components/CaseStudiesSection/CaseStudiesSection";
 import CtaBanner from "@/components/CtaBanner/CtaBanner";
@@ -24,7 +23,6 @@ export default function Home() {
       <AboutSection />
       <ComprehensiveServices />
       <IndustrySolutions />
-      <PricingSection />
       <WhyChooseUs />
       <CaseStudiesSection />
       <CtaBanner />
