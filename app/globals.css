@@ -6,7 +6,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scrollbar-width: thin;
   scrollbar-color: #1254ff #051036;
 }
@@ -91,121 +91,71 @@ h2 > strong {
   font-style: normal;
 }
 
-/* ==================== ADVANCED 3D SCROLL-REVEAL & PARALLAX CHOREOGRAPHY ==================== */
-[data-agy-reveal="true"] {
-  opacity: 0;
-  transform: translate3d(0, 44px, 0);
-  transition:
-    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+/* ==================== HYDRATION-SAFE PURE CSS PAGE & CARD ANIMATIONS ==================== */
+@keyframes agyPageFadeUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-[data-agy-reveal="true"][data-agy-revealed="true"] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+@keyframes agyCardCascade {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-/* 1. Elastic Spring Pop-In on Section Pill Badges */
-[data-agy-reveal="true"] div[class*="Badge"] {
-  opacity: 0;
-  transform: translate3d(0, 18px, 0) scale(0.82);
-  transition:
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.68s cubic-bezier(0.34, 1.56, 0.64, 1);
+main > section:not(#work-process) {
+  animation: agyPageFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
-[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="Badge"] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
+main > section:not(#work-process):nth-of-type(2) {
+  animation-delay: 0.06s;
 }
 
-/* 2. Staggered 3D Perspective Heading Line Flip-Up */
-[data-agy-reveal="true"] h2 > span {
-  display: inline-block;
-  opacity: 0;
-  transform: perspective(900px) translate3d(0, 34px, -28px) rotateX(20deg);
-  transform-origin: 50% 100%;
-  transition:
-    opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+main > section:not(#work-process):nth-of-type(3) {
+  animation-delay: 0.12s;
 }
 
-[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span {
-  opacity: 1;
-  transform: perspective(900px) translate3d(0, 0, 0) rotateX(0deg);
+main > section:not(#work-process):nth-of-type(4) {
+  animation-delay: 0.16s;
 }
 
-[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span:nth-child(1) {
-  transition-delay: 0.06s;
-}
-[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span:nth-child(2) {
-  transition-delay: 0.16s;
-}
-[data-agy-reveal="true"][data-agy-revealed="true"] h2 > span:nth-child(3) {
-  transition-delay: 0.26s;
+main > section:not(#work-process) article {
+  animation: agyCardCascade 0.68s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
-/* 3. Cascading 3D Card, Row, Stat & Column Entrance */
-[data-agy-reveal="true"] [data-agy-stagger] {
-  opacity: 0;
-  transform: perspective(1100px) translate3d(0, 46px, -36px) rotateX(9deg)
-    scale(0.95);
-  transition:
-    opacity 0.76s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.76s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.35s ease,
-    background-color 0.3s ease;
-  transition-delay: 0.08s;
+main > section:not(#work-process) article:nth-child(1) {
+  animation-delay: 0.05s;
 }
-
-[data-agy-reveal="true"] [data-agy-stagger="1"] { transition-delay: 0.16s; }
-[data-agy-reveal="true"] [data-agy-stagger="2"] { transition-delay: 0.24s; }
-[data-agy-reveal="true"] [data-agy-stagger="3"] { transition-delay: 0.32s; }
-[data-agy-reveal="true"] [data-agy-stagger="4"] { transition-delay: 0.40s; }
-[data-agy-reveal="true"] [data-agy-stagger="5"] { transition-delay: 0.48s; }
-[data-agy-reveal="true"] [data-agy-stagger="6"] { transition-delay: 0.56s; }
-[data-agy-reveal="true"] [data-agy-stagger="7"] { transition-delay: 0.64s; }
-
-[data-agy-reveal="true"][data-agy-revealed="true"] [data-agy-stagger] {
-  opacity: 1;
-  transform: perspective(1100px) translate3d(0, 0, 0) rotateX(0deg) scale(1);
+main > section:not(#work-process) article:nth-child(2) {
+  animation-delay: 0.12s;
 }
-
-[data-agy-reveal="true"][data-agy-revealed="true"] article[data-agy-stagger]:hover {
-  transform: perspective(1100px) translate3d(0, -7px, 0) scale(1.01);
-  transition-delay: 0s;
+main > section:not(#work-process) article:nth-child(3) {
+  animation-delay: 0.19s;
 }
-
-/* 4. Cinematic Curtain Reveal on Section Feature Photos */
-[data-agy-reveal="true"] div[class*="featuredImageCard"],
-[data-agy-reveal="true"] div[class*="featuredPhotoBox"],
-[data-agy-reveal="true"] div[class*="leftPhotoWrap"],
-[data-agy-reveal="true"] div[class*="rightPhotoCard"],
-[data-agy-reveal="true"] div[class*="portraitCard"] {
-  opacity: 0;
-  transform: translate3d(0, 36px, 0) scale(0.94);
-  transition:
-    opacity 0.88s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
-    transform 0.88s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+main > section:not(#work-process) article:nth-child(4) {
+  animation-delay: 0.26s;
 }
-
-[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="featuredImageCard"],
-[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="featuredPhotoBox"],
-[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="leftPhotoWrap"],
-[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="rightPhotoCard"],
-[data-agy-reveal="true"][data-agy-revealed="true"] div[class*="portraitCard"] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
+main > section:not(#work-process) article:nth-child(5) {
+  animation-delay: 0.32s;
+}
+main > section:not(#work-process) article:nth-child(6) {
+  animation-delay: 0.38s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-agy-reveal="true"],
-  [data-agy-reveal="true"] div[class*="Badge"],
-  [data-agy-reveal="true"] h2 > span,
-  [data-agy-reveal="true"] [data-agy-stagger] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+  main > section,
+  main article {
+    animation: none !important;
   }
 }

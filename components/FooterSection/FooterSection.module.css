@@ -51,9 +51,9 @@
 .container {
   position: relative;
   z-index: 5;
-  max-width: 1440px;
+  max-width: 1640px;
   margin: 0 auto;
-  padding: 68px 36px 72px;
+  padding: 68px 42px 72px;
 }
 
 /* ==================== TOP ROW: WATERMARK + CTA CARD ==================== */
@@ -593,11 +593,11 @@
   width: 100%;
   background: rgba(1, 5, 20, 0.65);
   border-top: 1px solid rgba(96, 165, 250, 0.14);
-  padding: 20px 36px;
+  padding: 20px 42px;
 }
 
 .bottomBarInner {
-  max-width: 1440px;
+  max-width: 1640px;
   margin: 0 auto;
   display: flex;
   align-items: center;

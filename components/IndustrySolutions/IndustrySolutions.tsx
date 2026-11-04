@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./IndustrySolutions.module.css";
 
 interface IndustryItem {
@@ -421,7 +422,7 @@ export default function IndustrySolutions() {
 
             <p className={styles.industryDescription}>{activeIndustry.description}</p>
 
-            <a href={`#industry-${activeIndustry.number}`} className={styles.discoverBtn}>
+            <Link href="/industries" className={styles.discoverBtn}>
               <span className={styles.discoverBtnText}>{activeIndustry.ctaText}</span>
               <span className={styles.discoverBtnIcon}>
                 <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -434,7 +435,7 @@ export default function IndustrySolutions() {
                   />
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 

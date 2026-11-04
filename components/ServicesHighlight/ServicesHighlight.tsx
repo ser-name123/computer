@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ServicesHighlight.module.css";
 
 interface ServiceCardData {
   id: string;
+  href: string;
   variant: "blue-photo" | "solid-blue-cutout" | "dark-mono-photo";
   titleLines: [string, string];
   description: string;
@@ -16,6 +18,7 @@ interface ServiceCardData {
 const SERVICE_CARDS: ServiceCardData[] = [
   {
     id: "software-development",
+    href: "/services/software-and-web-development",
     variant: "blue-photo",
     titleLines: ["SOFTWARE DEV &", "AUTOMATION"],
     description:
@@ -25,6 +28,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
   },
   {
     id: "cloud-virtualization",
+    href: "/services/cloud-services-and-virtualization",
     variant: "solid-blue-cutout",
     titleLines: ["CLOUD &", "VIRTUALIZATION"],
     description:
@@ -34,6 +38,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
   },
   {
     id: "managed-it",
+    href: "/services/it-support-and-managed-amc",
     variant: "dark-mono-photo",
     titleLines: ["24/7 MANAGED IT", "SUPPORT"],
     description:
@@ -157,7 +162,7 @@ export default function ServicesHighlight() {
                 )}
 
                 {/* Card Text Content (Bottom-Aligned) */}
-                <div className={styles.cardContent}>
+                <Link href={card.href} className={styles.cardContent} style={{ textDecoration: "none", color: "inherit" }}>
                   <div className={styles.titleRow}>
                     <h3 className={styles.cardTitle}>
                       <span>{card.titleLines[0]}</span>
@@ -180,7 +185,7 @@ export default function ServicesHighlight() {
                   <div className={styles.cardDivider} />
 
                   <p className={styles.cardDescription}>{card.description}</p>
-                </div>
+                </Link>
               </article>
             );
           })}

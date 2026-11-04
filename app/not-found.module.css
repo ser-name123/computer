@@ -1,0 +1,516 @@
+.notFoundMain {
+  width: 100%;
+  background-color: #f5f8fd;
+  color: #0b132b;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ==================== DARK NAVY CYBER HERO STAGE ==================== */
+.heroStage {
+  position: relative;
+  width: 100%;
+  padding: 170px 42px 96px;
+  background:
+    radial-gradient(circle at 16% 24%, rgba(18, 84, 255, 0.34) 0%, transparent 46%),
+    radial-gradient(circle at 84% 72%, rgba(56, 189, 248, 0.2) 0%, transparent 48%),
+    linear-gradient(180deg, #020824 0%, #041242 58%, #061852 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.cyberGridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 20%, transparent 80%);
+  pointer-events: none;
+}
+
+.glowOrbLeft {
+  position: absolute;
+  top: 120px;
+  left: -120px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(18, 84, 255, 0.38) 0%, transparent 70%);
+  filter: blur(36px);
+  pointer-events: none;
+}
+
+.glowOrbRight {
+  position: absolute;
+  bottom: -90px;
+  right: -80px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, transparent 70%);
+  filter: blur(42px);
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 54px;
+  align-items: center;
+}
+
+/* ==================== LEFT COLUMN: 404 & ACTIONS ==================== */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(18, 84, 255, 0.22);
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  color: #bae6fd;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: 22px;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 12px #38bdf8;
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.65;
+  }
+}
+
+.giantCodeWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.giantCode {
+  font-size: clamp(78px, 9vw, 132px);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 48%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 14px 34px rgba(18, 84, 255, 0.42));
+}
+
+.codeFloatingTag {
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  animation: floatUpDown 3.6s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.heroTitle {
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.heroTitleAccent {
+  color: #38bdf8;
+}
+
+.heroDescription {
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(226, 232, 240, 0.84);
+  max-width: 590px;
+  margin-bottom: 30px;
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 34px;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 12px 28px rgba(18, 84, 255, 0.42);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(18, 84, 255, 0.55);
+}
+
+.primaryBtnIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #f8fafc;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(56, 189, 248, 0.55);
+  transform: translateY(-2px);
+}
+
+.DiagnosticStrip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 590px;
+}
+
+.diagItem {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(4, 15, 52, 0.68);
+  border: 1px solid rgba(59, 130, 246, 0.24);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.diagLabel {
+  font-size: 11px;
+  color: #94a3b8;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.diagValue {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+/* ==================== RIGHT COLUMN: VISUAL CARD ==================== */
+.rightCol {
+  position: relative;
+}
+
+.visualFrame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: #041038;
+  box-shadow: 0 28px 68px rgba(2, 6, 23, 0.58);
+}
+
+.visualImageWrap {
+  position: relative;
+  width: 100%;
+  height: 410px;
+}
+
+.visualImg {
+  object-fit: cover;
+}
+
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 8, 36, 0.2) 0%,
+    rgba(2, 8, 36, 0.65) 60%,
+    rgba(2, 8, 36, 0.94) 100%
+  );
+}
+
+.floatingTopBadge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(3, 15, 53, 0.85);
+  border: 1px solid rgba(52, 211, 153, 0.42);
+  color: #6ee7b7;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+.greenDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 10px #34d399;
+}
+
+.visualBottomCard {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 3;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(5, 19, 66, 0.88);
+  border: 1px solid rgba(59, 130, 246, 0.34);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.visualBottomText h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.visualBottomText p {
+  font-size: 12.5px;
+  color: rgba(226, 232, 240, 0.8);
+}
+
+.callNowChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #1254ff;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ==================== QUICK DESTINATION CARDS SECTION ==================== */
+.quickLinksSection {
+  padding: 84px 42px 96px;
+  background: #f5f8fd;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(18, 84, 255, 0.09);
+  border: 1px solid rgba(18, 84, 255, 0.2);
+  color: #1254ff;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 500;
+  color: #0b132b;
+  margin-bottom: 10px;
+}
+
+.sectionSubtitle {
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.65;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.destCard {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.destCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 46px rgba(18, 84, 255, 0.12);
+  border-color: rgba(18, 84, 255, 0.32);
+}
+
+.destThumb {
+  position: relative;
+  width: 100%;
+  height: 165px;
+  overflow: hidden;
+}
+
+.destImg {
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.destCard:hover .destImg {
+  transform: scale(1.05);
+}
+
+.destTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(3, 15, 53, 0.85);
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 500;
+  backdrop-filter: blur(6px);
+}
+
+.destBody {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.destTitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #0b132b;
+  margin-bottom: 8px;
+}
+
+.destDesc {
+  font-size: 13.5px;
+  line-height: 1.62;
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+.destLinkRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1254ff;
+}
+
+@media (max-width: 992px) {
+  .heroStage {
+    padding: 140px 24px 72px;
+  }
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .quickLinksSection {
+    padding: 64px 24px 76px;
+  }
+}
+
+@media (max-width: 640px) {
+  .DiagnosticStrip {
+    grid-template-columns: 1fr;
+  }
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  .visualBottomCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

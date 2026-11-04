@@ -2,10 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ArticlesSection.module.css";
 
 interface ArticleCardData {
   id: string;
+  href: string;
   category: string;
   date: string;
   titleLines: [string, string];
@@ -18,6 +20,7 @@ interface ArticleCardData {
 const ARTICLES_LIST: ArticleCardData[] = [
   {
     id: "huawei-ekit-summit",
+    href: "/blogs/huawei-ekit-vs-traditional-networking-uae-enterprises",
     category: "Huawei eKit",
     date: "2024",
     titleLines: ["At the Huawei eKit", "Partner Summit."],
@@ -28,6 +31,7 @@ const ARTICLES_LIST: ArticleCardData[] = [
   },
   {
     id: "ruijie-adp-2024",
+    href: "/blogs/ruijie-reyee-cloud-networking-guide-warehouses-hotels",
     category: "Ruijie Reyee",
     date: "2024",
     titleLines: [
@@ -41,6 +45,7 @@ const ARTICLES_LIST: ArticleCardData[] = [
   },
   {
     id: "partner-program",
+    href: "/blogs/how-to-choose-the-right-it-amc-partner-in-dubai",
     category: "Partnerships",
     date: "2024",
     titleLines: [
@@ -79,7 +84,7 @@ export default function ArticlesSection() {
             </div>
 
             <div className={styles.headerRight}>
-              <a href="#partners" className={styles.viewAllBtn}>
+              <Link href="/blogs" className={styles.viewAllBtn}>
                 <span className={styles.btnText}>View All Highlights</span>
                 <span className={styles.btnIconBox}>
                   <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -92,7 +97,7 @@ export default function ArticlesSection() {
                     />
                   </svg>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -124,10 +129,10 @@ export default function ArticlesSection() {
                 {/* Card Body */}
                 <div className={styles.cardBody}>
                   <h3 className={styles.articleTitle}>
-                    <a href={`#${article.id}`} className={styles.titleLink}>
+                    <Link href={article.href} className={styles.titleLink}>
                       <span>{article.titleLines[0]}</span>
                       <span>{article.titleLines[1]}</span>
-                    </a>
+                    </Link>
                   </h3>
 
                   <div className={styles.cardDivider} />

@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ComprehensiveServices.module.css";
 
 interface ServiceItem {
   id: string;
+  href: string;
   title: string;
   description: string;
   imageSrc: string;
@@ -16,6 +18,7 @@ interface ServiceItem {
 const SERVICES_LIST: ServiceItem[] = [
   {
     id: "it-infrastructure",
+    href: "/services/it-infrastructure-solutions",
     title: "IT Infrastructure Solutions",
     description:
       "We plan, supply and set up your full IT setup — servers, storage, firewalls, switches and computers — built to work fast and stay reliable.",
@@ -25,6 +28,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "networking-cabling",
+    href: "/services/networking-and-structured-cabling",
     title: "Networking & Cabling",
     description:
       "We set up neat cabling, fiber and Wi-Fi networks that give you fast, stable and secure internet across your whole office.",
@@ -34,6 +38,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "cybersecurity",
+    href: "/services/cybersecurity-solutions",
     title: "Cybersecurity Solutions",
     description:
       "We protect your business from hackers and viruses with firewalls, device security, email safety and constant monitoring.",
@@ -43,6 +48,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "cloud-virtualization",
+    href: "/services/cloud-services-and-virtualization",
     title: "Cloud & Virtualization",
     description:
       "We move your business to the cloud (Azure, AWS or private) and set up backups and recovery so your data is always safe.",
@@ -52,6 +58,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "software-automation",
+    href: "/services/software-and-web-development",
     title: "Software & Automation",
     description:
       "We build custom software, mobile apps and automation that fit your business and take away slow, manual work.",
@@ -61,6 +68,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "managed-services",
+    href: "/services/it-support-and-managed-amc",
     title: "IT Support & Managed Services",
     description:
       "We watch over your systems day and night and fix problems fast — on-site or remote — so your IT keeps running without downtime.",
@@ -70,6 +78,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "cctv-security",
+    href: "/services/cctv-and-surveillance-systems",
     title: "CCTV & Security Systems",
     description:
       "We install smart CCTV cameras you can watch from anywhere, keeping your place safe with clear video and live monitoring.",
@@ -79,6 +88,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "access-control",
+    href: "/services/access-control-and-biometrics",
     title: "Access Control & Attendance",
     description:
       "We set up fingerprint, card and smart entry systems that control who comes in and track staff attendance with ease.",
@@ -88,6 +98,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "servers-storage",
+    href: "/services/servers-nas-and-backup-storage",
     title: "Servers, Storage & Backup",
     description:
       "We supply strong servers and storage, and set up backups so you never lose your important business data.",
@@ -97,6 +108,7 @@ const SERVICES_LIST: ServiceItem[] = [
   },
   {
     id: "telephony-av",
+    href: "/services/ip-telephony-and-pbx-systems",
     title: "Phone & Video Systems",
     description:
       "We set up office phone systems and clear video meeting rooms using trusted brands like Cisco, Yeastar, Avaya and Logitech.",
@@ -402,7 +414,7 @@ export default function ComprehensiveServices() {
               </button>
             </div>
 
-            <a href="#all-services" className={styles.viewAllBtn}>
+            <Link href="/services" className={styles.viewAllBtn}>
               <span className={styles.viewAllBtnText}>View All Services</span>
               <span className={styles.viewAllBtnIcon}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -415,7 +427,7 @@ export default function ComprehensiveServices() {
                   />
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -477,7 +489,11 @@ export default function ComprehensiveServices() {
 
                     {/* Card Body Copy */}
                     <div className={styles.cardBody}>
-                      <h3 className={styles.cardTitle}>{item.title}</h3>
+                      <h3 className={styles.cardTitle}>
+                        <Link href={item.href} style={{ color: "inherit", textDecoration: "none" }}>
+                          {item.title}
+                        </Link>
+                      </h3>
                       <p className={styles.cardDescription}>{item.description}</p>
                     </div>
                   </article>

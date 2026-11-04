@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./WorkProcessSection.module.css";
 
 interface ProcessStep {
@@ -359,9 +360,9 @@ export default function WorkProcessSection() {
           {/* Bottom Callout Line (Fades in as all 4 cards spread out) */}
           <div ref={calloutRef} className={styles.bottomCallout}>
             <span>Let&apos;s plan your IT together. </span>
-            <a href="#contact" className={styles.quoteLink}>
+            <Link href="/contact" className={styles.quoteLink}>
               Get a Free Quote
-            </a>
+            </Link>
           </div>
         </div>
       </div>

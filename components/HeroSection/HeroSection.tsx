@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./HeroSection.module.css";
 
 interface HeroSlide {
@@ -10,6 +11,7 @@ interface HeroSlide {
   headlineLines: [string, string, string];
   description: string;
   ctaText: string;
+  ctaHref: string;
   customersCount: string;
   badgeLabel: string;
   bgImage: string;
@@ -30,6 +32,7 @@ const HERO_SLIDES: HeroSlide[] = [
     description:
       "Official Huawei Enterprise BG Authorized Elite Distribution Partner for Data Communication in the UAE — delivering enterprise switches, optical networking, and smart office IT.",
     ctaText: "Explore Huawei eKit",
+    ctaHref: "/services/huawei-ekit-and-ruijie-reyee",
     customersCount: "30",
     badgeLabel: "Global Tech Partners",
     bgImage: "/images/hero-huawei-elite.jpg",
@@ -48,6 +51,7 @@ const HERO_SLIDES: HeroSlide[] = [
     description:
       "Awarded Top Performing Authorized Distribution Partner (ADP) of 2024. We supply and deploy genuine Ruijie & Reyee enterprise switches, cloud routers, and high-speed Wi-Fi.",
     ctaText: "View Ruijie Solutions",
+    ctaHref: "/services/huawei-ekit-and-ruijie-reyee",
     customersCount: "2024",
     badgeLabel: "Top ADP Award Winner",
     bgImage: "/images/hero-ruijie-golden.jpg",
@@ -66,6 +70,7 @@ const HERO_SLIDES: HeroSlide[] = [
     description:
       "CATS Computers gives you complete IT support in one place — networks, servers, security, cloud, and software. Safe, simple, and ready to grow with your business.",
     ctaText: "Explore Services",
+    ctaHref: "/services",
     customersCount: "12",
     badgeLabel: "Core IT Services",
     bgImage: "/images/hero-bg.jpg",
@@ -387,7 +392,7 @@ export default function HeroSection() {
 
             {/* Primary CTA Button + Interactive Slide Pills */}
             <div className={styles.ctaRow}>
-              <a href="#discover" className={styles.discoverBtn}>
+              <Link href={activeSlide.ctaHref} className={styles.discoverBtn}>
                 <span className={styles.discoverBtnText}>{activeSlide.ctaText}</span>
                 <span className={styles.discoverBtnIconBox}>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -400,7 +405,7 @@ export default function HeroSection() {
                     />
                   </svg>
                 </span>
-              </a>
+              </Link>
 
               <div className={styles.slideIndicators} role="tablist" aria-label="Hero slides">
                 {HERO_SLIDES.map((s, idx) => (

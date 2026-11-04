@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./CaseStudiesSection.module.css";
 
 interface CaseStudyData {
@@ -302,7 +303,7 @@ export default function CaseStudiesSection() {
 
               <p className={styles.featuredDescription}>{activeCase.description}</p>
 
-              <a href="#partners" className={styles.projectDetailsBar}>
+              <Link href="/case-studies" className={styles.projectDetailsBar}>
                 <span className={styles.detailsBarLabel}>View Achievement</span>
                 <span className={styles.detailsBarArrowBox}>
                   <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -315,7 +316,7 @@ export default function CaseStudiesSection() {
                     />
                   </svg>
                 </span>
-              </a>
+              </Link>
             </div>
           </article>
 
@@ -355,8 +356,8 @@ export default function CaseStudiesSection() {
                 Reyee, Cisco, Microsoft, AWS and many more.
               </p>
 
-              <a href="#partners" className={styles.viewAllProjectsBtn}>
-                <span className={styles.btnText}>Our Partners</span>
+              <Link href="/case-studies" className={styles.viewAllProjectsBtn}>
+                <span className={styles.btnText}>Our Portfolio</span>
                 <span className={styles.btnIconBox}>
                   <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path
@@ -368,7 +369,7 @@ export default function CaseStudiesSection() {
                     />
                   </svg>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

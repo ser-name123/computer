@@ -1,27 +1,35 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import CatsLogo from "@/components/CatsLogo/CatsLogo";
 import styles from "./FooterSection.module.css";
 
 const USEFUL_LINKS = [
-  { label: "Home", href: "#top" },
-  { label: "About Us", href: "#about" },
-  { label: "Our Services", href: "#services" },
-  { label: "Industry Solutions", href: "#industry-solutions" },
-  { label: "Awards & Recognition", href: "#case-studies", badge: "New" },
-  { label: "Our Partners", href: "#partners" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Services", href: "/services" },
+  { label: "Industries We Serve", href: "/industries" },
+  { label: "Portfolio / Case Studies", href: "/case-studies", badge: "New" },
+  { label: "Landing Page", href: "/landing-page", badge: "Hot" },
+  { label: "Success Stories & Reviews", href: "/testimonials" },
+  { label: "Blogs & Insights", href: "/blogs" },
+  { label: "Careers", href: "/careers" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const OUR_SERVICES = [
-  "IT Infrastructure Solutions",
-  "Networking & Structured Cabling",
-  "Cybersecurity Solutions",
-  "Cloud Services & Virtualization",
-  "CCTV & Security Systems",
-  "Telephony & AV Conferencing",
-  "IT Support & Managed Services",
+  { label: "IT Infrastructure Solutions", href: "/services/it-infrastructure-solutions" },
+  { label: "Networking & Structured Cabling", href: "/services/networking-and-structured-cabling" },
+  { label: "Cybersecurity Solutions", href: "/services/cybersecurity-solutions" },
+  { label: "Cloud Services & Virtualization", href: "/services/cloud-services-and-virtualization" },
+  { label: "Software & Web Development", href: "/services/software-and-web-development" },
+  { label: "IT Support & Managed AMC", href: "/services/it-support-and-managed-amc" },
+  { label: "CCTV & Surveillance Systems", href: "/services/cctv-and-surveillance-systems" },
+  { label: "Access Control & Biometrics", href: "/services/access-control-and-biometrics" },
+  { label: "Servers, NAS & Backup Storage", href: "/services/servers-nas-and-backup-storage" },
+  { label: "IP Telephony & AV Conferencing", href: "/services/ip-telephony-and-pbx-systems" },
 ];
 
 export default function FooterSection() {
@@ -131,7 +139,7 @@ export default function FooterSection() {
             </h2>
 
             <div className={styles.ctaActionsRow}>
-              <a href="#contact" className={styles.bookConsultBtn}>
+              <Link href="/contact" className={styles.bookConsultBtn}>
                 <span className={styles.btnText}>Book a Consultation</span>
                 <span className={styles.btnIconBox}>
                   <svg
@@ -150,7 +158,7 @@ export default function FooterSection() {
                     />
                   </svg>
                 </span>
-              </a>
+              </Link>
 
               <a href="tel:+97142273378" className={styles.quickCallPill}>
                 <span className={styles.callIconCircle}>
@@ -180,9 +188,9 @@ export default function FooterSection() {
         <div className={styles.columnsGrid}>
           {/* Column 1: Brand Logo, Description, Newsletter & Social Icons */}
           <div className={styles.brandCol}>
-            <a href="#top" className={styles.footerBrandLogo} aria-label="CATS — Computer Accessories & Technical Services">
+            <Link href="/" className={styles.footerBrandLogo} aria-label="CATS — Computer Accessories & Technical Services">
               <CatsLogo idPrefix="footer-cats" height={50} />
-            </a>
+            </Link>
 
             <p className={styles.brandDescription}>
               CATS Computers is a trusted IT company in Dubai. We take care of your
@@ -288,13 +296,13 @@ export default function FooterSection() {
             <ul className={styles.linkList}>
               {USEFUL_LINKS.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className={styles.footerLink}>
+                  <Link href={item.href} className={styles.footerLink}>
                     <span className={styles.linkChevron}>›</span>
                     <span>{item.label}</span>
                     {item.badge && (
                       <span className={styles.linkBadge}>{item.badge}</span>
                     )}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -305,11 +313,11 @@ export default function FooterSection() {
             <h3 className={styles.colHeading}>Our Services</h3>
             <ul className={styles.linkList}>
               {OUR_SERVICES.map((service) => (
-                <li key={service}>
-                  <a href="#services" className={styles.footerServiceLink}>
+                <li key={service.label}>
+                  <Link href={service.href} className={styles.footerServiceLink}>
                     <span className={styles.serviceBullet} />
-                    <span>{service}</span>
-                  </a>
+                    <span>{service.label}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -408,11 +416,13 @@ export default function FooterSection() {
           </p>
 
           <div className={styles.legalLinks}>
-            <a href="#privacy">Privacy Policy</a>
+            <Link href="/landing-page">Landing Page</Link>
             <span className={styles.legalDivider} />
-            <a href="#terms">Terms &amp; Conditions</a>
+            <Link href="/privacy-policy">Privacy Policy</Link>
             <span className={styles.legalDivider} />
-            <a href="#support">Support Center</a>
+            <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
+            <span className={styles.legalDivider} />
+            <Link href="/faq">FAQ &amp; Support</Link>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./WhyChooseUs.module.css";
 
 interface ReasonCard {
@@ -248,7 +249,7 @@ export default function WhyChooseUs() {
               safe and running every day.
             </p>
 
-            <a href="#contact" className={styles.getInTouchBtn}>
+            <Link href="/contact" className={styles.getInTouchBtn}>
               <span className={styles.btnText}>Get In Touch</span>
               <span className={styles.btnIconBox}>
                 <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -261,7 +262,7 @@ export default function WhyChooseUs() {
                   />
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Right Executive Portrait & Floating UI Cards */}

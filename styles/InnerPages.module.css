@@ -1,0 +1,974 @@
+/* ==================== SHARED ENTERPRISE INNER PAGE SYSTEM ==================== */
+.pageMain {
+  width: 100%;
+  background-color: #f5f8fd;
+  color: #0b132b;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.sectionLight {
+  position: relative;
+  width: 100%;
+  padding: 96px 42px;
+  background-color: #f5f8fd;
+}
+
+.sectionWhite {
+  position: relative;
+  width: 100%;
+  padding: 96px 42px;
+  background-color: #ffffff;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.sectionDark {
+  position: relative;
+  width: 100%;
+  padding: 96px 42px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(37, 99, 235, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 82% 80%, rgba(56, 189, 248, 0.14) 0%, transparent 45%),
+    linear-gradient(180deg, #020924 0%, #05113b 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.containerNarrow {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ==================== SECTION HEADERS ==================== */
+.sectionHeaderCenter {
+  max-width: 740px;
+  margin: 0 auto 56px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionHeaderSplit {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 52px;
+  flex-wrap: wrap;
+}
+
+.pillBadgeLight {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(18, 84, 255, 0.08);
+  border: 1px solid rgba(18, 84, 255, 0.18);
+  color: #1254ff;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+
+.pillBadgeDark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+
+.pillDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.sectionTitleLight {
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #0b132b;
+  margin-bottom: 14px;
+}
+
+.sectionTitleDark {
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.sectionSubtitleLight {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #475569;
+  max-width: 640px;
+}
+
+.sectionSubtitleDark {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: rgba(226, 232, 240, 0.82);
+  max-width: 640px;
+}
+
+/* ==================== GRIDS & CARDS ==================== */
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.cardLight {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 28px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cardLight:hover {
+  transform: translateY(-6px);
+  border-color: rgba(18, 84, 255, 0.35);
+  box-shadow: 0 22px 48px rgba(18, 84, 255, 0.1);
+}
+
+.cardDark {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 28px;
+  border-radius: 16px;
+  background: rgba(10, 25, 78, 0.62);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cardDark:hover {
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(14, 34, 102, 0.78);
+  box-shadow: 0 24px 52px rgba(2, 8, 32, 0.55);
+}
+
+.iconBoxBlue {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(18, 84, 255, 0.12) 0%, rgba(56, 189, 248, 0.12) 100%);
+  border: 1px solid rgba(18, 84, 255, 0.22);
+  color: #1254ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.25s ease;
+}
+
+.cardLight:hover .iconBoxBlue {
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  color: #ffffff;
+  border-color: #1254ff;
+  box-shadow: 0 8px 20px rgba(18, 84, 255, 0.35);
+}
+
+.iconBoxDark {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.22);
+  border: 1px solid rgba(96, 165, 250, 0.32);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cardBadgeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.numBadge {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #f1f5f9;
+}
+
+.tagPill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(18, 84, 255, 0.1);
+  color: #1254ff;
+  border: 1px solid rgba(18, 84, 255, 0.2);
+}
+
+.tagPillDark {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.cardTitleLight {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #0b132b;
+  margin-bottom: 10px;
+}
+
+.cardTitleDark {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.cardTextLight {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.cardTextDark {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(203, 213, 225, 0.84);
+  margin-bottom: 20px;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1254ff;
+  margin-top: auto;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.cardLink:hover {
+  gap: 12px;
+  color: #1d4ed8;
+}
+
+.cardLinkDark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #38bdf8;
+  margin-top: auto;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.cardLinkDark:hover {
+  gap: 12px;
+  color: #ffffff;
+}
+
+/* ==================== SPLIT FEATURE BLOCKS ==================== */
+.splitRow {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.imageShowcaseWrap {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  min-height: 420px;
+  box-shadow: 0 24px 54px rgba(15, 23, 42, 0.14);
+  border: 1px solid rgba(18, 84, 255, 0.16);
+}
+
+.imageShowcaseImg {
+  object-fit: cover;
+  object-position: center;
+}
+
+.floatingStatBadge {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  padding: 16px 22px;
+  border-radius: 14px;
+  background: rgba(3, 12, 46, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  animation: agyFloatBadge 4.6s ease-in-out infinite;
+}
+
+@keyframes agyFloatBadge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes agyPulseRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(56, 189, 248, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+  }
+}
+
+.pillDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: agyPulseRing 2.4s infinite;
+}
+
+/* ==================== FLOATING 4-CARD GLASSMORPHIC HERO STRIP ==================== */
+.floatingStripSection {
+  position: relative;
+  z-index: 25;
+  margin-top: -44px;
+  padding: 0 42px;
+}
+
+.floatingStripGrid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.floatingStripCard {
+  position: relative;
+  overflow: hidden;
+  padding: 22px 22px;
+  border-radius: 16px;
+  background: linear-gradient(165deg, rgba(4, 15, 54, 0.96) 0%, rgba(2, 9, 34, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  box-shadow: 0 20px 44px rgba(2, 8, 32, 0.24);
+  color: #ffffff;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.32s ease, box-shadow 0.32s ease;
+}
+
+.floatingStripCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #1254ff, transparent);
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+
+.floatingStripCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.68);
+  box-shadow: 0 26px 54px rgba(18, 84, 255, 0.26);
+}
+
+.floatingStripCard:hover::before {
+  opacity: 1;
+}
+
+.floatingStripNum {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.34) 0%, rgba(56, 189, 248, 0.2) 100%);
+  border: 1px solid rgba(96, 165, 250, 0.42);
+  color: #38bdf8;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floatingStripBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.floatingStripTag {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.floatingStripTitle {
+  font-size: 15.5px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.floatingStripDesc {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.82);
+}
+
+/* ==================== BEFORE VS AFTER COMPARISON BENTO ==================== */
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.comparisonCardProblem {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(239, 68, 68, 0.22);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.comparisonCardProblem:hover {
+  transform: translateY(-5px);
+}
+
+.comparisonCardSolution {
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(165deg, #03103d 0%, #071d66 100%);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 20px 48px rgba(2, 9, 36, 0.28);
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.comparisonCardSolution:hover {
+  transform: translateY(-5px);
+}
+
+.problemList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0 0;
+  list-style: none;
+}
+
+.problemItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #334155;
+}
+
+.problemIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.floatingStatValue {
+  display: block;
+  font-size: 26px;
+  font-weight: 500;
+  color: #38bdf8;
+  line-height: 1.1;
+}
+
+.floatingStatLabel {
+  font-size: 12.5px;
+  color: rgba(226, 232, 240, 0.88);
+}
+
+/* ==================== CHECKLISTS & PILLS ==================== */
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 22px 0;
+  list-style: none;
+}
+
+.checkItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #1e293b;
+}
+
+.checkItemDark {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+.checkIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.14);
+  color: #10b981;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.vendorCluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.vendorChip {
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+}
+
+.vendorChipDark {
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  font-size: 13px;
+  color: #f8fafc;
+}
+
+/* ==================== FILTER TABS ==================== */
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+
+.filterBtn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  color: #334155;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  border-color: #1254ff;
+  color: #1254ff;
+}
+
+.filterBtnActive {
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  border-color: #1254ff;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(18, 84, 255, 0.3);
+}
+
+/* ==================== IMAGE CARDS (PORTFOLIO / BLOGS / INDUSTRIES) ==================== */
+.mediaCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
+  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.34s ease, box-shadow 0.34s ease;
+}
+
+.mediaCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1254ff 0%, #38bdf8 50%, #10b981 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 4;
+}
+
+.mediaCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(18, 84, 255, 0.4);
+  box-shadow: 0 24px 52px rgba(18, 84, 255, 0.14);
+}
+
+.mediaCard:hover::after {
+  opacity: 1;
+}
+
+.mediaCardThumb {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  background: #04103b;
+}
+
+.mediaCardImg {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.mediaCard:hover .mediaCardImg {
+  transform: scale(1.06);
+}
+
+.mediaCardTopBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(3, 11, 41, 0.86);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.mediaCardBody {
+  flex: 1;
+  padding: 26px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ==================== FORMS & CONTACT ==================== */
+.formCard {
+  padding: 38px 36px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+}
+
+.formGrid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.formLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  border-color: #1254ff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(18, 84, 255, 0.12);
+}
+
+.formTextarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(18, 84, 255, 0.35);
+  transition: all 0.25s ease;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(18, 84, 255, 0.5);
+}
+
+.successBanner {
+  padding: 18px 22px;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #065f46;
+  font-size: 14.5px;
+  margin-top: 16px;
+}
+
+/* ==================== ACCORDION / FAQ ==================== */
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.accordionItem {
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accordionItemOpen {
+  border-color: rgba(18, 84, 255, 0.35);
+  box-shadow: 0 12px 30px rgba(18, 84, 255, 0.08);
+}
+
+.accordionTrigger {
+  width: 100%;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0b132b;
+  cursor: pointer;
+}
+
+.accordionIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(18, 84, 255, 0.08);
+  color: #1254ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.accordionBody {
+  padding: 0 24px 22px;
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #475569;
+}
+
+/* ==================== LEGAL DOCUMENT LAYOUT ==================== */
+.legalCard {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 48px 52px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.04);
+}
+
+.legalBlock {
+  margin-bottom: 34px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.legalBlock:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.legalHeading {
+  font-size: 21px;
+  font-weight: 500;
+  color: #0b132b;
+  margin-bottom: 12px;
+}
+
+.legalText {
+  font-size: 15px;
+  line-height: 1.72;
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1100px) {
+  .grid4,
+  .floatingStripGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .splitRow,
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionLight,
+  .sectionWhite,
+  .sectionDark {
+    padding: 64px 20px;
+  }
+
+  .floatingStripSection {
+    padding: 0 20px;
+  }
+
+  .grid2,
+  .grid3,
+  .grid4,
+  .floatingStripGrid,
+  .comparisonGrid,
+  .formGrid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .legalCard {
+    padding: 28px 22px;
+  }
+}
+

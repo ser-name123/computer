@@ -1,0 +1,797 @@
+/* ==================== ADVANCED LEGAL & FAQ ENTERPRISE DESIGN SYSTEM ==================== */
+.pageWrapper {
+  width: 100%;
+  background-color: #f4f7fc;
+  color: #0b132b;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ==================== TOP EXECUTIVE TRUST / HIGHLIGHT STRIP ==================== */
+.trustStripSection {
+  position: relative;
+  z-index: 20;
+  margin-top: -42px;
+  padding: 0 42px;
+}
+
+.trustStripContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.trustCard {
+  position: relative;
+  padding: 24px 22px;
+  border-radius: 16px;
+  background: linear-gradient(165deg, rgba(5, 16, 56, 0.96) 0%, rgba(3, 10, 38, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  box-shadow: 0 20px 45px rgba(2, 8, 32, 0.22);
+  color: #ffffff;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+}
+
+.trustCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.65);
+}
+
+.trustIconBox {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.32) 0%, rgba(56, 189, 248, 0.18) 100%);
+  border: 1px solid rgba(96, 165, 250, 0.38);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trustCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trustCardBadge {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.trustCardTitle {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.trustCardDesc {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.8);
+}
+
+/* ==================== MAIN 2-COLUMN WORKSPACE ==================== */
+.workspaceSection {
+  padding: 72px 42px 96px;
+}
+
+.workspaceContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+/* ==================== LEFT STICKY SIDEBAR ==================== */
+.stickySidebar {
+  position: sticky;
+  top: 94px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.navPanel {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 24px 22px;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.05);
+}
+
+.navPanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.navPanelTitle {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0b132b;
+}
+
+.versionPill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+}
+
+.tocLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #475569;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.tocLink:hover {
+  background: #f1f5f9;
+  color: #0b132b;
+}
+
+.tocLinkActive {
+  background: linear-gradient(135deg, rgba(18, 84, 255, 0.1) 0%, rgba(56, 189, 248, 0.08) 100%);
+  border-color: rgba(18, 84, 255, 0.28);
+  color: #1254ff;
+  font-weight: 500;
+}
+
+.tocLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tocNum {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #475569;
+}
+
+.tocLinkActive .tocNum {
+  background: #1254ff;
+  color: #ffffff;
+}
+
+.tocCountBadge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #64748b;
+}
+
+.tocLinkActive .tocCountBadge {
+  background: rgba(18, 84, 255, 0.16);
+  color: #1254ff;
+}
+
+/* Dark Assistance Card inside Sidebar */
+.sidebarDarkCard {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 24px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #020924 0%, #081d60 100%);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #ffffff;
+  box-shadow: 0 20px 44px rgba(2, 8, 32, 0.25);
+}
+
+.sidebarStatusRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #6ee7b7;
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.livePulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.sidebarDarkTitle {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.sidebarDarkText {
+  font-size: 13px;
+  line-height: 1.58;
+  color: rgba(203, 213, 225, 0.84);
+  margin-bottom: 18px;
+}
+
+.sidebarContactList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+
+.sidebarContactItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #93c5fd;
+}
+
+.sidebarBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 400;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+  transition: all 0.22s ease;
+}
+
+.sidebarBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+/* ==================== RIGHT CONTENT STREAM (CLAUSE CARDS) ==================== */
+.contentStream {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.clauseCard {
+  scroll-margin-top: 108px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 34px 36px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.clauseCard:hover {
+  border-color: rgba(18, 84, 255, 0.28);
+  box-shadow: 0 18px 44px rgba(18, 84, 255, 0.08);
+}
+
+.clauseHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.clauseHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.clauseNumBox {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  color: #ffffff;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 18px rgba(18, 84, 255, 0.28);
+}
+
+.clauseCategoryTag {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1254ff;
+  margin-bottom: 3px;
+}
+
+.clauseTitle {
+  font-size: 22px;
+  font-weight: 500;
+  color: #0b132b;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.clauseBadge {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.clauseParagraph {
+  font-size: 15px;
+  line-height: 1.72;
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+.clauseSubGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.clauseSubBox {
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.clauseSubTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0b132b;
+  margin-bottom: 6px;
+}
+
+.clauseSubDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1254ff;
+}
+
+.clauseSubText {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #475569;
+}
+
+.calloutAlert {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(18, 84, 255, 0.07) 0%, rgba(56, 189, 248, 0.05) 100%);
+  border-left: 4px solid #1254ff;
+  margin-top: 16px;
+}
+
+.calloutText {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #1e293b;
+}
+
+/* ==================== ENTERPRISE MATRIX TABLE ==================== */
+.matrixTableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  margin-top: 18px;
+}
+
+.matrixTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.matrixTable th {
+  background: #04103b;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 13px 16px;
+  white-space: nowrap;
+}
+
+.matrixTable td {
+  padding: 13px 16px;
+  border-top: 1px solid rgba(15, 23, 42, 0.07);
+  color: #334155;
+  background: #ffffff;
+}
+
+.matrixTable tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.slaPillFast {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.14);
+  color: #059669;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* ==================== FAQ SEARCH & INTERACTIVE ACCORDION ==================== */
+.faqSearchHero {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 24px 28px;
+  margin-bottom: 26px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchInputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchSvg {
+  position: absolute;
+  left: 16px;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.faqSearchInput {
+  width: 100%;
+  padding: 14px 44px 14px 46px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  font-size: 15px;
+  color: #0b132b;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.faqSearchInput:focus {
+  background: #ffffff;
+  border-color: #1254ff;
+  box-shadow: 0 0 0 4px rgba(18, 84, 255, 0.12);
+}
+
+.clearSearchBtn {
+  position: absolute;
+  right: 14px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.faqPillsRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.faqFilterPill {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #f8fafc;
+  color: #475569;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.faqFilterPill:hover {
+  border-color: #1254ff;
+  color: #1254ff;
+}
+
+.faqFilterPillActive {
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  border-color: #1254ff;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(18, 84, 255, 0.28);
+}
+
+.faqCard {
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  transition: all 0.24s ease;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
+}
+
+.faqCard:hover {
+  border-color: rgba(18, 84, 255, 0.3);
+}
+
+.faqCardOpen {
+  border-color: rgba(18, 84, 255, 0.45);
+  box-shadow: 0 16px 38px rgba(18, 84, 255, 0.1);
+}
+
+.faqTrigger {
+  width: 100%;
+  padding: 22px 26px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faqTriggerLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.faqQBadge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(18, 84, 255, 0.08);
+  border: 1px solid rgba(18, 84, 255, 0.18);
+  color: #1254ff;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.22s ease;
+}
+
+.faqCardOpen .faqQBadge {
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  color: #ffffff;
+  border-color: #1254ff;
+  box-shadow: 0 6px 14px rgba(18, 84, 255, 0.3);
+}
+
+.faqQuestionText {
+  font-size: 16.5px;
+  font-weight: 500;
+  color: #0b132b;
+  line-height: 1.38;
+}
+
+.faqToggleCircle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.22s ease;
+}
+
+.faqCardOpen .faqToggleCircle {
+  background: #1254ff;
+  color: #ffffff;
+  transform: rotate(180deg);
+}
+
+.faqAnswerWrap {
+  padding: 0 26px 24px 78px;
+}
+
+.faqAnswerText {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+.faqAnswerFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(15, 23, 42, 0.1);
+}
+
+.faqMetaTag {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.faqActionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1254ff;
+}
+
+.faqActionLink:hover {
+  text-decoration: underline;
+}
+
+.sidebarMediaWrap {
+  position: relative;
+  width: 100%;
+  height: 155px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+}
+
+.sidebarMediaImg {
+  object-fit: cover;
+}
+
+.clauseFeatureBanner {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 16px 0 20px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.clauseFeatureImg {
+  object-fit: cover;
+}
+
+.clauseFeatureOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(2, 9, 36, 0.84) 0%, rgba(2, 9, 36, 0.25) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 24px;
+  color: #ffffff;
+}
+
+.clauseFeatureBadge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.clauseFeatureCaption {
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+@media (max-width: 1150px) {
+  .trustStripContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workspaceContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .stickySidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .trustStripSection,
+  .workspaceSection {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .trustStripContainer,
+  .clauseSubGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .clauseCard {
+    padding: 24px 20px;
+  }
+
+  .faqAnswerWrap {
+    padding: 0 20px 20px 20px;
+  }
+}
+

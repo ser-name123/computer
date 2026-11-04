@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./AboutSection.module.css";
 
 export default function AboutSection() {
@@ -283,7 +284,7 @@ export default function AboutSection() {
 
           {/* CTA Button: Know About Us */}
           <div className={styles.ctaRow}>
-            <a href="#more-about" className={styles.knowAboutBtn}>
+            <Link href="/about" className={styles.knowAboutBtn}>
               <span className={styles.knowAboutBtnText}>Know About Us</span>
               <span className={styles.knowAboutBtnIcon}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -296,7 +297,7 @@ export default function AboutSection() {
                   />
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 

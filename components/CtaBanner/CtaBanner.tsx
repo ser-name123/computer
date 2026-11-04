@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./CtaBanner.module.css";
 
 export default function CtaBanner() {
@@ -95,9 +96,9 @@ export default function CtaBanner() {
             </div>
 
             <div className={styles.ctaCircleWrap}>
-              <a href="#contact" className={styles.letsTalkCircleBtn}>
+              <Link href="/contact" className={styles.letsTalkCircleBtn}>
                 <span className={styles.letsTalkText}>Let&apos;s Talk!</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

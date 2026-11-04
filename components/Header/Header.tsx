@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import CatsLogo from "@/components/CatsLogo/CatsLogo";
 import styles from "./Header.module.css";
 
@@ -56,21 +57,20 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Home",
     href: "/",
     hasDropdown: false,
-    active: true,
   },
   {
     label: "About",
-    href: "/#about",
+    href: "/about",
     hasDropdown: false,
   },
   {
     label: "Services",
-    href: "/#services",
+    href: "/services",
     hasDropdown: true,
     eyebrow: "END-TO-END IT CAPABILITIES",
     heading: "Enterprise IT Services",
     viewAllText: "Explore All 12 Services",
-    viewAllHref: "/#services",
+    viewAllHref: "/services",
     megaItems: [
       {
         title: "IT Infrastructure Solutions",
@@ -78,7 +78,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "blue",
         description:
           "Complete server room buildouts, rack integration & enterprise hardware setup.",
-        href: "/#services",
+        href: "/services/it-infrastructure-solutions",
         icon: "server",
       },
       {
@@ -87,7 +87,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "cyan",
         description:
           "High-speed Fiber Optic, Cat6/Cat6A cabling, enterprise switching & Wi-Fi 6/7.",
-        href: "/#services",
+        href: "/services/networking-and-structured-cabling",
         icon: "network",
       },
       {
@@ -96,7 +96,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "emerald",
         description:
           "Next-Gen Firewalls (Fortinet, Sophos, SonicWall), endpoint protection & VPNs.",
-        href: "/#services",
+        href: "/services/cybersecurity-solutions",
         icon: "shield",
       },
       {
@@ -105,7 +105,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "purple",
         description:
           "Microsoft 365, Google Workspace, AWS, VMware & hybrid cloud continuity.",
-        href: "/#services",
+        href: "/services/cloud-services-and-virtualization",
         icon: "cloud",
       },
       {
@@ -114,7 +114,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "blue",
         description:
           "Tailored ERP/CRM applications, business automation & modern web platforms.",
-        href: "/#services",
+        href: "/services/software-and-web-development",
         icon: "code",
       },
       {
@@ -123,7 +123,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "amber",
         description:
           "Dedicated Annual Maintenance Contracts, remote helpdesk & on-site engineers.",
-        href: "/#services",
+        href: "/services/it-support-and-managed-amc",
         icon: "support",
       },
     ],
@@ -137,17 +137,17 @@ export const NAV_ITEMS: NavItem[] = [
         "Huawei Authorized Elite Distribution Partner — CATS Computers L.L.C",
       metrics: ["30+ Tech Vendors", "24/7 Rapid SLA"],
       ctaText: "Book Free IT Audit",
-      ctaHref: "/#contact",
+      ctaHref: "/contact",
     },
   },
   {
     label: "Solutions",
-    href: "/#solutions",
+    href: "/services",
     hasDropdown: true,
     eyebrow: "HARDWARE & SECURITY ECOSYSTEM",
-    heading: "Turnkey Industry Solutions",
+    heading: "Turnkey Hardware & ELV Solutions",
     viewAllText: "View All Solutions",
-    viewAllHref: "/#solutions",
+    viewAllHref: "/services",
     megaItems: [
       {
         title: "CCTV & Surveillance Systems",
@@ -155,7 +155,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "cyan",
         description:
           "High-definition IP cameras, NVR storage & smart video analytics (Hikvision, Dahua, UNV).",
-        href: "/#solutions",
+        href: "/services/cctv-and-surveillance-systems",
         icon: "cctv",
       },
       {
@@ -164,7 +164,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "emerald",
         description:
           "Facial recognition terminals, fingerprint time attendance & automated gate barriers.",
-        href: "/#solutions",
+        href: "/services/access-control-and-biometrics",
         icon: "access",
       },
       {
@@ -173,7 +173,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "blue",
         description:
           "Dell, HP & Lenovo rack servers with Synology, QNAP & Veeam disaster recovery.",
-        href: "/#solutions",
+        href: "/services/servers-nas-and-backup-storage",
         icon: "storage",
       },
       {
@@ -182,7 +182,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "purple",
         description:
           "Crystal-clear enterprise voice with Avaya, Grandstream, Yeastar & Yealink IP phones.",
-        href: "/#solutions",
+        href: "/services/ip-telephony-and-pbx-systems",
         icon: "phone",
       },
       {
@@ -191,7 +191,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "blue",
         description:
           "Interactive smart panels, meeting room audio & wireless casting (Logitech, Poly).",
-        href: "/#solutions",
+        href: "/services/av-and-boardroom-conferencing",
         icon: "av",
       },
       {
@@ -200,7 +200,7 @@ export const NAV_ITEMS: NavItem[] = [
         badgeTone: "amber",
         description:
           "Official UAE distributor for genuine enterprise switches, optical gateways & cloud Wi-Fi.",
-        href: "/#partners",
+        href: "/services/huawei-ekit-and-ruijie-reyee",
         icon: "partner",
       },
     ],
@@ -214,19 +214,128 @@ export const NAV_ITEMS: NavItem[] = [
         "Ruijie Reyee Top Performing ADP 2024 Award — CATS Computers L.L.C",
       metrics: ["Ready Dubai Stock", "Official Warranty"],
       ctaText: "Request Hardware Quote",
-      ctaHref: "/#contact",
+      ctaHref: "/contact",
     },
   },
   {
-    label: "Partners",
-    href: "/#partners",
+    label: "Industries",
+    href: "/industries",
     hasDropdown: false,
   },
   {
-    label: "Contact Us",
-    href: "/#contact",
+    label: "Portfolio",
+    href: "/case-studies",
     hasDropdown: false,
   },
+  {
+    label: "Resources",
+    href: "/blogs",
+    hasDropdown: true,
+    eyebrow: "COMPANY, INSIGHTS & SUPPORT",
+    heading: "Knowledge Hub & Client Resources",
+    viewAllText: "Contact Our Dubai Desk",
+    viewAllHref: "/contact",
+    megaItems: [
+      {
+        title: "Blogs & Technical Guides",
+        badge: "Insights",
+        badgeTone: "cyan",
+        description:
+          "Expert articles on Huawei eKit, Ruijie cloud networking, Zero-Trust security & IT AMC.",
+        href: "/blogs",
+        icon: "code",
+      },
+      {
+        title: "Success Stories & Testimonials",
+        badge: "4.9★ Rated",
+        badgeTone: "amber",
+        description:
+          "Read verified reviews from UAE corporate HQs, JAFZA warehouses, clinics & partners.",
+        href: "/testimonials",
+        icon: "partner",
+      },
+      {
+        title: "Careers at CATS Dubai",
+        badge: "Hiring",
+        badgeTone: "emerald",
+        description:
+          "Join our Burdubai engineering & sales team — open roles for Network, Cloud & ELV pros.",
+        href: "/careers",
+        icon: "support",
+      },
+      {
+        title: "Frequently Asked Questions",
+        badge: "FAQ",
+        badgeTone: "blue",
+        description:
+          "Quick answers on hardware distribution, SLA response times, warranties & AMC plans.",
+        href: "/faq",
+        icon: "server",
+      },
+      {
+        title: "Privacy Policy",
+        badge: "Compliance",
+        badgeTone: "purple",
+        description:
+          "How we safeguard client network topologies, NDAs, and corporate data in the UAE.",
+        href: "/privacy-policy",
+        icon: "shield",
+      },
+      {
+        title: "Terms & Conditions",
+        badge: "Legal",
+        badgeTone: "blue",
+        description:
+          "Standard commercial terms for hardware supply, turnkey projects & AMC SLAs.",
+        href: "/terms-and-conditions",
+        icon: "storage",
+      },
+    ],
+    spotlight: {
+      tag: "SPECIAL DUBAI CAMPAIGN",
+      title: "Executive IT & AMC Landing Page",
+      description:
+        "Claim a free on-site Dubai IT audit, compare turnkey office packages, and get a 24-hour BOQ quote.",
+      image: "/images/company/team-group-1.jpg",
+      imageAlt: "CATS Computers L.L.C Engineering Team in Dubai",
+      metrics: ["500+ UAE Clients", "Free Site Survey"],
+      ctaText: "Open Landing Page",
+      ctaHref: "/landing-page",
+    },
+  },
+  {
+    label: "Contact Us",
+    href: "/contact",
+    hasDropdown: false,
+  },
+];
+
+const QUICK_SEARCH_LINKS: { title: string; category: string; href: string }[] = [
+  { title: "Home", category: "Page", href: "/" },
+  { title: "Executive IT & AMC Landing Page", category: "Campaign", href: "/landing-page" },
+  { title: "About Us — Company & Leadership", category: "Page", href: "/about" },
+  { title: "All 12 IT Services", category: "Page", href: "/services" },
+  { title: "Industries We Serve", category: "Page", href: "/industries" },
+  { title: "Portfolio & Case Studies", category: "Page", href: "/case-studies" },
+  { title: "Success Stories & Client Reviews", category: "Page", href: "/testimonials" },
+  { title: "Blogs & Technical Guides", category: "Page", href: "/blogs" },
+  { title: "Careers at CATS Dubai", category: "Page", href: "/careers" },
+  { title: "FAQ & Help Center", category: "Page", href: "/faq" },
+  { title: "Privacy Policy", category: "Legal", href: "/privacy-policy" },
+  { title: "Terms & Conditions", category: "Legal", href: "/terms-and-conditions" },
+  { title: "Contact Us & Free IT Audit", category: "Page", href: "/contact" },
+  { title: "IT Infrastructure Solutions", category: "Service", href: "/services/it-infrastructure-solutions" },
+  { title: "Networking & Structured Cabling", category: "Service", href: "/services/networking-and-structured-cabling" },
+  { title: "Cybersecurity & Firewalls", category: "Service", href: "/services/cybersecurity-solutions" },
+  { title: "Cloud Services & Virtualization", category: "Service", href: "/services/cloud-services-and-virtualization" },
+  { title: "Software & Web Development", category: "Service", href: "/services/software-and-web-development" },
+  { title: "IT Support & Managed AMC", category: "Service", href: "/services/it-support-and-managed-amc" },
+  { title: "CCTV & Surveillance Systems", category: "Service", href: "/services/cctv-and-surveillance-systems" },
+  { title: "Access Control & Biometrics", category: "Service", href: "/services/access-control-and-biometrics" },
+  { title: "Servers, NAS & Backup Storage", category: "Service", href: "/services/servers-nas-and-backup-storage" },
+  { title: "IP Telephony & PBX Comms", category: "Service", href: "/services/ip-telephony-and-pbx-systems" },
+  { title: "AV & Boardroom Conferencing", category: "Service", href: "/services/av-and-boardroom-conferencing" },
+  { title: "Huawei eKit & Ruijie Reyee Distribution", category: "Service", href: "/services/huawei-ekit-and-ruijie-reyee" },
 ];
 
 function renderMegaIcon(icon: MegaMenuItem["icon"]) {
@@ -328,6 +437,7 @@ function renderMegaIcon(icon: MegaMenuItem["icon"]) {
 }
 
 export default function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -336,6 +446,22 @@ export default function Header() {
   const [mobileExpandedItem, setMobileExpandedItem] = useState<string | null>(null);
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const closeMegaTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    setActiveMega(null);
+    setMobileMenuOpen(false);
+    setDrawerOpen(false);
+  }, [pathname]);
+
+  const isNavItemActive = (item: NavItem) => {
+    if (item.href === "/") return pathname === "/";
+    if (item.megaItems?.some((sub) => pathname === sub.href || pathname.startsWith(sub.href + "/"))) {
+      return true;
+    }
+    if (item.label === "Services" && pathname === "/services") return true;
+    if (item.label === "Solutions") return false;
+    return pathname === item.href || pathname.startsWith(item.href + "/");
+  };
 
   const handleOpenMega = (label: string, hasDropdown: boolean) => {
     if (closeMegaTimerRef.current) {
@@ -516,8 +642,9 @@ export default function Header() {
                     >
                       <Link
                         href={item.href}
+                        onClick={() => setActiveMega(null)}
                         className={`${styles.navLink} ${
-                          item.active || isMegaOpen ? styles.navLinkActive : ""
+                          isNavItemActive(item) || isMegaOpen ? styles.navLinkActive : ""
                         }`}
                       >
                         <span>{item.label}</span>
@@ -761,6 +888,7 @@ export default function Header() {
                 className={`${styles.searchBox} ${
                   searchOpen ? styles.searchBoxFocused : ""
                 }`}
+                style={{ position: "relative" }}
               >
                 <svg
                   width="15"
@@ -783,15 +911,77 @@ export default function Header() {
                   placeholder="Search ..."
                   value={searchQuery}
                   onFocus={() => setSearchOpen(true)}
-                  onBlur={() => setSearchOpen(false)}
+                  onBlur={() => setTimeout(() => setSearchOpen(false), 180)}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={styles.searchInput}
                   aria-label="Search site"
                 />
+
+                {searchOpen && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "calc(100% + 10px)",
+                      right: 0,
+                      width: "310px",
+                      maxHeight: "340px",
+                      overflowY: "auto",
+                      background: "#041038",
+                      border: "1px solid rgba(59, 130, 246, 0.28)",
+                      borderRadius: "14px",
+                      padding: "8px",
+                      boxShadow: "0 20px 48px rgba(2, 8, 28, 0.55)",
+                      zIndex: 120,
+                    }}
+                  >
+                    {QUICK_SEARCH_LINKS.filter((item) =>
+                      searchQuery.trim()
+                        ? item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          item.category.toLowerCase().includes(searchQuery.toLowerCase())
+                        : true
+                    )
+                      .slice(0, 8)
+                      .map((res) => (
+                        <Link
+                          key={res.href + res.title}
+                          href={res.href}
+                          onClick={() => {
+                            setSearchOpen(false);
+                            setSearchQuery("");
+                          }}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "10px",
+                            padding: "9px 12px",
+                            borderRadius: "9px",
+                            color: "#e2e8f0",
+                            fontSize: "12.5px",
+                            textDecoration: "none",
+                          }}
+                        >
+                          <span>{res.title}</span>
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              padding: "2px 7px",
+                              borderRadius: "999px",
+                              background: "rgba(18, 84, 255, 0.25)",
+                              color: "#93c5fd",
+                              flexShrink: 0,
+                            }}
+                          >
+                            {res.category}
+                          </span>
+                        </Link>
+                      ))}
+                  </div>
+                )}
               </div>
 
               {/* Get In Touch CTA */}
-              <Link href="/#contact" className={styles.getInTouchBtn}>
+              <Link href="/contact" className={styles.getInTouchBtn}>
                 Get In Touch
               </Link>
 
@@ -902,15 +1092,37 @@ export default function Header() {
             <div className={styles.drawerInfoList}>
               <div>
                 <strong>Email</strong>
-                <p>info@catscomputers.com</p>
+                <p>
+                  <a href="mailto:info@catscomputers.com">info@catscomputers.com</a>
+                </p>
               </div>
               <div>
                 <strong>Phone</strong>
-                <p>+971 4 227 3378</p>
+                <p>
+                  <a href="tel:+97142273378">+971 4 227 3378</a>
+                </p>
               </div>
               <div>
                 <strong>Headquarters</strong>
                 <p>Water Tank Building, Al Musallah Street, Burdubai, Dubai, UAE</p>
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "8px" }}>
+                <Link
+                  href="/services"
+                  onClick={() => setDrawerOpen(false)}
+                  className={styles.getInTouchBtn}
+                  style={{ flex: 1, textAlign: "center", justifyContent: "center" }}
+                >
+                  Our Services
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={() => setDrawerOpen(false)}
+                  className={styles.getInTouchBtn}
+                  style={{ flex: 1, textAlign: "center", justifyContent: "center" }}
+                >
+                  Contact Us
+                </Link>
               </div>
             </div>
           </aside>
