@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import PageBanner from "@/components/PageBanner/PageBanner";
 import CtaBanner from "@/components/CtaBanner/CtaBanner";
 import styles from "@/styles/AdvancedLegalFaq.module.css";
 
@@ -29,23 +28,39 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main className={styles.pageWrapper}>
-      <PageBanner
-        eyebrow="DATA GOVERNANCE & CONFIDENTIALITY — DUBAI, UAE"
-        title="Enterprise Privacy & Data Protection Policy."
-        subtitle="How CATS Computers L.L.C safeguards client network architectures, server credentials, commercial RFQs, and personal information in strict alignment with UAE Federal Data Protection Standards."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]}
-        bgImage="/images/card-cybersecurity.jpg"
-        primaryCtaText="Request Mutual NDA"
-        primaryCtaHref="/contact"
-        secondaryCtaText="View Terms & Conditions"
-        secondaryCtaHref="/terms-and-conditions"
-        metrics={[
-          { value: "AES-256", label: "Credential Vault Encryption" },
-          { value: "100%", label: "Mutual NDA Protection" },
-          { value: "Zero", label: "Third-Party Data Selling" },
-          { value: "UAE PDPL", label: "Federal Law Aligned" },
-        ]}
-      />
+      <section className={styles.privacyVaultHero}>
+        <div className={styles.privacyHeroGrid}>
+          <div>
+            <div className={styles.faqHeroBadge}>
+              <span>🛡️ UAE Federal Decree-Law No. 45 Aligned</span>
+            </div>
+            <h1 className={styles.faqHeroTitle} style={{ textAlign: "left" }}>
+              Enterprise Privacy &amp; Network Data Protection Vault.
+            </h1>
+            <p className={styles.faqHeroSub} style={{ textAlign: "left", marginBottom: 0 }}>
+              How CATS Computers L.L.C safeguards your company floor plans, server credentials,
+              commercial BOQs, and personal data under strict mutual NDA and AES-256 encryption.
+            </p>
+          </div>
+
+          <div className={styles.privacyVaultCard}>
+            <div style={{ fontSize: "12px", textTransform: "uppercase", color: "#6ee7b7", marginBottom: "10px" }}>
+              ● Security &amp; Confidentiality Status
+            </div>
+            <h2 style={{ fontSize: "20px", fontWeight: 600, margin: "0 0 12px" }}>
+              100% Zero-Monetization &amp; NDA Protection
+            </h2>
+            <p style={{ fontSize: "13.5px", color: "#cbd5e1", lineHeight: 1.6, margin: "0 0 16px" }}>
+              All client network topologies, IP tables, and AMC credentials are stored inside an
+              encrypted Dubai vault and never shared with external marketers.
+            </p>
+            <Link href="/contact" className={styles.sidebarBtn}>
+              <span>Request a Signed Mutual NDA</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ==================== TOP 4 GLASSMORPHIC TRUST CARDS ==================== */}
       <section className={styles.trustStripSection}>

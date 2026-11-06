@@ -1,0 +1,318 @@
+/* ============================================================================
+   CAREERS PAGE — TECH TALENT PORTAL & MASTER-DETAIL INTERACTIVE JOB BOARD
+   ============================================================================ */
+
+.careersPage {
+  background: #f5f8fc;
+  color: #0b132b;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ==================== 1. 4-PHOTO TEAM MOSAIC HERO ==================== */
+.talentHero {
+  padding: 148px 0 88px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(18, 84, 255, 0.34) 0%, transparent 45%),
+    linear-gradient(150deg, #02081f 0%, #071950 56%, #0b2676 100%);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.25);
+}
+
+.heroSplit {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hiringPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 15px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  color: #6ee7b7;
+  font-size: 12.5px;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.heroTitle {
+  font-size: clamp(34px, 4.2vw, 52px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+}
+
+.heroLead {
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: rgba(226, 232, 240, 0.9);
+  margin: 0 0 28px;
+}
+
+.perksMiniGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.perkMiniPill {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(147, 197, 253, 0.24);
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 13.5px;
+  color: #f1f5f9;
+}
+
+.perkMiniPill strong {
+  display: block;
+  color: #38bdf8;
+  font-size: 14.5px;
+  margin-bottom: 2px;
+}
+
+/* Right 2x2 Team Photo Grid */
+.teamMosaic {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.mosaicFrame {
+  position: relative;
+  height: 195px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(96, 165, 250, 0.32);
+}
+
+.coverImg {
+  object-fit: cover;
+}
+
+/* ==================== 2. MASTER-DETAIL INTERACTIVE JOB BOARD ==================== */
+.boardSection {
+  padding: 84px 0;
+}
+
+.boardHeader {
+  margin-bottom: 36px;
+}
+
+.boardTitle {
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 600;
+  margin: 8px 0 0;
+}
+
+.boardWorkspace {
+  display: grid;
+  grid-template-columns: 350px 1fr 390px;
+  gap: 24px;
+  align-items: start;
+}
+
+.roleListCol {
+  display: grid;
+  gap: 12px;
+}
+
+.roleTabBtn {
+  text-align: left;
+  padding: 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.roleTabBtn:hover {
+  border-color: #1254ff;
+}
+
+.roleTabBtnActive {
+  background: linear-gradient(145deg, #041036 0%, #0b2674 100%);
+  color: #ffffff;
+  border-color: #60a5fa;
+  box-shadow: 0 18px 40px rgba(18, 84, 255, 0.22);
+}
+
+.roleDept {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1254ff;
+  margin-bottom: 6px;
+}
+
+.roleTabBtnActive .roleDept {
+  color: #7dd3fc;
+}
+
+.roleName {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.roleMeta {
+  font-size: 12.5px;
+  opacity: 0.78;
+}
+
+/* Center Selected Job Description Card */
+.jobDetailCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.05);
+}
+
+.jobBannerPhoto {
+  position: relative;
+  height: 195px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.jobTitle {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.jobSummary {
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #475569;
+  margin: 0 0 22px;
+}
+
+.jobListHeading {
+  font-size: 13.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1254ff;
+  margin: 0 0 10px;
+}
+
+.jobBulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  display: grid;
+  gap: 8px;
+}
+
+.jobBulletList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+/* Right Quick Application Form Card */
+.applyCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  border: 2px solid rgba(18, 84, 255, 0.2);
+  box-shadow: 0 18px 44px rgba(18, 84, 255, 0.08);
+  position: sticky;
+  top: 104px;
+}
+
+.applyHeading {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.applySub {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 18px;
+}
+
+.fieldGroup {
+  margin-bottom: 14px;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 5px;
+}
+
+.fieldInput,
+.fieldTextarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #f8fafc;
+  font-size: 13.5px;
+  color: #0b132b;
+  outline: none;
+}
+
+.fieldTextarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.applySubmitBtn {
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.successMsg {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  color: #065f46;
+  font-size: 13px;
+}
+
+@media (max-width: 1160px) {
+  .heroSplit,
+  .boardWorkspace {
+    grid-template-columns: 1fr;
+  }
+
+  .applyCard {
+    position: static;
+  }
+}
+

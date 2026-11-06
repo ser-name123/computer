@@ -1,170 +1,211 @@
-import type { Metadata } from "next";
+"use client";
+
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import PageBanner from "@/components/PageBanner/PageBanner";
 import WorkProcessSection from "@/components/WorkProcessSection/WorkProcessSection";
 import ConsultationSection from "@/components/ConsultationSection/ConsultationSection";
 import TrustedBrandsSection from "@/components/TrustedBrandsSection/TrustedBrandsSection";
 import { SERVICES_DATA } from "@/data/siteData";
-import styles from "@/styles/InnerPages.module.css";
+import styles from "./ServicesPage.module.css";
 
-export const metadata: Metadata = {
-  title: "Our Services & Solutions | CATS Computers L.L.C — Dubai, UAE",
-  description:
-    "Explore all 12 easy-to-understand IT services and hardware solutions from CATS Computers in Dubai — office Wi-Fi, cabling, CCTV, servers, cloud email, and 24/7 AMC support.",
-};
-
-const SERVICE_PROMISES = [
-  {
-    num: "01",
-    tag: "Zero Cost Visit",
-    title: "Free On-Site Survey",
-    desc: "We visit your Dubai office or warehouse for free to check your layout before quoting.",
-  },
-  {
-    num: "02",
-    tag: "Ready Dubai Stock",
-    title: "Fast Installation",
-    desc: "Switches, Wi-Fi APs, cables, and cameras are in stock at our Burdubai hub for quick setup.",
-  },
-  {
-    num: "03",
-    tag: "Certified Quality",
-    title: "Neat & Labeled Work",
-    desc: "Every cable and rack is neatly dressed, labeled, and tested so it works reliably for years.",
-  },
-  {
-    num: "04",
-    tag: "Always Available",
-    title: "24/7 Friendly Support",
-    desc: "Quick 15-minute remote help and fast on-site engineer visits whenever your team needs us.",
-  },
-];
+const FILTER_TABS = [
+  "All 12 Solutions",
+  "Core IT Services",
+  "Hardware & Security Solutions",
+] as const;
 
 const AMC_PACKAGES = [
   {
-    badge: "Starter Care",
-    title: "On-Call & Preventive IT Support",
-    desc: "Ideal for smaller offices (5–20 staff) that need monthly system health checks, remote troubleshooting, and priority call-out rates.",
+    badge: "Starter Care • 5–20 Staff",
+    title: "Preventive & On-Call IT Plan",
+    desc: "Ideal for boutique offices and startups in Dubai that need monthly preventive checkups and fast remote help.",
     image: "/images/about-engineer-left.jpg",
+    featured: false,
     points: [
       "Unlimited business-hours remote helpdesk",
-      "Scheduled monthly on-site preventive checkup",
-      "Antivirus, Windows & firewall update checks",
+      "Scheduled monthly on-site preventive inspection",
+      "Antivirus, Windows & firewall security updates",
+      "Priority on-site call-out rates across Dubai",
     ],
   },
   {
-    badge: "Most Popular",
-    title: "Comprehensive Annual AMC",
-    desc: "Complete peace of mind for growing companies (20–150 staff) with unlimited remote & on-site engineer visits included in one fixed annual fee.",
+    badge: "Most Popular • 20–150 Staff",
+    title: "Comprehensive Annual IT AMC",
+    desc: "Complete worry-free coverage with unlimited remote & on-site engineer visits included in one fixed annual fee.",
     image: "/images/service-managed-it.jpg",
+    featured: true,
     points: [
-      "15-minute remote response & fast on-site visits",
+      "15-minute remote response & unlimited on-site visits",
       "Full care for servers, Wi-Fi, PCs, printers & CCTV",
-      "Daily backup verification & vendor warranty handling",
+      "Daily cloud & NAS backup health verification",
+      "Direct manufacturer warranty & RMA handling",
     ],
   },
   {
-    badge: "Enterprise 24/7",
-    title: "Multi-Branch & 24/7 Critical SLA",
-    desc: "Built for multi-branch companies, clinics, hotels, and warehouses that run 24/7 and need round-the-clock monitoring and spare hardware.",
+    badge: "Enterprise 24/7 • Multi-Branch",
+    title: "24/7 Mission-Critical SLA",
+    desc: "Built for multi-branch groups, clinics, hotels, and warehouses that operate around the clock.",
     image: "/images/hero-huawei-elite.jpg",
+    featured: false,
     points: [
       "24/7/365 emergency support & 2-hour Dubai dispatch",
-      "Dedicated account engineer & quarterly IT reviews",
+      "Dedicated senior account architect & quarterly audits",
       "Standby loaner switches/firewalls during warranty claims",
+      "Multi-branch VPN, SD-WAN & cloud server management",
     ],
   },
 ];
 
 export default function ServicesPage() {
-  const coreServices = SERVICES_DATA.filter((s) => s.category === "Core IT Services");
-  const hardwareSolutions = SERVICES_DATA.filter(
-    (s) => s.category === "Hardware & Security Solutions"
-  );
+  const [selectedTab, setSelectedTab] = useState<string>("All 12 Solutions");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const filteredServices = useMemo(() => {
+    return SERVICES_DATA.filter((service) => {
+      const matchesTab =
+        selectedTab === "All 12 Solutions" || service.category === selectedTab;
+      const q = searchQuery.trim().toLowerCase();
+      const matchesQuery =
+        !q ||
+        service.title.toLowerCase().includes(q) ||
+        service.shortDescription.toLowerCase().includes(q) ||
+        service.vendors.some((v) => v.toLowerCase().includes(q));
+      return matchesTab && matchesQuery;
+    });
+  }, [selectedTab, searchQuery]);
 
   return (
-    <main className={styles.pageMain}>
-      {/* ==================== SECTION 1: HERO BANNER ==================== */}
-      <PageBanner
-        eyebrow="ALL 12 IT SERVICES & SOLUTIONS — DUBAI, UAE"
-        title="Complete Office IT, Security & Hardware Solutions."
-        subtitle="Whether you are setting up a brand-new office, fixing slow Wi-Fi, installing CCTV and door access, or looking for a reliable 24/7 IT maintenance partner — we handle everything under one roof."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
-        bgImage="/images/hero-bg.jpg"
-        primaryCtaText="Book Free Site Survey"
-        primaryCtaHref="/contact"
-        secondaryCtaText="See Our Past Projects"
-        secondaryCtaHref="/case-studies"
-        metrics={[
-          { value: "12+", label: "Complete IT Solutions" },
-          { value: "30+", label: "Official Hardware Brands" },
-          { value: "< 15m", label: "Remote Helpdesk Speed" },
-          { value: "99.9%", label: "Smooth Office Uptime" },
-        ]}
-      />
+    <main className={styles.servicesPage}>
+      {/* ==================== 1. INTERACTIVE CATALOG COMMAND HERO ==================== */}
+      <section className={styles.catalogHero}>
+        <div className={styles.container}>
+          <div className={styles.catalogHeroTop}>
+            <div>
+              <div className={styles.breadcrumbPill}>
+                <Link href="/">Home</Link>
+                <span>/</span>
+                <span>All 12 IT Services &amp; Hardware Solutions</span>
+              </div>
+              <h1 className={styles.heroHeadline}>
+                Interactive Catalog of Our 12 Turnkey Office IT &amp; Hardware Solutions.
+              </h1>
+              <p className={styles.heroSubtext}>
+                Filter by category or search by brand below. Every solution includes a free on-site
+                Dubai survey, genuine UAE distributor hardware from our Burdubai warehouse, neat
+                installation, and 24/7 AMC support.
+              </p>
+            </div>
 
-      {/* ==================== SECTION 2: FLOATING 4-CARD PROMISE STRIP ==================== */}
-      <section className={styles.floatingStripSection}>
-        <div className={styles.floatingStripGrid}>
-          {SERVICE_PROMISES.map((item) => (
-            <div key={item.num} className={styles.floatingStripCard}>
-              <div className={styles.floatingStripNum}>{item.num}</div>
-              <div className={styles.floatingStripBody}>
-                <span className={styles.floatingStripTag}>{item.tag}</span>
-                <h2 className={styles.floatingStripTitle}>{item.title}</h2>
-                <p className={styles.floatingStripDesc}>{item.desc}</p>
+            {/* Right SLA Scorecard */}
+            <div className={styles.heroSlaCard}>
+              <div className={styles.heroSlaHeader}>
+                <span className={styles.heroSlaTitle}>Dubai Delivery Benchmarks</span>
+                <span className={styles.liveDotBadge}>● Burdubai Hub Ready</span>
+              </div>
+              <div className={styles.heroSlaGrid}>
+                <div className={styles.heroSlaBox}>
+                  <strong>12 Solutions</strong>
+                  <span>Complete A-to-Z Office IT</span>
+                </div>
+                <div className={styles.heroSlaBox}>
+                  <strong>30+ Brands</strong>
+                  <span>Official UAE Warranty Stock</span>
+                </div>
+                <div className={styles.heroSlaBox}>
+                  <strong>&lt; 15 Mins</strong>
+                  <span>Remote Engineer Response</span>
+                </div>
+                <div className={styles.heroSlaBox}>
+                  <strong>Free Survey</strong>
+                  <span>On-Site Dubai Inspection</span>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Interactive Search & Category Filter Bar */}
+          <div className={styles.filterDock}>
+            <div className={styles.tabGroup}>
+              {FILTER_TABS.map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setSelectedTab(tab)}
+                  className={`${styles.tabBtn} ${
+                    selectedTab === tab ? styles.tabBtnActive : ""
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            <div className={styles.searchBox}>
+              <span className={styles.searchIcon}>🔍</span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search service or brand (e.g. Wi-Fi, CCTV, Huawei, AMC)..."
+                className={styles.searchInput}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 3: PART 1 — CORE IT SERVICES (6) ==================== */}
-      <section className={styles.sectionLight}>
+      {/* ==================== 2. HORIZONTAL ARCHITECTURAL SERVICE LEDGER ==================== */}
+      <section className={styles.ledgerSection}>
         <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>01 — Core Office IT Services</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Networking, Wi-Fi, Cybersecurity, Cloud &amp; 24/7 IT Support.
-            </h2>
-            <p className={styles.sectionSubtitleLight}>
-              Click any service below to see in simple terms what is included, how we install it, and which brands we use.
-            </p>
-          </div>
-
-          <div className={styles.grid3}>
-            {coreServices.map((service) => (
-              <article key={service.slug} className={styles.mediaCard}>
-                <div className={styles.mediaCardThumb}>
+          <div className={styles.ledgerList}>
+            {filteredServices.map((service) => (
+              <article key={service.slug} className={styles.serviceRowCard}>
+                {/* Left Photo */}
+                <div className={styles.rowThumbWrap}>
                   <Image
                     src={service.heroImage}
                     alt={service.title}
                     fill
-                    sizes="(max-width: 992px) 100vw, 420px"
-                    className={styles.mediaCardImg}
+                    sizes="(max-width: 1080px) 100vw, 320px"
+                    className={styles.rowImg}
                   />
-                  <span className={styles.mediaCardTopBadge}>
-                    {service.id} • {service.badge}
+                  <span className={styles.rowNumberBadge}>
+                    Solution #{service.id} • {service.badge}
                   </span>
                 </div>
-                <div className={styles.mediaCardBody}>
+
+                {/* Center Info & Deliverables */}
+                <div className={styles.rowCenter}>
+                  <span className={styles.rowCategoryTag}>{service.category}</span>
+                  <h2 className={styles.rowTitle}>{service.title}</h2>
+                  <p className={styles.rowDesc}>{service.shortDescription}</p>
+
+                  <div className={styles.deliverablesMiniGrid}>
+                    {service.deliverables.slice(0, 4).map((del) => (
+                      <div key={del} className={styles.deliverableMiniItem}>
+                        <span className={styles.miniCheck}>✓</span>
+                        <span>{del}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Brands & Action */}
+                <div className={styles.rowRight}>
                   <div>
-                    <h3 className={styles.cardTitleLight}>{service.title}</h3>
-                    <p className={styles.cardTextLight}>{service.shortDescription}</p>
-                    <div className={styles.vendorCluster} style={{ marginBottom: "20px" }}>
-                      {service.vendors.slice(0, 3).map((v) => (
-                        <span key={v} className={styles.vendorChip}>
+                    <span className={styles.vendorGroupLabel}>Authorized Brands Used</span>
+                    <div className={styles.vendorPillsWrap}>
+                      {service.vendors.map((v) => (
+                        <span key={v} className={styles.vendorPill}>
                           {v}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <Link href={`/services/${service.slug}`} className={styles.cardLink}>
-                    <span>Explore {service.shortTitle}</span>
+
+                  <Link href={`/services/${service.slug}`} className={styles.rowActionBtn}>
+                    <span>Open {service.shortTitle} Blueprint</span>
                     <span>→</span>
                   </Link>
                 </div>
@@ -174,211 +215,65 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ==================== SECTION 4: PART 2 — HARDWARE & SECURITY SOLUTIONS (6) ==================== */}
-      <section className={styles.sectionDark}>
+      {/* ==================== 3. 3-TIER AMC SUPPORT COMPARISON MATRIX ==================== */}
+      <section className={styles.amcMatrixSection}>
         <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeDark}>
-              <span className={styles.pillDot} />
-              <span>02 — Hardware, Security &amp; Smart Office</span>
-            </div>
-            <h2 className={styles.sectionTitleDark}>
-              CCTV Cameras, Biometric Doors, Servers, Office Phones &amp; Meeting Rooms.
+          <div className={styles.amcHeader}>
+            <span className={styles.breadcrumbPill}>Year-Round Peace of Mind</span>
+            <h2 className={styles.amcTitle}>
+              Compare Our 3 Annual Maintenance (AMC) Support Tiers.
             </h2>
-            <p className={styles.sectionSubtitleDark}>
-              Original equipment supplied from our Burdubai warehouse and neatly installed by our own technicians.
+            <p className={styles.amcSub}>
+              Choose a one-time project installation or pair your office with our friendly 24/7
+              Dubai support desk.
             </p>
           </div>
 
-          <div className={styles.grid3}>
-            {hardwareSolutions.map((service) => (
-              <article
-                key={service.slug}
-                className={styles.mediaCard}
-                style={{
-                  background: "rgba(10, 25, 78, 0.72)",
-                  borderColor: "rgba(96, 165, 250, 0.24)",
-                }}
-              >
-                <div className={styles.mediaCardThumb}>
-                  <Image
-                    src={service.heroImage}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width: 992px) 100vw, 420px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>
-                    {service.id} • {service.badge}
-                  </span>
-                </div>
-                <div className={styles.mediaCardBody}>
-                  <div>
-                    <h3 className={styles.cardTitleDark}>{service.title}</h3>
-                    <p className={styles.cardTextDark}>{service.shortDescription}</p>
-                    <div className={styles.vendorCluster} style={{ marginBottom: "22px" }}>
-                      {service.vendors.slice(0, 3).map((v) => (
-                        <span key={v} className={styles.vendorChipDark}>
-                          {v}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <Link href={`/services/${service.slug}`} className={styles.cardLinkDark}>
-                    <span>View Solution Details</span>
-                    <span>→</span>
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 5: WHY ONE-STOP IT BEATS MULTIPLE VENDORS ==================== */}
-      <section className={styles.sectionWhite}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>Why Choose One Partner?</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Stop Dealing With 5 Different Vendors for Your Office IT.
-            </h2>
-            <p className={styles.sectionSubtitleLight}>
-              When one team handles your cabling, Wi-Fi, cameras, phones, and servers, everything works together smoothly.
-            </p>
-          </div>
-
-          <div className={styles.comparisonGrid}>
-            <div className={styles.comparisonCardProblem}>
-              <div className={styles.mediaCardThumb} style={{ height: "210px" }}>
-                <Image
-                  src="/images/case-study-cloud-migration.jpg"
-                  alt="Multiple Separate Vendors Problem"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 620px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>The Old Way (Multiple Vendors)</span>
-              </div>
-              <div className={styles.mediaCardBody}>
-                <div>
-                  <h3 className={styles.cardTitleLight}>Blame Games &amp; Project Delays</h3>
-                  <ul className={styles.problemList}>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>The CCTV guy blames the network guy when cameras disconnect</span>
-                    </li>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>Different invoices, warranties, and support numbers to track</span>
-                    </li>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>Grey-market hardware with no official UAE warranty support</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.comparisonCardSolution}>
-              <div className={styles.mediaCardThumb} style={{ height: "210px" }}>
-                <Image
-                  src="/images/company/huawei-ekit-team.jpg"
-                  alt="Single Point of Accountability with CATS"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 620px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>The CATS Way (All-In-One)</span>
-              </div>
-              <div className={styles.mediaCardBody}>
-                <div>
-                  <h3 className={styles.cardTitleDark}>One Team. One Number. Zero Stress.</h3>
-                  <ul className={styles.checkList} style={{ marginTop: "18px", marginBottom: 0 }}>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>Single point of responsibility for your entire office technology</span>
-                    </li>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>One clean quotation, one project manager, and on-time handover</span>
-                    </li>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>100% genuine UAE distributor stock with direct warranty care</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 6: FLEXIBLE AMC & SUPPORT PLANS ==================== */}
-      <section className={styles.sectionLight}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>Flexible Support Options</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Support Models Tailored to Your Office Size.
-            </h2>
-            <p className={styles.sectionSubtitleLight}>
-              Whether you need a one-time installation or year-round IT care, we have a simple plan for you.
-            </p>
-          </div>
-
-          <div className={styles.grid3}>
+          <div className={styles.amcTiersGrid}>
             {AMC_PACKAGES.map((pkg) => (
-              <article key={pkg.title} className={styles.mediaCard}>
-                <div className={styles.mediaCardThumb} style={{ height: "205px" }}>
-                  <Image
-                    src={pkg.image}
-                    alt={pkg.title}
-                    fill
-                    sizes="(max-width: 992px) 100vw, 420px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>{pkg.badge}</span>
-                </div>
-                <div className={styles.mediaCardBody}>
-                  <div>
-                    <h3 className={styles.cardTitleLight}>{pkg.title}</h3>
-                    <p className={styles.cardTextLight}>{pkg.desc}</p>
-                    <ul className={styles.checkList} style={{ margin: "0 0 20px" }}>
-                      {pkg.points.map((pt) => (
-                        <li key={pt} className={styles.checkItem} style={{ fontSize: "13.5px" }}>
-                          <span className={styles.checkIcon}>✓</span>
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
+              <div
+                key={pkg.title}
+                className={`${styles.amcTierCard} ${
+                  pkg.featured ? styles.amcTierFeatured : ""
+                }`}
+              >
+                <div>
+                  <div className={styles.tierPhotoStrip}>
+                    <Image
+                      src={pkg.image}
+                      alt={pkg.title}
+                      fill
+                      sizes="(max-width: 1080px) 100vw, 400px"
+                      className={styles.rowImg}
+                    />
                   </div>
-                  <Link href="/contact" className={styles.cardLink}>
-                    <span>Request Plan Quote</span>
-                    <span>→</span>
-                  </Link>
+                  <span className={styles.tierBadge}>{pkg.badge}</span>
+                  <h3 className={styles.tierName}>{pkg.title}</h3>
+                  <p className={styles.tierAudience}>{pkg.desc}</p>
+
+                  <ul className={styles.tierFeatures}>
+                    {pkg.points.map((pt) => (
+                      <li key={pt}>
+                        <span>✓</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </article>
+
+                <Link href="/contact" className={styles.tierBtn}>
+                  <span>Request {pkg.title} Quote</span>
+                  <span>→</span>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 7: 4-STEP WORK PROCESS ==================== */}
+      {/* ==================== 4. STICKY 4-STEP WORK PROCESS, BRANDS & CONSULTATION ==================== */}
       <WorkProcessSection />
-
-      {/* ==================== SECTION 8: 30+ TRUSTED BRANDS ==================== */}
       <TrustedBrandsSection />
-
-      {/* ==================== SECTION 9: CONSULTATION FORM ==================== */}
       <ConsultationSection />
     </main>
   );

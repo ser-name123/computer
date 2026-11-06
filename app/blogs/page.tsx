@@ -1,234 +1,159 @@
-import type { Metadata } from "next";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import PageBanner from "@/components/PageBanner/PageBanner";
 import TrustedBrandsSection from "@/components/TrustedBrandsSection/TrustedBrandsSection";
 import CtaBanner from "@/components/CtaBanner/CtaBanner";
 import { BLOG_POSTS_DATA } from "@/data/siteData";
-import styles from "@/styles/InnerPages.module.css";
-
-export const metadata: Metadata = {
-  title: "IT Guides & Helpful Tips | CATS Computers L.L.C — Dubai, UAE",
-  description:
-    "Easy-to-understand IT guides on office Wi-Fi, Huawei eKit, Ruijie Reyee, data backup, cybersecurity, and IT AMC in Dubai from CATS Computers L.L.C.",
-};
-
-const BLOG_HIGHLIGHTS = [
-  {
-    num: "01",
-    tag: "Plain English",
-    title: "Easy-to-Read Guides",
-    desc: "Written in simple, clear language for business owners and office managers in the UAE.",
-  },
-  {
-    num: "02",
-    tag: "Wi-Fi & Cabling",
-    title: "Fix Slow Office Internet",
-    desc: "Practical tips to stop dropped video calls and eliminate Wi-Fi dead zones.",
-  },
-  {
-    num: "03",
-    tag: "Data Protection",
-    title: "Keep Company Files Safe",
-    desc: "Simple checklists to protect your accounting data and emails from hackers.",
-  },
-  {
-    num: "04",
-    tag: "Cost Saving",
-    title: "Smart Hardware Buying",
-    desc: "How to choose reliable switches, servers, and cameras without overspending.",
-  },
-];
+import styles from "./BlogsPage.module.css";
 
 const QUICK_CHECKLISTS = [
   {
-    badge: "Checklist 01",
-    title: "Moving to a New Office in Dubai?",
-    desc: "Check these 3 things at least 2 weeks before moving day so your team can work from morning one:",
+    tab: "01. New Office Move-In Check",
+    title: "Moving Into a New Dubai Office? Check These 3 Things First",
+    desc: "Complete these 3 steps at least 14 days before your staff move in so your internet, Wi-Fi, and doors work on morning one:",
     image: "/images/company/huawei-reception.jpg",
     points: [
-      "Book your DU or e& (Etisalat) internet line early",
-      "Test all floor network points & ceiling Wi-Fi spots",
-      "Set up door access cards & CCTV before furniture arrives",
+      "Book your DU or e& (Etisalat) business fiber line early",
+      "Test all floor network ports & ceiling Wi-Fi 6/7 spots with a Fluke tester",
+      "Mount biometric door access & 4K CCTV cameras before furniture arrives",
     ],
   },
   {
-    badge: "Checklist 02",
-    title: "Is Your Company Data Truly Safe?",
-    desc: "Ask your team these 3 simple questions today to make sure a virus or crash won't stop your business:",
+    tab: "02. Ransomware & Backup Check",
+    title: "Is Your Accounting & Company Data Safe From Viruses?",
+    desc: "Ask your team these 3 simple questions today to make sure a hard-drive crash or virus can never stop your business:",
     image: "/images/card-cybersecurity.jpg",
     points: [
-      "Do we have an automatic daily backup outside the office?",
-      "Have we tested restoring a file in the last 30 days?",
-      "Is Multi-Factor Authentication (MFA) turned on for all emails?",
+      "Do we have an automatic daily backup saved both on a NAS and in the cloud?",
+      "Have we tested restoring a backup file in the last 30 days?",
+      "Is Multi-Factor Authentication (MFA) active on all Microsoft 365 emails?",
     ],
   },
   {
-    badge: "Checklist 03",
-    title: "Why Is Our Office Wi-Fi Slow?",
-    desc: "Most slow office internet isn't the ISP's fault — it usually comes down to these 3 easy fixes:",
+    tab: "03. Fix Slow Office Wi-Fi",
+    title: "Why Does Our Office Wi-Fi Drop During Video Calls?",
+    desc: "In 90% of Dubai offices, slow internet is caused by indoor Wi-Fi dead zones rather than the ISP line:",
     image: "/images/hero-huawei-elite.jpg",
     points: [
-      "Replace home routers with ceiling Wi-Fi 6 business access points",
-      "Separate guest mobile phones from office work laptops",
-      "Replace damaged, bent patch cables inside your network rack",
+      "Replace home routers with ceiling-mounted Huawei eKit or Ruijie Wi-Fi 6/7 APs",
+      "Separate guest mobile phones onto a safe Guest VLAN away from work laptops",
+      "Replace bent, unlabeled patch cables inside your server rack",
     ],
-  },
-];
-
-const TOPIC_HUBS = [
-  {
-    step: "01",
-    title: "Office Wi-Fi & Networking",
-    desc: "Learn how Huawei eKit and Ruijie cloud Wi-Fi keep offices and warehouses connected.",
-    image: "/images/process-step-1.jpg",
-  },
-  {
-    step: "02",
-    title: "Cybersecurity & Firewalls",
-    desc: "Simple ways to block phishing emails, ransomware, and unauthorized access.",
-    image: "/images/process-step-2.jpg",
-  },
-  {
-    step: "03",
-    title: "Cloud Emails & Backup",
-    desc: "Moving smoothly to Microsoft 365, Google Workspace, and automatic cloud backups.",
-    image: "/images/process-step-3.jpg",
-  },
-  {
-    step: "04",
-    title: "CCTV, Phones & Smart Rooms",
-    desc: "Choosing clear 4K cameras, biometric doors, and one-touch meeting room screens.",
-    image: "/images/process-step-4.jpg",
   },
 ];
 
 export default function BlogsPage() {
+  const [activeCheckIdx, setActiveCheckIdx] = useState(0);
   const featuredPost = BLOG_POSTS_DATA[0];
+  const activeChecklist = QUICK_CHECKLISTS[activeCheckIdx];
 
   return (
-    <main className={styles.pageMain}>
-      {/* ==================== SECTION 1: HERO BANNER ==================== */}
-      <PageBanner
-        eyebrow="SIMPLE IT GUIDES & HELPFUL TIPS — DUBAI"
-        title="Easy-to-Understand IT Guides for Your Business."
-        subtitle="Practical, jargon-free articles written by our Dubai engineers to help you make smart decisions about office Wi-Fi, data safety, hardware, and IT support."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Blogs & Insights" }]}
-        bgImage="/images/blog-cpu-chip.jpg"
-        primaryCtaText="Ask Our Engineers a Question"
-        primaryCtaHref="/contact"
-        secondaryCtaText="Explore Our Services"
-        secondaryCtaHref="/services"
-        metrics={[
-          { value: "100%", label: "Easy Plain-English Guides" },
-          { value: "Free", label: "Office IT Checklists" },
-          { value: "30+", label: "Brands Covered" },
-          { value: "24/7", label: "Expert Advice Desk" },
-        ]}
-      />
-
-      {/* ==================== SECTION 2: FLOATING 4-CARD KNOWLEDGE STRIP ==================== */}
-      <section className={styles.floatingStripSection}>
-        <div className={styles.floatingStripGrid}>
-          {BLOG_HIGHLIGHTS.map((item) => (
-            <div key={item.num} className={styles.floatingStripCard}>
-              <div className={styles.floatingStripNum}>{item.num}</div>
-              <div className={styles.floatingStripBody}>
-                <span className={styles.floatingStripTag}>{item.tag}</span>
-                <h2 className={styles.floatingStripTitle}>{item.title}</h2>
-                <p className={styles.floatingStripDesc}>{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ==================== SECTION 3: FEATURED ARTICLE SPOTLIGHT ==================== */}
-      <section className={styles.sectionWhite}>
+    <main className={styles.blogsPage}>
+      {/* ==================== 1. EDITORIAL TECH MAGAZINE COVER HERO ==================== */}
+      <section className={styles.magazineHero}>
         <div className={styles.container}>
-          <div className={styles.splitRow}>
-            <div className={styles.imageShowcaseWrap}>
+          <div className={styles.magHeaderRow}>
+            <div>
+              <div className={styles.magPill}>
+                <Link href="/">Home</Link>
+                <span>/</span>
+                <span>Dubai IT Magazine &amp; Plain-English Guides</span>
+              </div>
+              <h1 className={styles.magTitle}>
+                Practical IT Guides Written by Our Dubai Engineers.
+              </h1>
+            </div>
+          </div>
+
+          <div className={styles.magHeroGrid}>
+            {/* Left Featured Cover Story */}
+            <div className={styles.coverStoryCard}>
               <Image
                 src={featuredPost.image}
                 alt={featuredPost.title}
                 fill
-                sizes="(max-width: 992px) 100vw, 640px"
-                className={styles.imageShowcaseImg}
+                priority
+                sizes="(max-width: 1080px) 100vw, 760px"
+                className={styles.coverImg}
               />
-              <div className={styles.floatingStatBadge}>
-                <span className={styles.floatingStatValue}>{featuredPost.category}</span>
-                <span className={styles.floatingStatLabel}>
-                  {featuredPost.date} • {featuredPost.readTime}
+              <div className={styles.coverStoryOverlay} />
+              <div className={styles.coverStoryContent}>
+                <span className={styles.coverTag}>
+                  Featured Cover Guide • {featuredPost.category}
                 </span>
+                <h2 className={styles.coverHeadline}>{featuredPost.title}</h2>
+                <p className={styles.coverExcerpt}>{featuredPost.excerpt}</p>
+                <Link href={`/blogs/${featuredPost.slug}`} className={styles.coverBtn}>
+                  <span>Read Cover Story ({featuredPost.readTime})</span>
+                  <span>→</span>
+                </Link>
               </div>
             </div>
 
-            <div>
-              <div className={styles.pillBadgeLight}>
-                <span className={styles.pillDot} />
-                <span>Featured Business Guide</span>
+            {/* Right Trending Guides Desk */}
+            <aside className={styles.trendingDesk}>
+              <div>
+                <h3 className={styles.trendingHeading}>Trending Dubai IT Guides</h3>
+                <div className={styles.trendingList}>
+                  {BLOG_POSTS_DATA.map((post, idx) => (
+                    <Link
+                      key={post.slug}
+                      href={`/blogs/${post.slug}`}
+                      className={styles.trendingItem}
+                    >
+                      <span className={styles.trendingNum}>0{idx + 1}</span>
+                      <div>
+                        <span className={styles.trendingTitle}>{post.title}</span>
+                        <span className={styles.trendingMeta}>
+                          {post.category} • {post.readTime}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
-              <h2 className={styles.sectionTitleLight}>{featuredPost.title}</h2>
-              <p className={styles.cardTextLight}>{featuredPost.excerpt}</p>
-
-              <ul className={styles.checkList}>
-                {featuredPost.keyTakeaways.map((pt) => (
-                  <li key={pt} className={styles.checkItem}>
-                    <span className={styles.checkIcon}>✓</span>
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link href={`/blogs/${featuredPost.slug}`} className={styles.submitBtn}>
-                <span>Read Full Guide</span>
-                <span>→</span>
-              </Link>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 4: ALL BLOG ARTICLES GRID ==================== */}
-      <section className={styles.sectionLight}>
+      {/* ==================== 2. ALL EDITORIAL ARTICLES 3-COLUMN GRID ==================== */}
+      <section className={styles.articlesSection}>
         <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>All Helpful Articles</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Latest Guides From Our Dubai Engineering Team.
-            </h2>
-            <p className={styles.sectionSubtitleLight}>
-              Click any article below for clear, step-by-step advice you can use in your office right away.
-            </p>
-          </div>
-
-          <div className={styles.grid2}>
+          <div className={styles.editorialGrid}>
             {BLOG_POSTS_DATA.map((post) => (
-              <article key={post.slug} className={styles.mediaCard}>
-                <div className={styles.mediaCardThumb} style={{ height: "240px" }}>
+              <article key={post.slug} className={styles.articleCard}>
+                <div className={styles.articleThumb}>
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
-                    sizes="(max-width: 992px) 100vw, 600px"
-                    className={styles.mediaCardImg}
+                    sizes="(max-width: 1080px) 100vw, 420px"
+                    className={styles.coverImg}
                   />
-                  <span className={styles.mediaCardTopBadge}>{post.category}</span>
+                  <span className={styles.articleCatBadge}>{post.category}</span>
                 </div>
-                <div className={styles.mediaCardBody}>
+
+                <div className={styles.articleBody}>
                   <div>
-                    <div className={styles.cardBadgeRow}>
-                      <span className={styles.numBadge}>{post.date}</span>
-                      <span className={styles.tagPill}>{post.readTime}</span>
+                    <div className={styles.articleMetaRow}>
+                      <span>{post.date}</span>
+                      <span>⏱ {post.readTime}</span>
                     </div>
-                    <h3 className={styles.cardTitleLight}>{post.title}</h3>
-                    <p className={styles.cardTextLight}>{post.excerpt}</p>
+                    <h2 className={styles.articleTitle}>{post.title}</h2>
+                    <p className={styles.articleExcerpt}>{post.excerpt}</p>
+
+                    {post.keyTakeaways[0] && (
+                      <div className={styles.takeawayMini}>
+                        <strong>Key Tip:</strong> {post.keyTakeaways[0]}
+                      </div>
+                    )}
                   </div>
-                  <Link href={`/blogs/${post.slug}`} className={styles.cardLink}>
-                    <span>Read Complete Guide</span>
+
+                  <Link href={`/blogs/${post.slug}`} className={styles.readGuideLink}>
+                    <span>Read Full Article</span>
                     <span>→</span>
                   </Link>
                 </div>
@@ -238,191 +163,72 @@ export default function BlogsPage() {
         </div>
       </section>
 
-      {/* ==================== SECTION 5: 3 QUICK OFFICE IT CHECKLISTS ==================== */}
-      <section className={styles.sectionWhite}>
+      {/* ==================== 3. INTERACTIVE 3-TAB OFFICE IT CHECKLIST WIDGET ==================== */}
+      <section className={styles.checklistSection}>
         <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>Quick Action Checklists</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              3 Simple IT Checklists Every Dubai Office Should Follow.
-            </h2>
-            <p className={styles.sectionSubtitleLight}>
-              Save time and avoid common technology mistakes with these quick 3-point checks.
-            </p>
-          </div>
-
-          <div className={styles.grid3}>
-            {QUICK_CHECKLISTS.map((item) => (
-              <article key={item.title} className={styles.mediaCard}>
-                <div className={styles.mediaCardThumb} style={{ height: "200px" }}>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 992px) 100vw, 420px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>{item.badge}</span>
-                </div>
-                <div className={styles.mediaCardBody}>
-                  <div>
-                    <h3 className={styles.cardTitleLight}>{item.title}</h3>
-                    <p className={styles.cardTextLight}>{item.desc}</p>
-                    <ul className={styles.checkList} style={{ margin: "0 0 18px" }}>
-                      {item.points.map((pt) => (
-                        <li key={pt} className={styles.checkItem} style={{ fontSize: "13.5px" }}>
-                          <span className={styles.checkIcon}>✓</span>
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Link href="/contact" className={styles.cardLink}>
-                    <span>Get Free Help With This</span>
-                    <span>→</span>
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 6: COMMON IT MYTHS VS REALITY ==================== */}
-      <section className={styles.sectionLight}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>Myths vs. Reality</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Common Office IT Myths That Cost Businesses Money.
+          <div style={{ marginBottom: "24px" }}>
+            <span
+              className={styles.magPill}
+              style={{ background: "rgba(18,84,255,0.09)", color: "#1254ff" }}
+            >
+              Interactive 60-Second Self-Check
+            </span>
+            <h2 style={{ fontSize: "clamp(26px, 3.2vw, 38px)", fontWeight: 600, margin: 0 }}>
+              3 Quick Checklists Every Dubai Office Manager Can Use Today.
             </h2>
           </div>
 
-          <div className={styles.comparisonGrid}>
-            <div className={styles.comparisonCardProblem}>
-              <div className={styles.mediaCardThumb} style={{ height: "200px" }}>
-                <Image
-                  src="/images/blog-cloud-engineers.jpg"
-                  alt="Common Office IT Myths"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 600px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>Common Myths</span>
-              </div>
-              <div className={styles.mediaCardBody}>
-                <div>
-                  <h3 className={styles.cardTitleLight}>What Many People Assume</h3>
-                  <ul className={styles.problemList}>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>&ldquo;A faster internet package alone will fix our slow office Wi-Fi.&rdquo;</span>
-                    </li>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>&ldquo;Hackers only target huge banks, not small or medium Dubai companies.&rdquo;</span>
-                    </li>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>&ldquo;Calling a technician only when something breaks is cheaper than an AMC.&rdquo;</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.comparisonCardSolution}>
-              <div className={styles.mediaCardThumb} style={{ height: "200px" }}>
-                <Image
-                  src="/images/blog-cyber-servers.jpg"
-                  alt="Real IT Facts"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 600px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>The Real Truth</span>
-              </div>
-              <div className={styles.mediaCardBody}>
-                <div>
-                  <h3 className={styles.cardTitleDark}>What Actually Works</h3>
-                  <ul className={styles.checkList} style={{ marginTop: "18px", marginBottom: 0 }}>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>Proper ceiling Wi-Fi 6 access points and clean cabling make internet fast</span>
-                    </li>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>Automated phishing emails target SMEs daily — a firewall &amp; backup save you</span>
-                    </li>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>Monthly preventive AMC care stops expensive downtime before it happens</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 7: 4 TOPIC HUBS ==================== */}
-      <section className={styles.sectionDark}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeDark}>
-              <span className={styles.pillDot} />
-              <span>Browse Topics</span>
-            </div>
-            <h2 className={styles.sectionTitleDark}>
-              Core Topics Covered by Our Engineers.
-            </h2>
-          </div>
-
-          <div className={styles.grid4}>
-            {TOPIC_HUBS.map((t) => (
-              <div
-                key={t.step}
-                className={styles.mediaCard}
-                style={{
-                  background: "rgba(10, 25, 78, 0.72)",
-                  borderColor: "rgba(96, 165, 250, 0.24)",
-                }}
+          <div className={styles.checklistTabs}>
+            {QUICK_CHECKLISTS.map((item, idx) => (
+              <button
+                key={item.tab}
+                type="button"
+                onClick={() => setActiveCheckIdx(idx)}
+                className={`${styles.checkTabBtn} ${
+                  activeCheckIdx === idx ? styles.checkTabBtnActive : ""
+                }`}
               >
-                <div className={styles.mediaCardThumb} style={{ height: "165px" }}>
-                  <Image
-                    src={t.image}
-                    alt={t.title}
-                    fill
-                    sizes="(max-width: 992px) 100vw, 320px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>TOPIC {t.step}</span>
-                </div>
-                <div className={styles.mediaCardBody} style={{ padding: "22px" }}>
-                  <div>
-                    <h3 className={styles.cardTitleDark}>{t.title}</h3>
-                    <p className={styles.cardTextDark} style={{ marginBottom: 0 }}>
-                      {t.desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                {item.tab}
+              </button>
             ))}
+          </div>
+
+          <div className={styles.checklistPanel}>
+            <div>
+              <h3 style={{ fontSize: "26px", fontWeight: 600, margin: "0 0 12px" }}>
+                {activeChecklist.title}
+              </h3>
+              <p style={{ fontSize: "15.5px", color: "#cbd5e1", lineHeight: 1.68, margin: "0 0 20px" }}>
+                {activeChecklist.desc}
+              </p>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", display: "grid", gap: "12px" }}>
+                {activeChecklist.points.map((pt) => (
+                  <li key={pt} style={{ display: "flex", gap: "10px", fontSize: "14.5px" }}>
+                    <span style={{ color: "#38bdf8", fontWeight: 600 }}>✓</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/contact" className={styles.coverBtn}>
+                <span>Get Free Help From Our Dubai Engineers</span>
+                <span>→</span>
+              </Link>
+            </div>
+
+            <div className={styles.checklistPhoto}>
+              <Image
+                src={activeChecklist.image}
+                alt={activeChecklist.title}
+                fill
+                sizes="480px"
+                className={styles.coverImg}
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 8: 30+ TRUSTED BRANDS ==================== */}
       <TrustedBrandsSection />
-
-      {/* ==================== SECTION 9: CTA BANNER ==================== */}
       <CtaBanner />
     </main>
   );

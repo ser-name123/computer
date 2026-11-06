@@ -2,11 +2,40 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import PageBanner from "@/components/PageBanner/PageBanner";
 import { SERVICES_DATA } from "@/data/siteData";
-import styles from "@/styles/InnerPages.module.css";
+import styles from "./ContactPage.module.css";
+
+const INQUIRY_MODES = [
+  "Free Site Survey",
+  "Hardware / BOQ Quote",
+  "24/7 IT AMC Plan",
+] as const;
+
+const DEPARTMENTS = [
+  {
+    badge: "Pre-Sales & Surveys",
+    title: "Turnkey Projects Desk",
+    desc: "Book a complimentary floor-plan check in Dubai for office Wi-Fi, cabling, CCTV, or server room setup.",
+  },
+  {
+    badge: "Wholesale Stock",
+    title: "B2B Distribution Desk",
+    desc: "Request dealer or bulk pricing for Huawei eKit, Ruijie Reyee, switches, firewalls, and servers.",
+  },
+  {
+    badge: "24/7 SLA Support",
+    title: "AMC Emergency Helpdesk",
+    desc: "15-minute remote troubleshooting and 2-hour on-site field engineer dispatch for contracted clients.",
+  },
+  {
+    badge: "LPOs & Billing",
+    title: "Commercial & Accounts",
+    desc: "Fast UAE VAT invoicing, vendor registration documents, trade license copies, and mutual NDAs.",
+  },
+];
 
 export default function ContactPage() {
+  const [mode, setMode] = useState<string>("Free Site Survey");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,198 +44,157 @@ export default function ContactPage() {
   };
 
   return (
-    <main className={styles.pageMain}>
-      <PageBanner
-        eyebrow="GET IN TOUCH — BURDUBAI, DUBAI, UAE"
-        title="Speak With Our Certified IT Engineers & Distribution Desk."
-        subtitle="Whether you need a free on-site IT audit, an Annual Maintenance Contract (AMC) proposal, or wholesale Huawei eKit & Ruijie Reyee hardware pricing — our Dubai team responds within 30 minutes."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
-        bgImage="/images/consultation-team.jpg"
-        primaryCtaText="Call +971 4 227 3378"
-        primaryCtaHref="tel:+97142273378"
-        secondaryCtaText="Email info@catscomputers.com"
-        secondaryCtaHref="mailto:info@catscomputers.com"
-        metrics={[
-          { value: "< 30m", label: "Proposal & Quote Turnaround" },
-          { value: "< 15m", label: "Remote Helpdesk Response" },
-          { value: "Burdubai", label: "Showroom & Warehouse Hub" },
-          { value: "24/7", label: "AMC Emergency Support" },
-        ]}
-      />
-
-      {/* ==================== 4 DIRECT CONTACT CARDS (WITH IMAGES) ==================== */}
-      <section className={styles.sectionWhite}>
+    <main className={styles.contactPage}>
+      {/* ==================== 1. SPLIT-SCREEN EXECUTIVE CONTACT COMMAND HERO ==================== */}
+      <section className={styles.commandHero}>
         <div className={styles.container}>
-          <div className={styles.grid4}>
-            <div className={styles.mediaCard}>
-              <div className={styles.mediaCardThumb} style={{ height: "160px" }}>
-                <Image
-                  src="/images/company/huawei-reception.jpg"
-                  alt="CATS Computers Head Office & Showroom in Burdubai"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 320px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>Head Office &amp; Showroom</span>
+          <div className={styles.commandGrid}>
+            {/* Left Direct Channels & Showroom Preview */}
+            <div>
+              <div className={styles.statusBadge}>
+                <span>● Burdubai Desk Online</span>
+                <span>•</span>
+                <span>Response Under 30 Minutes</span>
               </div>
-              <div className={styles.mediaCardBody} style={{ padding: "22px" }}>
-                <div>
-                  <h3 className={styles.cardTitleLight}>Burdubai, Dubai</h3>
-                  <p className={styles.cardTextLight} style={{ marginBottom: 0 }}>
-                    Office No #6, Water Tank Building, Al Musallah Street, Burdubai, Dubai, UAE — P.O. Box 118562
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <div className={styles.mediaCard}>
-              <div className={styles.mediaCardThumb} style={{ height: "160px" }}>
-                <Image
-                  src="/images/consultation-team.jpg"
-                  alt="Direct Phone & WhatsApp Engineering Desk"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 320px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>Direct Phone &amp; WhatsApp</span>
-              </div>
-              <div className={styles.mediaCardBody} style={{ padding: "22px" }}>
-                <div>
-                  <h3 className={styles.cardTitleLight}>Call Our Desk</h3>
-                  <p className={styles.cardTextLight} style={{ marginBottom: 0 }}>
-                    Landline:{" "}
-                    <a href="tel:+97142273378" style={{ color: "#1254ff", fontWeight: 500 }}>
-                      +971 4 227 3378
-                    </a>
-                    <br />
-                    Mobile / WhatsApp:{" "}
-                    <a href="tel:+971552273378" style={{ color: "#1254ff", fontWeight: 500 }}>
-                      +971 55 227 3378
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
+              <h1 className={styles.heroTitle}>
+                Speak Directly With Our Dubai Engineers &amp; Distribution Desk.
+              </h1>
 
-            <div className={styles.mediaCard}>
-              <div className={styles.mediaCardThumb} style={{ height: "160px" }}>
-                <Image
-                  src="/images/company/ruijie-partner-lobby.jpg"
-                  alt="Send Your BOQ & RFQ to CATS Computers"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 320px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>Email &amp; RFQs</span>
-              </div>
-              <div className={styles.mediaCardBody} style={{ padding: "22px" }}>
-                <div>
-                  <h3 className={styles.cardTitleLight}>Send Your BOQ</h3>
-                  <p className={styles.cardTextLight} style={{ marginBottom: 0 }}>
-                    Sales &amp; Support:{" "}
-                    <a
-                      href="mailto:info@catscomputers.com"
-                      style={{ color: "#1254ff", fontWeight: 500 }}
-                    >
-                      info@catscomputers.com
-                    </a>
-                    <br />
-                    Fast turnaround on project BOQs &amp; distributor quotes.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.mediaCard}>
-              <div className={styles.mediaCardThumb} style={{ height: "160px" }}>
-                <Image
-                  src="/images/service-managed-it.jpg"
-                  alt="24/7 AMC Emergency Support Desk"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 320px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>Working Hours</span>
-              </div>
-              <div className={styles.mediaCardBody} style={{ padding: "22px" }}>
-                <div>
-                  <h3 className={styles.cardTitleLight}>6 Days + 24/7 AMC</h3>
-                  <p className={styles.cardTextLight} style={{ marginBottom: 0 }}>
-                    Mon – Sat: 9:00 AM to 6:00 PM
-                    <br />
-                    <strong style={{ color: "#10b981" }}>
-                      24/7 Emergency SLA Coverage for AMC Clients
-                    </strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SPLIT FORM + SHOWROOM IMAGE & MAP ==================== */}
-      <section className={styles.sectionLight}>
-        <div className={styles.container}>
-          <div className={styles.splitRow} style={{ alignItems: "stretch" }}>
-            <form onSubmit={handleSubmit} className={styles.formCard}>
-              <div className={styles.pillBadgeLight}>
-                <span className={styles.pillDot} />
-                <span>Request a Free Consultation or Quote</span>
-              </div>
-              <h2 className={styles.sectionTitleLight} style={{ fontSize: "28px" }}>
-                Tell Us About Your IT Project or Hardware Requirement.
-              </h2>
-              <p className={styles.cardTextLight}>
-                Fill out the form below and a certified CATS engineer or account manager will contact you promptly.
+              <p className={styles.heroLead}>
+                Whether you want a free on-site survey for your new office, an itemized Annual
+                Maintenance Contract (AMC) quote, or ready stock from our Burdubai warehouse — reach
+                out below.
               </p>
 
-              <div className={styles.formGrid2}>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Your Name *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Full Name"
-                    className={styles.formInput}
+              <div className={styles.directChannelsStack}>
+                <a href="tel:+97142273378" className={styles.channelBar}>
+                  <div className={styles.channelIcon}>📞</div>
+                  <div>
+                    <span className={styles.channelTag}>Direct Landline &amp; Support Desk</span>
+                    <span className={styles.channelVal}>+971 4 227 3378</span>
+                    <span className={styles.channelSub}>
+                      Mon – Sat (9:00 AM – 6:00 PM) • 24/7 AMC Emergency Line
+                    </span>
+                  </div>
+                </a>
+
+                <a href="tel:+971552273378" className={styles.channelBar}>
+                  <div className={styles.channelIcon}>💬</div>
+                  <div>
+                    <span className={styles.channelTag}>Fast Mobile &amp; WhatsApp Desk</span>
+                    <span className={styles.channelVal}>+971 55 227 3378</span>
+                    <span className={styles.channelSub}>
+                      Share your floor plan or hardware part numbers on WhatsApp
+                    </span>
+                  </div>
+                </a>
+
+                <a href="mailto:info@catscomputers.com" className={styles.channelBar}>
+                  <div className={styles.channelIcon}>✉️</div>
+                  <div>
+                    <span className={styles.channelTag}>Send BOQ / RFQ by Email</span>
+                    <span className={styles.channelVal}>info@catscomputers.com</span>
+                    <span className={styles.channelSub}>
+                      Itemized UAE Dirham (AED) quotation within 30–60 minutes
+                    </span>
+                  </div>
+                </a>
+              </div>
+
+              <div className={styles.showroomMiniBanner}>
+                <div className={styles.showroomMiniPhoto}>
+                  <Image
+                    src="/images/company/huawei-reception.jpg"
+                    alt="CATS Computers Burdubai Showroom"
+                    fill
+                    sizes="140px"
+                    className={styles.coverImg}
                   />
                 </div>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Company Name *</label>
+                <div>
+                  <strong style={{ display: "block", fontSize: "14.5px", marginBottom: "4px" }}>
+                    Visit Our Burdubai Showroom &amp; Lab
+                  </strong>
+                  <span style={{ fontSize: "13px", color: "#cbd5e1", lineHeight: 1.45 }}>
+                    Office No #6, Water Tank Building, Al Musallah Street, Burdubai, Dubai, UAE
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Interactive 3-Mode Inquiry Form Card */}
+            <form onSubmit={handleSubmit} className={styles.inquiryCard}>
+              <div className={styles.modeTabs}>
+                {INQUIRY_MODES.map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => {
+                      setMode(m);
+                      setSubmitted(false);
+                    }}
+                    className={`${styles.modeTabBtn} ${
+                      mode === m ? styles.modeTabBtnActive : ""
+                    }`}
+                  >
+                    {m}
+                  </button>
+                ))}
+              </div>
+
+              <h2 className={styles.formTitle}>Request Your {mode}</h2>
+              <p className={styles.formSub}>
+                Fill in your details below and a senior engineer in Burdubai will call or email you
+                shortly.
+              </p>
+
+              <div className={styles.row2}>
+                <div>
+                  <label className={styles.label}>Your Full Name *</label>
                   <input
                     type="text"
                     required
-                    placeholder="Organization / Company"
-                    className={styles.formInput}
+                    placeholder="Enter your name"
+                    className={styles.input}
+                  />
+                </div>
+                <div>
+                  <label className={styles.label}>Company Name *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your company in UAE"
+                    className={styles.input}
                   />
                 </div>
               </div>
 
-              <div className={styles.formGrid2}>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Work Email *</label>
+              <div className={styles.row2}>
+                <div>
+                  <label className={styles.label}>Work Email *</label>
                   <input
                     type="email"
                     required
                     placeholder="name@company.ae"
-                    className={styles.formInput}
+                    className={styles.input}
                   />
                 </div>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Phone / WhatsApp *</label>
+                <div>
+                  <label className={styles.label}>Phone / WhatsApp *</label>
                   <input
                     type="tel"
                     required
                     placeholder="+971 50 000 0000"
-                    className={styles.formInput}
+                    className={styles.input}
                   />
                 </div>
               </div>
 
-              <div className={styles.formGrid2}>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Service or Solution Needed *</label>
-                  <select className={styles.formSelect} defaultValue={SERVICES_DATA[0].title}>
+              <div className={styles.row2}>
+                <div>
+                  <label className={styles.label}>Primary Service Needed</label>
+                  <select className={styles.select} defaultValue={SERVICES_DATA[0].title}>
                     {SERVICES_DATA.map((s) => (
                       <option key={s.slug} value={s.title}>
                         {s.title}
@@ -217,108 +205,106 @@ export default function ContactPage() {
                     </option>
                   </select>
                 </div>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Location in UAE</label>
-                  <select className={styles.formSelect} defaultValue="Dubai">
+                <div>
+                  <label className={styles.label}>Location in UAE</label>
+                  <select className={styles.select} defaultValue="Dubai">
                     <option value="Dubai">Dubai</option>
                     <option value="Abu Dhabi">Abu Dhabi</option>
                     <option value="Sharjah">Sharjah</option>
-                    <option value="Ajman / Northern Emirates">
-                      Ajman / Northern Emirates
-                    </option>
-                    <option value="International / GCC">International / GCC</option>
+                    <option value="Northern Emirates">Ajman / Northern Emirates</option>
                   </select>
                 </div>
               </div>
 
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Project Details or BOM List *</label>
+              <div className={styles.field}>
+                <label className={styles.label}>
+                  Tell Us About Your Office Size or Requirement *
+                </label>
                 <textarea
                   required
-                  placeholder="Share your office size, number of users, hardware models needed, or current IT challenges..."
-                  className={styles.formTextarea}
+                  placeholder="Share number of staff, Wi-Fi/CCTV/server needs, or part numbers..."
+                  className={styles.textarea}
                 />
               </div>
 
               <button type="submit" className={styles.submitBtn}>
-                <span>Send Inquiry to Dubai Desk</span>
-                <span>→</span>
+                Send {mode} Request to Dubai Desk →
               </button>
 
               {submitted && (
-                <div className={styles.successBanner}>
-                  Thank you! Your inquiry has been logged with our Dubai engineering desk. For urgent assistance, call{" "}
+                <div className={styles.confirmBox}>
+                  ✓ Thank you! Your <strong>{mode}</strong> request has been logged with our
+                  Burdubai engineering desk. For urgent help, call{" "}
                   <strong>+971 4 227 3378</strong>.
                 </div>
               )}
             </form>
+          </div>
+        </div>
+      </section>
 
-            {/* Showroom Image Card + Map */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              <div
-                className={styles.mediaCard}
-                style={{
-                  background: "linear-gradient(160deg, #020924 0%, #071952 100%)",
-                  borderColor: "rgba(96, 165, 250, 0.25)",
-                }}
-              >
-                <div className={styles.mediaCardThumb} style={{ height: "190px" }}>
-                  <Image
-                    src="/images/company/huawei-ekit-team.jpg"
-                    alt="CATS Computers Burdubai Showroom & Engineering Center"
-                    fill
-                    sizes="(max-width: 992px) 100vw, 560px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>Authorized UAE Distribution Hub</span>
-                </div>
-                <div className={styles.mediaCardBody} style={{ padding: "26px 28px" }}>
-                  <div>
-                    <h3 className={styles.cardTitleDark} style={{ fontSize: "22px" }}>
-                      Visit Our Burdubai Showroom &amp; Engineering Center
-                    </h3>
-                    <p className={styles.cardTextDark}>
-                      Located in the heart of Dubai&apos;s IT district on Al Musallah Street, our facility houses live Huawei eKit &amp; Ruijie Reyee demo racks, pre-staging labs, and ready warehouse stock.
-                    </p>
-                    <ul className={styles.checkList} style={{ marginBottom: 0 }}>
-                      <li className={styles.checkItemDark}>
-                        <span className={styles.checkIcon}>✓</span>
-                        <span>Same-day hardware pickup &amp; UAE-wide courier dispatch</span>
-                      </li>
-                      <li className={styles.checkItemDark}>
-                        <span className={styles.checkIcon}>✓</span>
-                        <span>Free on-site network &amp; CCTV site surveys across Dubai</span>
-                      </li>
-                      <li className={styles.checkItemDark}>
-                        <span className={styles.checkIcon}>✓</span>
-                        <span>Direct manufacturer warranty &amp; RMA desk</span>
-                      </li>
-                    </ul>
+      {/* ==================== 2. BURDUBAI SHOWROOM & MAP HUB ==================== */}
+      <section className={styles.mapHubSection}>
+        <div className={styles.container}>
+          <div className={styles.mapHubCard}>
+            <div className={styles.mapInfoSide}>
+              <div>
+                <span className={styles.deptBadge}>Headquarters &amp; Warehouse</span>
+                <h2 style={{ fontSize: "28px", fontWeight: 600, margin: "0 0 10px" }}>
+                  Visit Us on Al Musallah Street, Burdubai.
+                </h2>
+                <p style={{ fontSize: "15px", lineHeight: 1.68, color: "#475569", margin: 0 }}>
+                  Come see live Huawei eKit &amp; Ruijie Reyee demo racks, pick up hardware orders on
+                  the same day, or sit down with our project engineers over coffee.
+                </p>
+
+                <div className={styles.mapDirectionsGrid}>
+                  <div className={styles.directionBox}>
+                    <strong>📍 Building &amp; Street</strong>
+                    <span>Office No #6, Water Tank Building, Al Musallah St, Burdubai</span>
+                  </div>
+                  <div className={styles.directionBox}>
+                    <strong>🚇 Nearest Metro</strong>
+                    <span>Walking distance from Sharaf DG &amp; Al Fahidi Metro Stations</span>
+                  </div>
+                  <div className={styles.directionBox}>
+                    <strong>🕘 Showroom Hours</strong>
+                    <span>Monday to Saturday: 9:00 AM – 6:00 PM</span>
+                  </div>
+                  <div className={styles.directionBox}>
+                    <strong>🚚 UAE Dispatch</strong>
+                    <span>Same-day Dubai delivery &amp; next-day courier across UAE</span>
                   </div>
                 </div>
               </div>
-
-              <div
-                style={{
-                  flex: 1,
-                  minHeight: "280px",
-                  borderRadius: "18px",
-                  overflow: "hidden",
-                  border: "1px solid rgba(15, 23, 42, 0.1)",
-                  boxShadow: "0 16px 40px rgba(15, 23, 42, 0.08)",
-                }}
-              >
-                <iframe
-                  title="CATS Computers L.L.C — Al Musallah Street, Burdubai, Dubai"
-                  src="https://www.google.com/maps?q=Al+Musallah+Street+Bur+Dubai+UAE&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, minHeight: "280px" }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
             </div>
+
+            <div className={styles.mapFrameSide}>
+              <iframe
+                title="CATS Computers L.L.C — Al Musallah Street, Burdubai, Dubai"
+                src="https://www.google.com/maps?q=Al+Musallah+Street+Bur+Dubai+UAE&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: "420px" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== 3. 4-DEPARTMENT DIRECTORY ==================== */}
+      <section className={styles.deptSection}>
+        <div className={styles.container}>
+          <div className={styles.deptGrid}>
+            {DEPARTMENTS.map((d) => (
+              <div key={d.title} className={styles.deptCard}>
+                <span className={styles.deptBadge}>{d.badge}</span>
+                <h3 className={styles.deptTitle}>{d.title}</h3>
+                <p className={styles.deptDesc}>{d.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

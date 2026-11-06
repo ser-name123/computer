@@ -1,0 +1,328 @@
+/* ============================================================================
+   SUCCESS STORIES & TESTIMONIALS PAGE — WALL OF LOVE & RATING SCORECARD
+   ============================================================================ */
+
+.testimonialsPage {
+  background: #f6f9fe;
+  color: #0b132b;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ==================== 1. RATING SCORECARD SPLIT HERO ==================== */
+.ratingHero {
+  padding: 148px 0 88px;
+  background:
+    radial-gradient(circle at 82% 24%, rgba(18, 84, 255, 0.35) 0%, transparent 46%),
+    linear-gradient(150deg, #02081f 0%, #071950 56%, #0b2778 100%);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.25);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.goldRatingPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #fde68a;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.heroTitle {
+  font-size: clamp(34px, 4.2vw, 52px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+}
+
+.heroLead {
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: rgba(226, 232, 240, 0.9);
+  margin: 0 0 28px;
+}
+
+.heroBtns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(18, 84, 255, 0.4);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Right Scorecard Box */
+.scorecardBox {
+  background: rgba(8, 23, 72, 0.8);
+  border: 1px solid rgba(96, 165, 250, 0.34);
+  border-radius: 26px;
+  padding: 28px;
+  box-shadow: 0 28px 60px rgba(2, 8, 31, 0.55);
+}
+
+.scorecardTop {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.bigScoreCircle {
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bigScoreCircle strong {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.bigScoreCircle span {
+  font-size: 11px;
+  color: #dbeafe;
+  margin-top: 3px;
+}
+
+.scorecardStars {
+  color: #fbbf24;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.scoreBarsList {
+  display: grid;
+  gap: 14px;
+}
+
+.scoreBarItem {
+  display: grid;
+  gap: 6px;
+}
+
+.scoreBarMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #e2e8f0;
+}
+
+.scoreBarTrack {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.scoreBarFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8 0%, #1254ff 100%);
+}
+
+/* ==================== 2. 3-COLUMN EXECUTIVE WALL OF LOVE ==================== */
+.wallSection {
+  padding: 88px 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto 52px;
+}
+
+.sectionTag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(18, 84, 255, 0.09);
+  color: #1254ff;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 600;
+  color: #0b132b;
+  margin: 0 0 12px;
+}
+
+.sectionSub {
+  font-size: 16px;
+  color: #475569;
+  margin: 0;
+}
+
+.quoteWallGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.quoteCard {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quotePhotoHeader {
+  position: relative;
+  height: 175px;
+}
+
+.coverImg {
+  object-fit: cover;
+}
+
+.quoteImpactBadge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(2, 9, 34, 0.88);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #7dd3fc;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+.quoteBody {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.starsRow {
+  color: #f59e0b;
+  font-size: 15px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.quoteText {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #1e293b;
+  font-style: italic;
+  margin: 0 0 18px;
+}
+
+.servicesChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.srvChip {
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: #f0f6ff;
+  color: #1254ff;
+  font-weight: 500;
+}
+
+.authorFooter {
+  padding-top: 14px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.authorName {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #0b132b;
+}
+
+.authorRole {
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+.locationPill {
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  color: #334155;
+  white-space: nowrap;
+}
+
+@media (max-width: 1080px) {
+  .heroGrid,
+  .quoteWallGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

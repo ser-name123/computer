@@ -1,0 +1,410 @@
+/* ============================================================================
+   PORTFOLIO & CASE STUDIES PAGE — PROJECT DOSSIERS & RACK TRANSFORMATION
+   ============================================================================ */
+
+.portfolioPage {
+  background: #f8fafc;
+  color: #0b132b;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ==================== 1. PORTFOLIO SHOWCASE HERO ==================== */
+.portfolioHero {
+  padding: 148px 0 86px;
+  background:
+    radial-gradient(circle at 18% 25%, rgba(18, 84, 255, 0.36) 0%, transparent 45%),
+    linear-gradient(155deg, #02081c 0%, #061748 56%, #0b2674 100%);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.25);
+}
+
+.heroSplit {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.crumbTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #7dd3fc;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+
+.crumbTag a {
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+.heroTitle {
+  font-size: clamp(34px, 4.3vw, 54px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+}
+
+.heroLead {
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: rgba(226, 232, 240, 0.9);
+  margin: 0 0 28px;
+}
+
+.heroFilterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filterPill {
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  background: rgba(255, 255, 255, 0.07);
+  color: #e2e8f0;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterPill:hover {
+  border-color: #60a5fa;
+  color: #ffffff;
+}
+
+.filterPillActive {
+  background: linear-gradient(135deg, #1254ff 0%, #2563eb 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(18, 84, 255, 0.45);
+}
+
+/* Right Featured Flagship Card in Hero */
+.flagshipCard {
+  background: rgba(9, 25, 78, 0.78);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 28px 60px rgba(2, 8, 31, 0.55);
+}
+
+.flagshipPhoto {
+  position: relative;
+  height: 245px;
+}
+
+.coverImg {
+  object-fit: cover;
+}
+
+.flagshipOverlayPill {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #1254ff;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+.flagshipBody {
+  padding: 24px 26px;
+}
+
+.flagshipTitle {
+  font-size: 21px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+
+.flagshipMeta {
+  font-size: 13.5px;
+  color: #cbd5e1;
+  margin: 0 0 16px;
+  line-height: 1.55;
+}
+
+.flagshipKpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.flagshipKpiBox {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.flagshipKpiBox strong {
+  display: block;
+  font-size: 16px;
+  color: #38bdf8;
+}
+
+.flagshipKpiBox span {
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+/* ==================== 2. CASE STUDY DOSSIER FILES ==================== */
+.dossierSection {
+  padding: 84px 0;
+}
+
+.dossierList {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.caseDossier {
+  background: #ffffff;
+  border-radius: 28px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+.caseTopHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 22px 32px;
+  background: linear-gradient(90deg, #041036 0%, #092066 100%);
+  color: #ffffff;
+}
+
+.caseHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.caseNum {
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: #1254ff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.caseTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.caseLocationBadge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 12.5px;
+  color: #93c5fd;
+}
+
+.caseBodyGrid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+  padding: 30px 32px;
+  align-items: stretch;
+}
+
+.casePhotoWrap {
+  position: relative;
+  min-height: 290px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.caseStagesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stageBox {
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stageProblem {
+  background: #fff8f6;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.stageSolution {
+  background: #f0f6ff;
+  border: 1px solid rgba(18, 84, 255, 0.2);
+}
+
+.stageResults {
+  background: #f0fdf6;
+  border: 1px solid rgba(16, 185, 129, 0.24);
+}
+
+.stageLabel {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.stageText {
+  font-size: 14px;
+  line-height: 1.62;
+  color: #1e293b;
+  margin: 0;
+}
+
+.resultCheckList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.resultCheckList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #064e3b;
+}
+
+.techStackBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 32px;
+  background: #f8fafc;
+  border-top: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.techChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.techChip {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(18, 84, 255, 0.2);
+  color: #0f172a;
+}
+
+.caseQuoteLink {
+  color: #1254ff;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ==================== 3. HANDOVER DELIVERABLES STRIP ==================== */
+.handoverSection {
+  padding: 88px 0;
+  background: linear-gradient(155deg, #02081f 0%, #071952 100%);
+  color: #ffffff;
+}
+
+.handoverGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 42px;
+}
+
+.handoverCard {
+  background: rgba(12, 30, 90, 0.68);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.handoverThumb {
+  position: relative;
+  height: 155px;
+}
+
+.handoverBody {
+  padding: 22px;
+}
+
+.handoverNum {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+.handoverTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 6px 0 8px;
+}
+
+.handoverDesc {
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+@media (max-width: 1120px) {
+  .heroSplit,
+  .caseBodyGrid,
+  .caseStagesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .handoverGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .handoverGrid,
+  .flagshipKpis {
+    grid-template-columns: 1fr;
+  }
+}
+

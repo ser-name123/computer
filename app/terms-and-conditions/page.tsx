@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import PageBanner from "@/components/PageBanner/PageBanner";
 import CtaBanner from "@/components/CtaBanner/CtaBanner";
 import styles from "@/styles/AdvancedLegalFaq.module.css";
 
@@ -29,26 +28,41 @@ export default function TermsAndConditionsPage() {
 
   return (
     <main className={styles.pageWrapper}>
-      <PageBanner
-        eyebrow="COMMERCIAL & SLA GOVERNANCE — DUBAI, UAE"
-        title="Enterprise Terms & Conditions."
-        subtitle="Clear, transparent commercial terms governing authorized hardware supply, turnkey IT project execution, and 24/7 Annual Maintenance Contracts (AMC) across Dubai and the UAE."
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Terms & Conditions" },
-        ]}
-        bgImage="/images/case-study-boardroom.jpg"
-        primaryCtaText="Request Custom AMC / SOW"
-        primaryCtaHref="/contact"
-        secondaryCtaText="View Privacy Policy"
-        secondaryCtaHref="/privacy-policy"
-        metrics={[
-          { value: "100%", label: "Genuine OEM Warranty" },
-          { value: "< 15m", label: "Remote SLA Target" },
-          { value: "Fluke", label: "Certified Handover" },
-          { value: "Dubai", label: "Governing Jurisdiction" },
-        ]}
-      />
+      <section className={styles.termsContractHero}>
+        <div className={styles.termsDocLedger}>
+          <div>
+            <div className={styles.faqHeroBadge}>
+              <span>📄 Master Commercial &amp; SLA Framework</span>
+            </div>
+            <h1 className={styles.faqHeroTitle} style={{ textAlign: "left" }}>
+              Enterprise Terms, Warranty &amp; SLA Conditions.
+            </h1>
+            <p className={styles.faqHeroSub} style={{ textAlign: "left", marginBottom: 0 }}>
+              Clear, transparent B2B commercial rules governing authorized hardware supply, turnkey
+              office IT projects, and 24/7 Annual Maintenance Contracts across Dubai and the UAE.
+            </p>
+          </div>
+
+          <div className={styles.docMetaGrid}>
+            <div className={styles.docMetaItem}>
+              <span>Document Reference</span>
+              <strong>CATS-MSA-2026-V4</strong>
+            </div>
+            <div className={styles.docMetaItem}>
+              <span>Jurisdiction</span>
+              <strong>Emirate of Dubai, UAE</strong>
+            </div>
+            <div className={styles.docMetaItem}>
+              <span>Critical Remote SLA</span>
+              <strong>&lt; 15 Minutes (24/7)</strong>
+            </div>
+            <div className={styles.docMetaItem}>
+              <span>Hardware Warranty</span>
+              <strong>100% Official UAE OEM</strong>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ==================== TOP 4 GLASSMORPHIC COMMERCIAL HIGHLIGHT CARDS ==================== */}
       <section className={styles.trustStripSection}>

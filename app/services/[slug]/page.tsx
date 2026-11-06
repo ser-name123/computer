@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import PageBanner from "@/components/PageBanner/PageBanner";
 import TrustedBrandsSection from "@/components/TrustedBrandsSection/TrustedBrandsSection";
 import CtaBanner from "@/components/CtaBanner/CtaBanner";
 import { SERVICES_DATA } from "@/data/siteData";
-import styles from "@/styles/InnerPages.module.css";
+import styles from "./ServiceDetail.module.css";
 
 const STEP_IMAGES = [
   "/images/process-step-1.jpg",
@@ -22,27 +21,6 @@ const CAPABILITY_IMAGES = [
   "/images/about-engineer-left.jpg",
   "/images/about-team-right.jpg",
   "/images/case-study-boardroom.jpg",
-];
-
-const WHY_CATS_CARDS = [
-  {
-    badge: "100% Genuine Stock",
-    title: "Official UAE Brand Warranty",
-    desc: "We supply original equipment directly from authorized UAE distributor channels — no grey-market parts or warranty headaches.",
-    image: "/images/company/huawei-ekit-award.jpg",
-  },
-  {
-    badge: "Clean & Certified",
-    title: "Neat Setup With Zero Downtime",
-    desc: "Our engineers pre-configure hardware in our Burdubai lab and install everything cleanly without disrupting your staff.",
-    image: "/images/company/ruijie-cctv-discussion.jpg",
-  },
-  {
-    badge: "24/7 Local Care",
-    title: "Fast Remote & On-Site Support",
-    desc: "Whenever your team needs help, our Dubai helpdesk connects remotely within 15 minutes or dispatches a field engineer.",
-    image: "/images/company/team-group-1.jpg",
-  },
 ];
 
 export function generateStaticParams() {
@@ -79,426 +57,232 @@ export default async function IndividualServicePage({
     notFound();
   }
 
-  const relatedServices = SERVICES_DATA.filter((s) => s.slug !== service.slug).slice(0, 3);
-
   return (
-    <main className={styles.pageMain}>
-      {/* ==================== SECTION 1: HERO BANNER ==================== */}
-      <PageBanner
-        eyebrow={`${service.category.toUpperCase()} • ${service.badge.toUpperCase()}`}
-        title={service.title}
-        subtitle={service.heroDescription}
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: service.shortTitle },
-        ]}
-        bgImage={service.heroImage}
-        primaryCtaText="Book Free Site Survey & Quote"
-        primaryCtaHref="/contact"
-        secondaryCtaText="Call +971 4 227 3378"
-        secondaryCtaHref="tel:+97142273378"
-        metrics={service.metrics}
-      />
+    <main className={styles.detailPage}>
+      {/* ==================== 1. SPLIT PRODUCT/SERVICE DATASHEET HERO ==================== */}
+      <section className={styles.datasheetHero}>
+        <div className={styles.container}>
+          <div className={styles.heroGrid}>
+            <div>
+              <div className={styles.crumbRow}>
+                <Link href="/">Home</Link>
+                <span>/</span>
+                <Link href="/services">Services</Link>
+                <span>/</span>
+                <span>{service.shortTitle}</span>
+              </div>
 
-      {/* ==================== SECTION 2: FLOATING 4-CARD SERVICE PROMISE STRIP ==================== */}
-      <section className={styles.floatingStripSection}>
-        <div className={styles.floatingStripGrid}>
-          <div className={styles.floatingStripCard}>
-            <div className={styles.floatingStripNum}>01</div>
-            <div className={styles.floatingStripBody}>
-              <span className={styles.floatingStripTag}>Free Assessment</span>
-              <h2 className={styles.floatingStripTitle}>Free Dubai Site Visit</h2>
-              <p className={styles.floatingStripDesc}>
-                Our engineer inspects your office layout and requirements at zero cost before quoting.
-              </p>
+              <h1 className={styles.serviceTitle}>{service.title}</h1>
+              <p className={styles.serviceLead}>{service.heroDescription}</p>
+
+              <div className={styles.vendorStrip}>
+                {service.vendors.map((v) => (
+                  <span key={v} className={styles.vendorBadge}>
+                    ✓ {v}
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.ctaRow}>
+                <Link href="/contact" className={styles.primaryCta}>
+                  <span>Book Free Dubai Site Survey</span>
+                  <span>→</span>
+                </Link>
+                <a href="tel:+97142273378" className={styles.secondaryCta}>
+                  <span>Call +971 4 227 3378</span>
+                </a>
+              </div>
             </div>
-          </div>
-          <div className={styles.floatingStripCard}>
-            <div className={styles.floatingStripNum}>02</div>
-            <div className={styles.floatingStripBody}>
-              <span className={styles.floatingStripTag}>Original Brands</span>
-              <h2 className={styles.floatingStripTitle}>Genuine UAE Warranty</h2>
-              <p className={styles.floatingStripDesc}>
-                Supplied directly from official distributor stock at our Burdubai warehouse.
-              </p>
-            </div>
-          </div>
-          <div className={styles.floatingStripCard}>
-            <div className={styles.floatingStripNum}>03</div>
-            <div className={styles.floatingStripBody}>
-              <span className={styles.floatingStripTag}>Clean Handover</span>
-              <h2 className={styles.floatingStripTitle}>Tested &amp; Labeled Setup</h2>
-              <p className={styles.floatingStripDesc}>
-                Neat installation with full testing reports, clear labels, and staff walkthrough.
-              </p>
-            </div>
-          </div>
-          <div className={styles.floatingStripCard}>
-            <div className={styles.floatingStripNum}>04</div>
-            <div className={styles.floatingStripBody}>
-              <span className={styles.floatingStripTag}>Always Covered</span>
-              <h2 className={styles.floatingStripTitle}>24/7 AMC Support Ready</h2>
-              <p className={styles.floatingStripDesc}>
-                Backed by 15-minute remote helpdesk and rapid on-site engineer dispatch across Dubai.
-              </p>
+
+            {/* Right Framed Photo + 4 Telemetry KPI Boxes */}
+            <div className={styles.heroVisualBox}>
+              <div className={styles.heroImageFrame}>
+                <Image
+                  src={service.heroImage}
+                  alt={service.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1080px) 100vw, 560px"
+                  className={styles.coverImg}
+                />
+              </div>
+
+              <div className={styles.metricsRow4}>
+                {service.metrics.map((m) => (
+                  <div key={m.label} className={styles.metricMiniCard}>
+                    <strong>{m.value}</strong>
+                    <span>{m.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 3: OVERVIEW & DELIVERABLES SPLIT ==================== */}
-      <section className={styles.sectionWhite}>
+      {/* ==================== 2. STICKY 2-COLUMN BLUEPRINT WORKSPACE ==================== */}
+      <section className={styles.blueprintWorkspace}>
         <div className={styles.container}>
-          <div className={styles.splitRow}>
-            <div>
-              <div className={styles.pillBadgeLight}>
-                <span className={styles.pillDot} />
-                <span>How We Help — {service.id}</span>
+          <div className={styles.workspaceGrid}>
+            {/* Left Sticky Sidebar: All 12 Services Switcher + Direct Engineer Card */}
+            <aside className={styles.leftSidebar}>
+              <div className={styles.serviceSwitcherCard}>
+                <h2 className={styles.switcherHeading}>All 12 Turnkey Solutions</h2>
+                <ul className={styles.switcherList}>
+                  {SERVICES_DATA.map((item) => {
+                    const isActive = item.slug === service.slug;
+                    return (
+                      <li key={item.slug}>
+                        <Link
+                          href={`/services/${item.slug}`}
+                          className={`${styles.switcherLink} ${isActive ? styles.switcherLinkActive : ""
+                            }`}
+                        >
+                          <span>
+                            {item.id}. {item.shortTitle}
+                          </span>
+                          <span>→</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-              <h2 className={styles.sectionTitleLight}>{service.tagline}</h2>
-              <p className={styles.cardTextLight}>{service.overviewParagraphs[0]}</p>
-              <p className={styles.cardTextLight}>{service.overviewParagraphs[1]}</p>
 
-              <h3 className={styles.cardTitleLight} style={{ marginTop: "24px" }}>
-                What You Get With Every Project:
-              </h3>
-              <ul className={styles.checkList}>
-                {service.deliverables.map((item) => (
-                  <li key={item} className={styles.checkItem}>
-                    <span className={styles.checkIcon}>✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className={styles.directEngineerCard}>
+                <div className={styles.engineerPhoto}>
+                  <Image
+                    src="/images/company/team-group-1.jpg"
+                    alt="CATS Computers Burdubai Engineering Desk"
+                    fill
+                    sizes="300px"
+                    className={styles.coverImg}
+                  />
+                </div>
+                <h3 className={styles.engineerTitle}>Need a Free Site Visit in Dubai?</h3>
+                <p className={styles.engineerSub}>
+                  Our engineer visits your office or warehouse at zero cost to inspect your layout
+                  and prepare an itemized quote.
+                </p>
+                <Link href="/contact" className={styles.engineerCallBtn}>
+                  <span>Schedule Free Survey</span>
+                  <span>→</span>
+                </Link>
+              </div>
+            </aside>
 
-              <div style={{ marginTop: "22px" }}>
-                <span className={styles.formLabel} style={{ display: "block", marginBottom: "8px" }}>
-                  Official Technology Brands We Use:
+            {/* Right Deep-Dive Stream */}
+            <div className={styles.rightStream}>
+              {/* Panel 1: Overview & Deliverables */}
+              <div className={styles.blueprintPanel}>
+                <span className={styles.panelTag}>
+                  Solution Blueprint #{service.id} • {service.badge}
                 </span>
-                <div className={styles.vendorCluster}>
-                  {service.vendors.map((vendor) => (
-                    <span key={vendor} className={styles.vendorChip}>
-                      {vendor}
-                    </span>
+                <h2 className={styles.panelHeading}>{service.tagline}</h2>
+                <p className={styles.panelText}>{service.overviewParagraphs[0]}</p>
+                <p className={styles.panelText}>{service.overviewParagraphs[1]}</p>
+
+                <div className={styles.overviewSplit}>
+                  <div className={styles.deliverablesBox}>
+                    {service.deliverables.map((item) => (
+                      <div key={item} className={styles.deliverableRow}>
+                        <span style={{ color: "#1254ff", fontWeight: 600 }}>✓</span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className={styles.overviewPhoto}>
+                    <Image
+                      src={service.featureImage}
+                      alt={service.title}
+                      fill
+                      sizes="420px"
+                      className={styles.coverImg}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Panel 2: 6 Included Capabilities */}
+              <div className={styles.blueprintPanel}>
+                <span className={styles.panelTag}>What We Set Up For You</span>
+                <h2 className={styles.panelHeading}>
+                  6 Complete Capabilities Included in {service.shortTitle}.
+                </h2>
+
+                <div className={styles.capabilitiesGrid}>
+                  {service.capabilities.map((cap, idx) => (
+                    <div key={cap.title} className={styles.capabilityTile}>
+                      <div className={styles.capThumb}>
+                        <Image
+                          src={CAPABILITY_IMAGES[idx % CAPABILITY_IMAGES.length]}
+                          alt={cap.title}
+                          fill
+                          sizes="130px"
+                          className={styles.coverImg}
+                        />
+                      </div>
+                      <div>
+                        <span className={styles.capNum}>Module 0{idx + 1}</span>
+                        <h3 className={styles.capTitle}>{cap.title}</h3>
+                        <p className={styles.capDesc}>{cap.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Panel 3: Connected 4-Step Installation Timeline */}
+              <div className={styles.blueprintPanel}>
+                <span className={styles.panelTag}>Step-by-Step Execution</span>
+                <h2 className={styles.panelHeading}>
+                  How We Install &amp; Hand Over Your {service.shortTitle}.
+                </h2>
+
+                <div className={styles.timelineList}>
+                  {service.processSteps.map((step, idx) => (
+                    <div key={step.step} className={styles.timelineStep}>
+                      <div className={styles.timelineCircle}>{step.step}</div>
+                      <div>
+                        <h3 className={styles.timelineTitle}>{step.title}</h3>
+                        <p className={styles.timelineDesc}>{step.description}</p>
+                      </div>
+                      <div className={styles.timelineThumb}>
+                        <Image
+                          src={STEP_IMAGES[idx % STEP_IMAGES.length]}
+                          alt={step.title}
+                          fill
+                          sizes="180px"
+                          className={styles.coverImg}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Panel 4: Common Questions */}
+              <div className={styles.blueprintPanel}>
+                <span className={styles.panelTag}>Frequently Asked Questions</span>
+                <h2 className={styles.panelHeading}>
+                  Quick Answers About {service.shortTitle} in Dubai.
+                </h2>
+
+                <div className={styles.faqStack}>
+                  {service.faqs.map((faq) => (
+                    <div key={faq.question} className={styles.faqBox}>
+                      <h3 className={styles.faqQ}>{faq.question}</h3>
+                      <p className={styles.faqA}>{faq.answer}</p>
+                    </div>
                   ))}
                 </div>
               </div>
             </div>
-
-            <div className={styles.imageShowcaseWrap}>
-              <Image
-                src={service.featureImage}
-                alt={service.title}
-                fill
-                sizes="(max-width: 992px) 100vw, 600px"
-                className={styles.imageShowcaseImg}
-              />
-              <div className={styles.floatingStatBadge}>
-                <span className={styles.floatingStatValue}>
-                  {service.metrics[0]?.value}
-                </span>
-                <span className={styles.floatingStatLabel}>
-                  {service.metrics[0]?.label} — Certified UAE Execution
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 4: 6 CORE CAPABILITIES GRID (WITH IMAGES) ==================== */}
-      <section className={styles.sectionLight}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>What&apos;s Included</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Complete {service.shortTitle} Solutions.
-            </h2>
-            <p className={styles.sectionSubtitleLight}>
-              Everything is handled in-house by our Dubai engineers so your system works smoothly from day one.
-            </p>
-          </div>
-
-          <div className={styles.grid3}>
-            {service.capabilities.map((cap, idx) => (
-              <article key={cap.title} className={styles.mediaCard}>
-                <div className={styles.mediaCardThumb} style={{ height: "195px" }}>
-                  <Image
-                    src={CAPABILITY_IMAGES[idx % CAPABILITY_IMAGES.length]}
-                    alt={cap.title}
-                    fill
-                    sizes="(max-width: 992px) 100vw, 400px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>
-                    0{idx + 1} • {service.badge}
-                  </span>
-                </div>
-                <div className={styles.mediaCardBody}>
-                  <div>
-                    <h3 className={styles.cardTitleLight}>{cap.title}</h3>
-                    <p className={styles.cardTextLight} style={{ marginBottom: 0 }}>
-                      {cap.description}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 5: BEFORE VS AFTER COMPARISON BENTO ==================== */}
-      <section className={styles.sectionWhite}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>Real Business Impact</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Common Problems We Fix vs. Your New Setup.
-            </h2>
-            <p className={styles.sectionSubtitleLight}>
-              Here is how upgrading your {service.shortTitle.toLowerCase()} with CATS Computers transforms daily work for your staff.
-            </p>
-          </div>
-
-          <div className={styles.comparisonGrid}>
-            <div className={styles.comparisonCardProblem}>
-              <div className={styles.mediaCardThumb} style={{ height: "200px" }}>
-                <Image
-                  src="/images/case-study-dev-pair.jpg"
-                  alt="Before Upgrading"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 600px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>Before CATS Upgrade</span>
-              </div>
-              <div className={styles.mediaCardBody}>
-                <div>
-                  <h3 className={styles.cardTitleLight}>Daily Slowdowns &amp; Risks</h3>
-                  <ul className={styles.problemList}>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>Unplanned disconnections and slow performance during busy hours</span>
-                    </li>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>Messy wiring, missing documentation, and hard-to-find faults</span>
-                    </li>
-                    <li className={styles.problemItem}>
-                      <span className={styles.problemIcon}>✕</span>
-                      <span>Slow vendor response when your team needs urgent help</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.comparisonCardSolution}>
-              <div className={styles.mediaCardThumb} style={{ height: "200px" }}>
-                <Image
-                  src={service.heroImage}
-                  alt="After CATS Upgrade"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 600px"
-                  className={styles.mediaCardImg}
-                />
-                <span className={styles.mediaCardTopBadge}>After CATS Installation</span>
-              </div>
-              <div className={styles.mediaCardBody}>
-                <div>
-                  <h3 className={styles.cardTitleDark}>Fast, Clean &amp; Worry-Free</h3>
-                  <ul className={styles.checkList} style={{ marginTop: "18px", marginBottom: 0 }}>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>Rock-solid speed and reliability built for growing teams</span>
-                    </li>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>Neatly labeled equipment with complete handover diagrams</span>
-                    </li>
-                    <li className={styles.checkItemDark}>
-                      <span className={styles.checkIcon}>✓</span>
-                      <span>15-minute remote helpdesk &amp; on-site Dubai engineer care</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 6: 4-STEP DEPLOYMENT WORKFLOW (WITH IMAGES) ==================== */}
-      <section className={styles.sectionDark}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeDark}>
-              <span className={styles.pillDot} />
-              <span>Simple 4-Step Delivery</span>
-            </div>
-            <h2 className={styles.sectionTitleDark}>
-              How We Set Up Your {service.shortTitle}.
-            </h2>
-            <p className={styles.sectionSubtitleDark}>
-              A clear, step-by-step process so your project finishes on time and within budget.
-            </p>
-          </div>
-
-          <div className={styles.grid4}>
-            {service.processSteps.map((step, idx) => (
-              <div
-                key={step.step}
-                className={styles.mediaCard}
-                style={{
-                  background: "rgba(10, 25, 78, 0.72)",
-                  borderColor: "rgba(96, 165, 250, 0.24)",
-                }}
-              >
-                <div className={styles.mediaCardThumb} style={{ height: "165px" }}>
-                  <Image
-                    src={STEP_IMAGES[idx % STEP_IMAGES.length]}
-                    alt={step.title}
-                    fill
-                    sizes="(max-width: 992px) 100vw, 320px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>STEP {step.step}</span>
-                </div>
-                <div className={styles.mediaCardBody} style={{ padding: "22px" }}>
-                  <div>
-                    <h3 className={styles.cardTitleDark}>{step.title}</h3>
-                    <p className={styles.cardTextDark} style={{ marginBottom: 0 }}>
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 7: WHY CHOOSE CATS FOR THIS SERVICE ==================== */}
-      <section className={styles.sectionLight}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeaderCenter}>
-            <div className={styles.pillBadgeLight}>
-              <span className={styles.pillDot} />
-              <span>Why Businesses Trust Us</span>
-            </div>
-            <h2 className={styles.sectionTitleLight}>
-              Why Choose CATS Computers in Dubai?
-            </h2>
-          </div>
-
-          <div className={styles.grid3}>
-            {WHY_CATS_CARDS.map((card) => (
-              <article key={card.title} className={styles.mediaCard}>
-                <div className={styles.mediaCardThumb} style={{ height: "200px" }}>
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    sizes="(max-width: 992px) 100vw, 420px"
-                    className={styles.mediaCardImg}
-                  />
-                  <span className={styles.mediaCardTopBadge}>{card.badge}</span>
-                </div>
-                <div className={styles.mediaCardBody}>
-                  <div>
-                    <h3 className={styles.cardTitleLight}>{card.title}</h3>
-                    <p className={styles.cardTextLight} style={{ marginBottom: 0 }}>
-                      {card.desc}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 8: SERVICE FAQS & RELATED SERVICES ==================== */}
-      <section className={styles.sectionWhite}>
-        <div className={styles.container}>
-          <div className={styles.splitRow} style={{ alignItems: "flex-start" }}>
-            <div>
-              <div className={styles.pillBadgeLight}>
-                <span className={styles.pillDot} />
-                <span>Common Questions</span>
-              </div>
-              <h2 className={styles.sectionTitleLight}>
-                Quick Answers About {service.shortTitle}.
-              </h2>
-              <div className={styles.accordionList} style={{ marginTop: "24px" }}>
-                {service.faqs.map((faq) => (
-                  <div key={faq.question} className={`${styles.accordionItem} ${styles.accordionItemOpen}`}>
-                    <div className={styles.accordionTrigger} style={{ cursor: "default" }}>
-                      <span>{faq.question}</span>
-                    </div>
-                    <div className={styles.accordionBody}>{faq.answer}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <div className={styles.pillBadgeLight}>
-                <span className={styles.pillDot} />
-                <span>Explore More</span>
-              </div>
-              <h2 className={styles.sectionTitleLight}>
-                Other Services You May Need.
-              </h2>
-              <div className={styles.accordionList} style={{ marginTop: "24px" }}>
-                {relatedServices.map((rel) => (
-                  <Link
-                    key={rel.slug}
-                    href={`/services/${rel.slug}`}
-                    className={styles.mediaCard}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <div className={styles.mediaCardThumb} style={{ height: "150px" }}>
-                      <Image
-                        src={rel.heroImage}
-                        alt={rel.title}
-                        fill
-                        sizes="(max-width: 992px) 100vw, 480px"
-                        className={styles.mediaCardImg}
-                      />
-                      <span className={styles.mediaCardTopBadge}>
-                        {rel.id} • {rel.badge}
-                      </span>
-                    </div>
-                    <div className={styles.mediaCardBody} style={{ padding: "20px 24px" }}>
-                      <h3 className={styles.cardTitleLight} style={{ fontSize: "18px", marginBottom: "6px" }}>
-                        {rel.title}
-                      </h3>
-                      <p className={styles.cardTextLight} style={{ marginBottom: "10px", fontSize: "13.5px" }}>
-                        {rel.shortDescription}
-                      </p>
-                      <span className={styles.cardLink}>
-                        <span>View Service</span>
-                        <span>→</span>
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 9: BRANDS & CTA BANNER ==================== */}
       <TrustedBrandsSection />
       <CtaBanner />
     </main>

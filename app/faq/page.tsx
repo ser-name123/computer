@@ -3,7 +3,6 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import PageBanner from "@/components/PageBanner/PageBanner";
 import CtaBanner from "@/components/CtaBanner/CtaBanner";
 import styles from "@/styles/AdvancedLegalFaq.module.css";
 
@@ -171,26 +170,33 @@ export default function FaqPage() {
 
   return (
     <main className={styles.pageWrapper}>
-      <PageBanner
-        eyebrow="TECHNICAL KNOWLEDGE HUB — DUBAI, UAE"
-        title="Frequently Asked Questions."
-        subtitle="Instant, transparent answers from our Dubai L3 systems architects covering 24/7 IT AMC contracts, structured cabling, cybersecurity, cloud migrations, and authorized hardware supply."
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "FAQ" },
-        ]}
-        bgImage="/images/consultation-team.jpg"
-        primaryCtaText="Ask an IT Architect"
-        primaryCtaHref="/contact"
-        secondaryCtaText="Explore All 12 Services"
-        secondaryCtaHref="/services"
-        metrics={[
-          { value: "< 15m", label: "Remote SLA Response" },
-          { value: "< 2h", label: "On-Site Dubai Dispatch" },
-          { value: "30+", label: "Authorized OEM Brands" },
-          { value: "Free", label: "On-Site Dubai Survey" },
-        ]}
-      />
+      <section className={styles.faqHelpCenterHero}>
+        <div className={styles.faqHeroInner}>
+          <div className={styles.faqHeroBadge}>
+            <span>● Dubai L3 Support Knowledge Base</span>
+            <span>•</span>
+            <span>12 Verified Engineering Answers</span>
+          </div>
+          <h1 className={styles.faqHeroTitle}>
+            How Can Our Dubai IT Engineers Help You Today?
+          </h1>
+          <p className={styles.faqHeroSub}>
+            Search our plain-English answers below covering 24/7 IT AMC contracts, Huawei eKit &amp;
+            Ruijie Wi-Fi, Fluke cabling certification, firewalls, and genuine UAE warranties.
+          </p>
+
+          <div className={styles.faqHeroSearchBox}>
+            <span className={styles.faqHeroSearchIcon}>🔍</span>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Type your question (e.g. AMC response time, Fluke test, Huawei Wi-Fi, CCTV)..."
+              className={styles.faqHeroSearchInput}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* ==================== TOP 4 GLASSMORPHIC SUPPORT HIGHLIGHT CARDS ==================== */}
       <section className={styles.trustStripSection}>
