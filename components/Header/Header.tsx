@@ -491,6 +491,19 @@ export default function Header() {
     }
   };
 
+  const handleForceCloseMega = () => {
+    if (closeMegaTimerRef.current) {
+      clearTimeout(closeMegaTimerRef.current);
+      closeMegaTimerRef.current = null;
+    }
+    setActiveMega(null);
+    setMobileMenuOpen(false);
+    setDrawerOpen(false);
+    if (typeof document !== "undefined" && document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => {
       const next = window.scrollY > 36;
@@ -639,10 +652,11 @@ export default function Header() {
                         isMegaOpen ? styles.navItemWrapperOpen : ""
                       }`}
                       onMouseEnter={() => handleOpenMega(item.label, item.hasDropdown)}
+                      onMouseLeave={handleScheduleCloseMega}
                     >
                       <Link
                         href={item.href}
-                        onClick={() => setActiveMega(null)}
+                        onClick={handleForceCloseMega}
                         className={`${styles.navLink} ${
                           isNavItemActive(item) || isMegaOpen ? styles.navLinkActive : ""
                         }`}
@@ -662,7 +676,7 @@ export default function Header() {
                           aria-label={`${item.label} Mega Menu`}
                           onMouseEnter={handleCancelCloseMega}
                           onMouseLeave={handleScheduleCloseMega}
-                          onClick={() => setActiveMega(null)}
+                          onClick={handleForceCloseMega}
                         >
                           <div className={styles.megaMenuSurface}>
                             <div className={styles.megaMenuTopGlow} aria-hidden="true" />
@@ -681,6 +695,7 @@ export default function Header() {
                                   {item.viewAllText && (
                                     <Link
                                       href={item.viewAllHref || item.href}
+                                      onClick={handleForceCloseMega}
                                       className={styles.megaViewAllLink}
                                     >
                                       <span>{item.viewAllText}</span>
@@ -708,6 +723,7 @@ export default function Header() {
                                     <Link
                                       key={sub.title}
                                       href={sub.href}
+                                      onClick={handleForceCloseMega}
                                       className={styles.megaCard}
                                     >
                                       <div className={styles.megaCardIconBox}>
@@ -800,6 +816,7 @@ export default function Header() {
 
                                       <Link
                                         href={item.spotlight.ctaHref}
+                                        onClick={handleForceCloseMega}
                                         className={styles.megaSpotlightBtn}
                                       >
                                         <span>{item.spotlight.ctaText}</span>
